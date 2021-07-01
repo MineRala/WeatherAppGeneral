@@ -16,6 +16,10 @@ class ViewController: UIViewController {
         var s = 3
     }
 
-
+    //ndkjsandaskjddm
+    var name:String = ""
+   
+    
+    var mine : String = ""
 }
 
