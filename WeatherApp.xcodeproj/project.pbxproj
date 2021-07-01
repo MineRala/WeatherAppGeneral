@@ -28,6 +28,8 @@
 		E8873A86268DCF35003702A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8873A84268DCF35003702A5 /* LaunchScreen.storyboard */; };
 		E8873A91268DCF36003702A5 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8873A90268DCF36003702A5 /* WeatherAppTests.swift */; };
 		E8873A9C268DCF36003702A5 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8873A9B268DCF36003702A5 /* WeatherAppUITests.swift */; };
+		E8CAF51D268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CAF51B268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift */; };
+		E8CAF51E268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF51C268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		E8873A97268DCF36003702A5 /* WeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8873A9B268DCF36003702A5 /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		E8873A9D268DCF36003702A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8CAF51B268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHourCollectionViewCell.swift; sourceTree = "<group>"; };
+		E8CAF51C268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherHourCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 		E80B29D8268DDC62007692E9 /* WeatherHourlyCell */ = {
 			isa = PBXGroup;
 			children = (
+				E8CAF51A268E0CB0000A29C1 /* CollectionViewCell */,
 				E80B29D9268DDC62007692E9 /* WeatherHourlyCell.xib */,
 				E80B29DA268DDC62007692E9 /* WeatherHourlyCell.swift */,
 			);
@@ -175,6 +180,13 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		E80B2A04268DE3B0007692E9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		E8873A6A268DCF2A003702A5 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +210,7 @@
 		E8873A75268DCF2A003702A5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				E80B2A04268DE3B0007692E9 /* Fonts */,
 				E80B29FE268DDE89007692E9 /* Models */,
 				E80B29F8268DDD7F007692E9 /* API */,
 				E80B29F1268DDC68007692E9 /* Cell */,
@@ -229,6 +242,15 @@
 				E8873A9D268DCF36003702A5 /* Info.plist */,
 			);
 			path = WeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		E8CAF51A268E0CB0000A29C1 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8CAF51B268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift */,
+				E8CAF51C268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +364,7 @@
 				E80B29E8268DDC62007692E9 /* NextDayCell.xib in Resources */,
 				E80B29E6268DDC62007692E9 /* WeatherHourlyCell.xib in Resources */,
 				E8873A7E268DCF2A003702A5 /* Main.storyboard in Resources */,
+				E8CAF51E268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +392,7 @@
 				E80B29E5268DDC62007692E9 /* WeatherDetailsInfoCell.swift in Sources */,
 				E8873A81268DCF2A003702A5 /* WeatherApp.xcdatamodeld in Sources */,
 				E80B29ED268DDC62007692E9 /* WeatherInfoCell.swift in Sources */,
+				E8CAF51D268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift in Sources */,
 				E80B29E9268DDC62007692E9 /* NextDayCell.swift in Sources */,
 				E8873A77268DCF2A003702A5 /* AppDelegate.swift in Sources */,
 				E80B29E7268DDC62007692E9 /* WeatherHourlyCell.swift in Sources */,

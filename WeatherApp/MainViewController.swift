@@ -8,12 +8,12 @@
 import UIKit
 import CoreLocation
 
-class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate {
+class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var tableViewMain: UITableView!
     private let apiService = APIService()
-    let locationManager = CLLocationManager()
-    
+    var response =  WeatherModel()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,62 +25,18 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         tableViewMain.delegate = self
         tableViewMain.dataSource = self
-        
-        let status = CLLocationManager.authorizationStatus()
-        switch status {
-        case .authorizedAlways: break
-        case .authorizedWhenInUse: break
-        case .denied: break
-        case .notDetermined: break
-        case .restricted: break
-        default:
-            fatalError()
-        }
-        print(status)
-      
-        locationManager.delegate = self
-        locationManager.requestLocation()
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        
-        apiService.request(service: .cityLocation(45.1414, 50.5921)) { (data, error) in
+  
+        apiService.request(service: .cityLocation(39.1068, 1.8612)) { (data, error) in
             //parse
             let response = try! JSONDecoder().decode(WeatherModel.self, from:data!)
-            print("cod: \(response.cod)")
-            print("message: \(response.message)")
-            print("cnt: \(response.cnt)")
-            response.list?.forEach { (lists) in
-                print(lists.dt ?? "")
+            self.response = response
+            DispatchQueue.main.async {
+                self.tableViewMain.reloadData()
             }
         }
         
     }
-    
-    
-    func locationManager(_ manager: CLLocationManager,didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
-            apiService.request(service: .cityLocation(latitude, longitude)) { (data, error) in
-                //parse
-                let response = try! JSONDecoder().decode(WeatherModel.self, from:data!)
-                print("cod: \(response.cod)")
-                print("message: \(response.message)")
-                print("cnt: \(response.cnt)")
-                response.list?.forEach { (lists) in
-                    print(lists.dt ?? "")
-                }
-            }
-            print(latitude)
-            print(longitude)
-        }
-    
-    }
-    
-    func locationManager(_ manager: CLLocationManager,didFailWithError error: Error){
-        print(error)
-    }
+   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
@@ -126,6 +82,4 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         fatalError()
     }
-    
-    
 }
