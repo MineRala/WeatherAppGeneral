@@ -14,6 +14,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    //ndkjsandaskjddm
+    var name:String = ""
+   
+    
+    var mine : String = ""
 }
 
