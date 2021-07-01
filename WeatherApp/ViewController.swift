@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        var m:String = "a"
+        var s = 3
     }
 
     //ndkjsandaskjddm
