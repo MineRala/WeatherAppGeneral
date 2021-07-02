@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import SwiftLocation
 
 class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
@@ -26,15 +27,28 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableViewMain.delegate = self
         tableViewMain.dataSource = self
   
-        apiService.request(service: .cityLocation(39.1068, 1.8612)) { (data, error) in
-            //parse
-            let response = try! JSONDecoder().decode(WeatherModel.self, from:data!)
-            self.response = response
-            DispatchQueue.main.async {
-                self.tableViewMain.reloadData()
+        SwiftLocation.gpsLocationWith {
+            // configure everything about your request
+            $0.subscription = .single // continous updated until you stop it
+            $0.accuracy = .block
+        }.then { result in // you can attach one or more subscriptions via `then`.
+            switch result {
+            case .success(let newData):
+                print(newData)
+                self.apiService.request(service: .cityLocation(newData.coordinate.latitude, newData.coordinate.longitude)) { (data, error) in
+                    //parse
+                    let response = try! JSONDecoder().decode(WeatherModel.self, from:data!)
+                    self.response = response
+                    DispatchQueue.main.async {
+                        self.tableViewMain.reloadData()
+                    }
+                }
+            case .failure(let error):
+                print("An error has occurred: \(error.localizedDescription)")
             }
         }
-        
+
+
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,10 +88,19 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 cell.labelDegree.text = ""
                 return cell
             }
-            cell.labelDegree.text = "\(response.list![1].main!.temp)"
-            
+ //           cell.labelDegree.text = "\(response.list![1].main!.temp)"
+//            guard let icon = response.list![2].weather[] else{
+//                cell.ImageIcon.image = UIImage(named: "")
+//                return cell
+//            }
+//            cell.ImageIcon.image = UIImage(named: "\(response.list![2].weather[3])")
+//
             // cell.ImageIcon = response.list.
-          //  cell.labelState.text = response.
+//            guard let state = response.list?[2].weather else{
+//                cell.labelState.text = ""
+//                return cell
+//            }
+//            cell.labelState.text = "\(response.list![2].weather[1])"
             return cell
         }
          else if indexPath.row == 2 {

@@ -66,5 +66,9 @@
 	<array>
 		<string>FuturaPTBook.otf</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Konumunuzu kullanmak istiyoruz.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Konumunuzu kullanmak istiyoruz.</string>
 </dict>
 </plist>
