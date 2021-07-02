@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FuturaPTBook.otf">
+            <string>FuturaPT-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WeatherHourCollectionViewCell" id="gTV-IL-0wX" customClass="WeatherHourCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="59" height="149"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="59" height="149"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SzH-ai-Vd6">
+                        <rect key="frame" x="0.0" y="0.0" width="59" height="149"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26.04" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzx-r6-Tmd">
+                                <rect key="frame" x="12" y="100.5" width="35.5" height="16.5"/>
+                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="14"/>
+                                <color key="textColor" red="0.40392156862745099" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPJ-0Z-DBr">
+                                <rect key="frame" x="11.5" y="56.5" width="36" height="36"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.max" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Peu-Yf-Ydm">
+                                        <rect key="frame" x="7.5" y="7.5" width="21" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.48627450980392156" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="21" id="Hrg-EI-7Uv"/>
+                                            <constraint firstAttribute="height" constant="20.5" id="UBQ-5Q-JHg"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="XRD-PA-qPy"/>
+                                    <constraint firstAttribute="width" constant="36" id="fLB-70-2IE"/>
+                                    <constraint firstItem="Peu-Yf-Ydm" firstAttribute="centerY" secondItem="EPJ-0Z-DBr" secondAttribute="centerY" id="r2s-r9-0lF"/>
+                                    <constraint firstItem="Peu-Yf-Ydm" firstAttribute="centerX" secondItem="EPJ-0Z-DBr" secondAttribute="centerX" id="rEz-O4-I2W"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xj-nX-l3k">
+                                <rect key="frame" x="9" y="32" width="41" height="16.5"/>
+                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="14"/>
+                                <color key="textColor" red="0.40392156862745099" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EPJ-0Z-DBr" firstAttribute="centerX" secondItem="SzH-ai-Vd6" secondAttribute="centerX" id="8QH-I8-rcp"/>
+                            <constraint firstItem="4Xj-nX-l3k" firstAttribute="centerX" secondItem="EPJ-0Z-DBr" secondAttribute="centerX" id="LPe-ZO-ads"/>
+                            <constraint firstItem="EPJ-0Z-DBr" firstAttribute="centerY" secondItem="SzH-ai-Vd6" secondAttribute="centerY" id="YxK-rp-Rlq"/>
+                            <constraint firstItem="lzx-r6-Tmd" firstAttribute="centerX" secondItem="EPJ-0Z-DBr" secondAttribute="centerX" id="gGU-Js-O7y"/>
+                            <constraint firstItem="lzx-r6-Tmd" firstAttribute="top" secondItem="EPJ-0Z-DBr" secondAttribute="bottom" constant="8" id="yp4-m6-HhG"/>
+                            <constraint firstItem="EPJ-0Z-DBr" firstAttribute="top" secondItem="4Xj-nX-l3k" secondAttribute="bottom" constant="8" id="zcN-Gl-veA"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="SzH-ai-Vd6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Cw4-1j-edi"/>
+                <constraint firstAttribute="bottom" secondItem="SzH-ai-Vd6" secondAttribute="bottom" id="bXx-gB-yuJ"/>
+                <constraint firstItem="SzH-ai-Vd6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="g7P-fM-rBv"/>
+                <constraint firstAttribute="trailing" secondItem="SzH-ai-Vd6" secondAttribute="trailing" id="ucZ-fA-Ojl"/>
+            </constraints>
+            <size key="customSize" width="59" height="128"/>
+            <connections>
+                <outlet property="ImageIcon" destination="Peu-Yf-Ydm" id="Pg6-aQ-DEF"/>
+                <outlet property="collectionContentView" destination="SzH-ai-Vd6" id="5Mv-hH-Jji"/>
+                <outlet property="labelDegree" destination="lzx-r6-Tmd" id="t9m-VB-S5B"/>
+                <outlet property="labelTime" destination="4Xj-nX-l3k" id="p0D-ah-98d"/>
+                <outlet property="viewImageContentArea" destination="EPJ-0Z-DBr" id="Mf7-Yx-wGf"/>
+            </connections>
+            <point key="canvasLocation" x="-23.913043478260871" y="18.080357142857142"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="sun.max" catalog="system" width="128" height="124"/>
+    </resources>
+</document>

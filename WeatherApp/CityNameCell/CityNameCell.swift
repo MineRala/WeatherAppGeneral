@@ -10,15 +10,18 @@ import UIKit
 class CityNameCell: UITableViewCell {
 
     @IBOutlet weak var lblCity: UILabel!
+    
+    private var viewModel: MainViewModel!
   
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+      
       
     }
     
-    func configureCell(cityName: String, countryName: String) {
-        self.lblCity.text = "\(cityName), \(countryName)"
+    func configureCell(viewModel: MainViewModel) {
+        self.viewModel = viewModel
+        self.lblCity.text = "\(viewModel.cityName), \(viewModel.countryName)"
     }
     
 }

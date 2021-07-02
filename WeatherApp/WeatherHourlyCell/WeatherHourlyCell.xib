@@ -18,26 +18,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="326" height="168"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VT9-WV-mLK">
-                        <rect key="frame" x="0.0" y="0.0" width="326" height="168"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3ty-U3-lsZ">
+                        <rect key="frame" x="8" y="8" width="310" height="152"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MhZ-nE-0Qg">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zOa-Hw-1BR">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="VT9-WV-mLK" secondAttribute="bottom" id="7Pb-6z-abV"/>
-                    <constraint firstAttribute="trailing" secondItem="VT9-WV-mLK" secondAttribute="trailing" id="9HQ-E3-4ul"/>
-                    <constraint firstItem="VT9-WV-mLK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="asz-Zl-kg3"/>
-                    <constraint firstItem="VT9-WV-mLK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kFx-SB-d0s"/>
+                    <constraint firstAttribute="trailing" secondItem="3ty-U3-lsZ" secondAttribute="trailing" constant="8" id="DN1-U8-liR"/>
+                    <constraint firstItem="3ty-U3-lsZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Xxm-5Y-M1c"/>
+                    <constraint firstItem="3ty-U3-lsZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="duT-po-Blu"/>
+                    <constraint firstAttribute="bottom" secondItem="3ty-U3-lsZ" secondAttribute="bottom" constant="8" id="w0x-Z6-UjN"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="collectionViewHourlyWeather" destination="3ty-U3-lsZ" id="0CA-qs-smG"/>
+            </connections>
             <point key="canvasLocation" x="13.043478260869566" y="145.3125"/>
         </tableViewCell>
     </objects>

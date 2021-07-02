@@ -13,14 +13,19 @@ class WeatherInfoCell: UITableViewCell {
     @IBOutlet weak var labelDegree: UILabel!
     @IBOutlet weak var ImageIcon: UIImageView!
     
+    private var viewModel: MainViewModel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    func configureCell(state: String, degree: Double, iconIdentifier: String) {
-        self.labelState.text = state
-        self.labelDegree.text = "\(degree)"
+    func configureCell(_ viewModel: MainViewModel) {
+        self.viewModel = viewModel
+        
+        self.labelState.text = viewModel.weatherState
+        self.labelDegree.text = viewModel.weatherDegree
+        self.ImageIcon.image = UIImage(systemName: viewModel.weatherIcon)
         // TODO: icon identifier to icon
     }
     
