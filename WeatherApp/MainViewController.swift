@@ -36,8 +36,7 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         
     }
-   
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -62,10 +61,23 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CityNameCell",for: indexPath)as! CityNameCell
+            guard let city = response.city  else{
+                cell.lblCity.text = ""
+                return cell
+            }
+            cell.lblCity.text = response.city!.name  + response.city!.country
             return cell
         }
          else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInfoCell",for: indexPath)as! WeatherInfoCell
+            guard let degree = response.list else{
+                cell.labelDegree.text = ""
+                return cell
+            }
+            cell.labelDegree.text = "\(response.list![1].main!.temp)"
+            
+            // cell.ImageIcon = response.list.
+          //  cell.labelState.text = response.
             return cell
         }
          else if indexPath.row == 2 {

@@ -9,6 +9,7 @@ import UIKit
 
 class NextDayCell: UITableViewCell {
 
+    @IBOutlet weak var labelNextDays: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

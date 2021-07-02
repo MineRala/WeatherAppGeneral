@@ -17,13 +17,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="172" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yH-dY-cZP">
-                        <rect key="frame" x="73" y="10" width="83" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yH-dY-cZP">
+                        <rect key="frame" x="58" y="8" width="98" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1" id="gzq-Q5-ftw"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <state key="normal" title="Next 5 Days"/>
+                        <state key="normal">
+                            <attributedString key="attributedTitle">
+                                <fragment content="Next 5 Days">
+                                    <attributes>
+                                        <font key="NSFont" size="17" name="Futura-Medium"/>
+                                        <integer key="NSUnderline" value="1"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                        </state>
                     </button>
                 </subviews>
                 <constraints>
@@ -33,6 +41,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="labelNextDays" destination="2yH-dY-cZP" id="wze-Po-hBS"/>
+            </connections>
             <point key="canvasLocation" x="-133.33333333333334" y="132.58928571428572"/>
         </tableViewCell>
     </objects>
