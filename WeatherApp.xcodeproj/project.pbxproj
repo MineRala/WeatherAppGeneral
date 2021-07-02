@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,8 @@
 		E8CAF51D268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CAF51B268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift */; };
 		E8CAF51E268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF51C268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib */; };
 		F42B4C87AA5F970EBED36B1B /* Pods_WeatherApp_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E078D806327A73648992F4 /* Pods_WeatherApp_WeatherAppUITests.framework */; };
+		FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */; };
+		FDB79B69268F34E80043353B /* WeatherDetailInfoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,8 @@
 		E8CAF5A6268E5459000A29C1 /* FuturaPTDemiOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FuturaPTDemiOblique.otf; sourceTree = "<group>"; };
 		F2962EF1D99A008ED312D352 /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDDFCC3A3DC7EB76FFC3E56 /* Pods-WeatherApp-WeatherAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp-WeatherAppUITests/Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailInfoCollectionCell.swift; sourceTree = "<group>"; };
+		FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherDetailInfoCollectionCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +157,6 @@
 				A063D2134441573288D6D797 /* Pods-WeatherAppTests.debug.xcconfig */,
 				AC7060AB944D8937DCC4F231 /* Pods-WeatherAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -170,6 +173,7 @@
 		E80B29D5268DDC62007692E9 /* WeatherDetailsInfo */ = {
 			isa = PBXGroup;
 			children = (
+				FDB79B62268F341F0043353B /* WeatherDetailInfoCollectionCell */,
 				E80B29D6268DDC62007692E9 /* WeatherDetailsInfoCell.xib */,
 				E80B29D7268DDC62007692E9 /* WeatherDetailsInfoCell.swift */,
 			);
@@ -338,6 +342,15 @@
 			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
+		FDB79B62268F341F0043353B /* WeatherDetailInfoCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */,
+				FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */,
+			);
+			path = WeatherDetailInfoCollectionCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -447,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E80B29EC268DDC62007692E9 /* WeatherInfoCell.xib in Resources */,
+				FDB79B69268F34E80043353B /* WeatherDetailInfoCollectionCell.xib in Resources */,
 				E8873A86268DCF35003702A5 /* LaunchScreen.storyboard in Resources */,
 				E80B29EB268DDC62007692E9 /* CityNameCell.xib in Resources */,
 				E80B29E4268DDC62007692E9 /* WeatherDetailsInfoCell.xib in Resources */,
@@ -590,6 +604,7 @@
 				E8873A77268DCF2A003702A5 /* AppDelegate.swift in Sources */,
 				E80B29E7268DDC62007692E9 /* WeatherHourlyCell.swift in Sources */,
 				E80B29FA268DDD95007692E9 /* APIService.swift in Sources */,
+				FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */,
 				E8873A79268DCF2A003702A5 /* SceneDelegate.swift in Sources */,
 				E80B29CE268DDB60007692E9 /* MainViewController.swift in Sources */,
 				E80B29EA268DDC62007692E9 /* CityNameCell.swift in Sources */,
