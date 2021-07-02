@@ -126,20 +126,14 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailsInfoCell", for: indexPath) as! WeatherDetailsInfoCell
-            
+            cell.configureCell(sunset: city.sunset, sunrise: city.sunrise, seaLevel: currentWeather.main!.sea_level, grnLevel: currentWeather.main!.grnd_level)
             return cell
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailsInfoCell", for: indexPath) as! WeatherDetailsInfoCell
+            cell.configureCell(windSpeed: currentWeather.wind.speed, windDegree: currentWeather.wind.deg, pressure: currentWeather.main!.pressure, humudity: currentWeather.main!.humidity)
             return cell
         default:
             fatalError()
         }
-        
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CityNameCell",for: indexPath)as! CityNameCell
-            cell.configureCell(cityName: city.name, countryName: city.country)
-            return cell
-        }
-        fatalError()
     }
 }
