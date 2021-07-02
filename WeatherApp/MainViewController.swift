@@ -13,7 +13,11 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
     @IBOutlet weak var tableViewMain: UITableView!
     private let apiService = APIService()
-    var response =  WeatherModel()
+    
+    
+    var city: City!
+    var dailyWeather: [String: [List]] = [:] // String 02-07-2021
+    var currentWeather: List!
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +42,7 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 self.apiService.request(service: .cityLocation(newData.coordinate.latitude, newData.coordinate.longitude)) { (data, error) in
                     //parse
                     let response = try! JSONDecoder().decode(WeatherModel.self, from:data!)
-                    self.response = response
+                    self.processResponse(response)
                     DispatchQueue.main.async {
                         self.tableViewMain.reloadData()
                     }
@@ -47,72 +51,93 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 print("An error has occurred: \(error.localizedDescription)")
             }
         }
-
-
     }
+    
+    private func processResponse(_ response: WeatherModel) {
+        guard let city = response.city, let weatherData = response.list else {
+            // TODO: city veya weather data yok. Hata alerti göster
+            return
+        }
+        
+        let sortedWeatherData = weatherData.sorted { (we1, we2) -> Bool in
+            let date1 = Date(timeIntervalSince1970: TimeInterval(we1.dt!))
+            let date2 = Date(timeIntervalSince1970: TimeInterval(we2.dt!))
+            return date1 < date2
+        }
+        self.currentWeather = sortedWeatherData.first!
+       
+        
+        self.city = city
+        var dct: [String: [List]] = [:]
+        weatherData.forEach { weather in
+            let interval = TimeInterval(weather.dt!)
+            let date = Date(timeIntervalSince1970: interval)
+            let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
+            let identifier = "\(calendarDate.day)-\(calendarDate.month)-\(calendarDate.year)"
+            if dct.keys.contains(identifier) {
+                var arr = dct[identifier]!
+                arr.append(weather)
+                dct[identifier] = arr
+            } else {
+                dct[identifier] = [weather]
+            }
+        }
+        self.dailyWeather = dct
+    }
+    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if self.city == nil { return 0 }
+        return 6
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return  60        }
-        if indexPath.row == 1 {
-            return  180        }
-        if indexPath.row == 2 {
-            return  52
-        }
-         if indexPath.row == 3 {
+        switch indexPath.row {
+        case 0:
+            return 60
+        case 1:
             return 180
+        case 2:
+            return 52
+        case 3:
+            return 180
+        case 4,5:
+            return 200
+        default:
+            return 0
         }
-        if indexPath.row == 4 {
-            return 300
-        }
-        fatalError()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CityNameCell",for: indexPath)as! CityNameCell
+            cell.configureCell(cityName: city.name, countryName: city.country)
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInfoCell", for: indexPath) as! WeatherInfoCell
+            cell.configureCell(state: self.currentWeather.weather.first!.main, degree: currentWeather.main!.temp, iconIdentifier: currentWeather.weather.first!.icon)
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NextDayCell", for: indexPath) as! NextDayCell
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherHourlyCell", for: indexPath) as! WeatherHourlyCell
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailsInfoCell", for: indexPath) as! WeatherDetailsInfoCell
+            
+            return cell
+        case 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailsInfoCell", for: indexPath) as! WeatherDetailsInfoCell
+            return cell
+        default:
+            fatalError()
+        }
+        
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CityNameCell",for: indexPath)as! CityNameCell
-            guard let city = response.city  else{
-                cell.lblCity.text = ""
-                return cell
-            }
-            cell.lblCity.text = response.city!.name  + response.city!.country
-            return cell
-        }
-         else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInfoCell",for: indexPath)as! WeatherInfoCell
-            guard let degree = response.list else{
-                cell.labelDegree.text = ""
-                return cell
-            }
- //           cell.labelDegree.text = "\(response.list![1].main!.temp)"
-//            guard let icon = response.list![2].weather[] else{
-//                cell.ImageIcon.image = UIImage(named: "")
-//                return cell
-//            }
-//            cell.ImageIcon.image = UIImage(named: "\(response.list![2].weather[3])")
-//
-            // cell.ImageIcon = response.list.
-//            guard let state = response.list?[2].weather else{
-//                cell.labelState.text = ""
-//                return cell
-//            }
-//            cell.labelState.text = "\(response.list![2].weather[1])"
-            return cell
-        }
-         else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NextDayCell",for: indexPath)as! NextDayCell
-            return cell
-        }
-         else if indexPath.row == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherHourlyCell",for: indexPath)as! WeatherHourlyCell
-            return cell
-        }
-         else if indexPath.row == 4 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailsInfoCell",for: indexPath)as! WeatherDetailsInfoCell
+            cell.configureCell(cityName: city.name, countryName: city.country)
             return cell
         }
         fatalError()
