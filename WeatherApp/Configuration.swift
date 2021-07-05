@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 
 struct C {
+    struct App {
+        static let numberOfItemsInHourlyCollectionView: Int = 8
+    }
+    
     enum Font: String {
         case bold = "FuturaPT-Bold"
         case regular = "FuturaPT-Medium"
@@ -25,7 +29,7 @@ struct C {
         static let cityInfoTitleColor =  #colorLiteral(red: 0.3254901961, green: 0.3254901961, blue: 0.3254901961, alpha: 1)
         static let labelDegreeColor = #colorLiteral(red: 0.4039215686, green: 0.4039215686, blue: 0.4039215686, alpha: 1)
         static let labelTimeColor = #colorLiteral(red: 0.4039215686, green: 0.4039215686, blue: 0.4039215686, alpha: 1)
-        static let imageIconColor = #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
+        static let imageIconColor = #colorLiteral(red: 0.4862745098, green: 0.4823529412, blue: 0.4823529412, alpha: 1)
         static let lblTitleColor = #colorLiteral(red: 0.5764705882, green: 0.5764705882, blue: 0.5764705882, alpha: 1)
         static let lblValueColor = #colorLiteral(red: 0.4745098039, green: 0.4745098039, blue: 0.4745098039, alpha: 1)
         static let nextDaysColor = #colorLiteral(red: 0.3607843137, green: 0.3607843137, blue: 0.3607843137, alpha: 1)
@@ -38,6 +42,6 @@ struct C {
         static let hourlCollectionViewCellSelectedDegreeColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
         static let hourlCollectionViewCellSelectedIconColor = #colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.937254902, alpha: 1)
         static let hourlCollectionViewCellSelectedEllipsColor  = #colorLiteral(red: 0.2745098039, green: 0.2745098039, blue: 0.2745098039, alpha: 1)
-        static let imageContentArea = #colorLiteral(red: 0.2745098039, green: 0.2745098039, blue: 0.2745098039, alpha: 1)
+        static let imageContentArea = #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
     }
 }

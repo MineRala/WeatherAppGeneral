@@ -39,12 +39,14 @@ protocol MainViewModelDelegate: class {
 class MainViewModel {
     private let apiService = APIService()
     
-    private weak var delegate: MainViewModelDelegate?
     private(set) var city: City!
     private(set) var dailyWeather: [Date: [List]] = [:]
+    private(set) var currentHourlyWeatherData: [List] = []
     private(set) var currentWeather: List!
     
     private(set) var arrItems: [WeatherTableItem] = []
+    
+    private weak var delegate: MainViewModelDelegate?
     
     // MARK: - Getters
     var cityName: String {
@@ -122,23 +124,7 @@ extension MainViewModel {
     }
     
     func getTodayForecastList() -> [List] {
-      
-        let currentTime = Date()
-        let currentCalendarDate = Calendar.current.dateComponents([.day, .year, .month], from: currentTime)
-        let currentDay = currentCalendarDate.day ?? 0
-        let currentMonth = currentCalendarDate.month ?? 0
-        let currentYear = currentCalendarDate.year ?? 0
-        
-        let todaysWeatherList = dailyWeather.filter { (key, value) -> Bool in
-            let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: key)
-            let day = calendarDate.day!
-            let month = calendarDate.month!
-            let year = calendarDate.year!
-            return year == currentYear && month == currentMonth && day == currentDay
-        }.first
-      
-        guard let list = todaysWeatherList else { return [] }
-        return list.value
+        return self.currentHourlyWeatherData
     }
     
     func isCurrentForecastTimeModel(timeForecast: List) -> Bool {
@@ -178,6 +164,7 @@ extension MainViewModel {
             let date2 = Date(timeIntervalSince1970: TimeInterval(we2.dt!))
             return date1 < date2
         }
+        self.currentHourlyWeatherData = Array(sortedWeatherData[0 ..< C.App.numberOfItemsInHourlyCollectionView])
         
         var dct: [String: [List]] = [:]
         self.dailyWeather = [:]
