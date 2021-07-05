@@ -15,7 +15,12 @@ class WeatherDetailInfoCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.lblTitle.font = C.Font.demiBold.font(with: 16)
+        self.lblTitle.textColor = C.Color.lblTitleColor
+        self.lblValue.font = C.Font.demiBold.font(with: 22)
+        self.lblValue.textColor = C.Color.lblValueColor
+        
     }
     
     func configureCell(title: String, value: String) {

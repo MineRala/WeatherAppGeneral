@@ -14,7 +14,7 @@ enum ForecastService {
         switch self {
         case .cityLocation(let lat, let lon):
            
-            return "https://api.openweathermap.org/data/2.5/forecast?lat=38.3130&lon=26.3833&appid=bbcf57969e78d1300a815765b7d587f0&units=metric"
+            return "https://api.openweathermap.org/data/2.5/forecast?lat=38.1827&lon=26.2202&appid=bbcf57969e78d1300a815765b7d587f0&units=metric"
             return "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=bbcf57969e78d1300a815765b7d587f0&units=metric"
         }
     }
