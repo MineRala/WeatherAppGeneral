@@ -22,5 +22,4 @@ class WeatherDetailInfoCollectionCell: UICollectionViewCell {
         self.lblTitle.text = title
         self.lblValue.text = value
     }
-
 }
