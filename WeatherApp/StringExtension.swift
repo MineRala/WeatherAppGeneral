@@ -33,4 +33,14 @@ extension String {
             return ""
         }
     }
+    
+    func sunriseAndSunsetValue(value:Int) -> String{
+        let timeInterval = TimeInterval(value)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
+        return dateFormatter.string(from: date)
+    }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 class WeatherModel: Codable {
     var cod : String = ""
     var message : Int = 0
@@ -57,10 +58,6 @@ class List: Codable {
         guard let main = main else { return "" }
         return "\(main.temp)"
     }
-    
-    
-  
-    
 }
 
 class City: Codable {

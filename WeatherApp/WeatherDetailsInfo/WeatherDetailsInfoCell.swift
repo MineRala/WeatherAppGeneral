@@ -37,16 +37,23 @@ class WeatherDetailsInfoCell: UITableViewCell, UICollectionViewDelegate, UIColle
             cell.configureCell(title: title, value: value)
             
         case 1:
-            cell.configureCell(title: "sunset", value: "")
+            let title = cellType == .top ? "Sunset" : "Wind Degree"
+            let value = cellType == .top ? viewModel.sunsetValue : viewModel.windDegreeValue
+            cell.configureCell(title: title, value: value)
+            
         case 2:
-            cell.configureCell(title: "sea Level", value: "")
+            let title = cellType == .top ? "Ground Level" : "Pressure"
+            let value = cellType == .top ? viewModel.groundLevelValue : viewModel.pressureValue
+            cell.configureCell(title: title, value: value)
+            
         case 3:
-            cell.configureCell(title: "grnd Level", value: "")
+            let title = cellType == .top ? "Sea Level" : "Humudity"
+            let value = cellType == .top ? viewModel.seeLevelValue : viewModel.humudityVaalue
+            cell.configureCell(title: title, value: value)
             
         default:
             break
         }
-        
         return cell
     }
     

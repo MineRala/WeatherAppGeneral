@@ -17,7 +17,6 @@ class NextDayCell: UITableViewCell {
     
     @IBAction func btnNextDays(_ sender: Any) {
         
-       
     }
     
 }

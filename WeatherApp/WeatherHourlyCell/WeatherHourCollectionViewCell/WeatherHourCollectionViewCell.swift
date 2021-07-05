@@ -34,6 +34,4 @@ class WeatherHourCollectionViewCell: UICollectionViewCell {
         self.labelDegree.text = currentForecast.degreeValue()
         self.collectionContentView.backgroundColor = isChosen ? UIColor.black : UIColor.white
     }
-
-    
 }

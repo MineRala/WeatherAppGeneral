@@ -16,8 +16,6 @@ enum DetailIInfoCellType {
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    
-    
     @IBOutlet weak var tableViewMain: UITableView!
     
     private var viewModel: MainViewModel!
@@ -25,7 +23,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
         viewModel = MainViewModel(delegate: self)
         setUpUI()
         viewModel.initialize()
@@ -47,8 +44,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableViewMain.delegate = self
         tableViewMain.dataSource = self
     }
-    
-   
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.arrItems.count
@@ -61,38 +56,40 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentItem = viewModel.arrItems[indexPath.row]
         switch currentItem {
+        
         case .cityInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CityNameCell",for: indexPath)as! CityNameCell
-           // cell.configureCell(cityName: city.name, countryName: city.country)
             cell.configureCell(viewModel: viewModel)
             return cell
+            
         case .weatherInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInfoCell", for: indexPath) as! WeatherInfoCell
-            //cell.configureCell(state: self.currentWeather.weather.first!.main, degree: currentWeather.main!.temp, iconIdentifier: currentWeather.weather.first!.icon)
             cell.configureCell(viewModel)
             return cell
+            
         case .nextDay:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NextDayCell", for: indexPath) as! NextDayCell
             return cell
+            
         case .hourlyInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherHourlyCell", for: indexPath) as! WeatherHourlyCell
             cell.configureCell(viewModel)
             return cell
+            
         case .sunDetail:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailsInfoCell", for: indexPath) as! WeatherDetailsInfoCell
             cell.configureCell(viewModel: viewModel, cellType: .top)
-            //cell.configureCell(sunset: city.sunset, sunrise: city.sunrise, seaLevel: currentWeather.main!.sea_level, grnLevel: currentWeather.main!.grnd_level)
             return cell
+            
         case .windDetail:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailsInfoCell", for: indexPath) as! WeatherDetailsInfoCell
             cell.configureCell(viewModel: viewModel, cellType: .bottom)
-            //cell.configureCell(windSpeed: currentWeather.wind.speed, windDegree: currentWeather.wind.deg, pressure: currentWeather.main!.pressure, humudity: currentWeather.main!.humidity)
             return cell
+            
         default:
             fatalError()
         }
     }
- 
 }
 
 // MARK: MainViewModel Delegate

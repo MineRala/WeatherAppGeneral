@@ -71,19 +71,36 @@ class MainViewModel {
     }
     
     var sunriseValue: String {
-        let timeInterval = TimeInterval(self.city.sunrise)
-        let date = Date(timeIntervalSince1970: timeInterval)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "h:mm a"
-        dateFormatter.amSymbol = "AM"
-        dateFormatter.pmSymbol = "PM"
-        return dateFormatter.string(from: date)
+        return "".sunriseAndSunsetValue(value: Int(self.city.sunrise))
+    }
+    
+    var sunsetValue: String {
+        return "".sunriseAndSunsetValue(value: Int(self.city.sunset))
     }
     
     var windSpeedValue: String {
         return "\(currentWeather.wind.speed) km/h"
     }
 
+    var windDegreeValue: String {
+        return "\(currentWeather.wind.deg) °C"
+    }
+    
+    var groundLevelValue : String {
+        return "\(currentWeather.main!.grnd_level)"
+    }
+    
+    var pressureValue : String {
+        return "\(currentWeather.main!.pressure)"
+    }
+    
+    var seeLevelValue : String {
+        return "\(currentWeather.main!.sea_level)"
+    }
+    
+    var humudityVaalue : String {
+        return "\(currentWeather.main!.humidity)"
+    }
 
     init(delegate: MainViewModelDelegate) {
         self.delegate = delegate
@@ -119,7 +136,7 @@ extension MainViewModel {
             let year = calendarDate.year!
             return year == currentYear && month == currentMonth && day == currentDay
         }.first
-        //print(todaysWeatherList)
+      
         guard let list = todaysWeatherList else { return [] }
         return list.value
     }
