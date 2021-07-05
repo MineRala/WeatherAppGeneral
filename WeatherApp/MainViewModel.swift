@@ -41,7 +41,7 @@ class MainViewModel {
     
     private weak var delegate: MainViewModelDelegate?
     private(set) var city: City!
-    private(set) var dailyWeather: [Date: [List]] = [:] // TODO: Date : key
+    private(set) var dailyWeather: [Date: [List]] = [:]
     private(set) var currentWeather: List!
     
     private(set) var arrItems: [WeatherTableItem] = []
@@ -57,7 +57,7 @@ class MainViewModel {
     
     var weatherState: String {
         guard let weather = currentWeather.weather.first else { return "" }
-        return weather.main
+        return weather.description.capitalized
     }
     
     var weatherDegree: String {
@@ -67,8 +67,23 @@ class MainViewModel {
     
     var weatherIcon: String {
         guard let weather = currentWeather.weather.first else { return "" }
-        return MainViewModel.weatherIconName(from: weather.icon)
+        return weather.icon.convertToIconName()
     }
+    
+    var sunriseValue: String {
+        let timeInterval = TimeInterval(self.city.sunrise)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
+        return dateFormatter.string(from: date)
+    }
+    
+    var windSpeedValue: String {
+        return "\(currentWeather.wind.speed) km/h"
+    }
+
 
     init(delegate: MainViewModelDelegate) {
         self.delegate = delegate
@@ -88,6 +103,38 @@ extension MainViewModel {
             }
         }
     }
+    
+    func getTodayForecastList() -> [List] {
+      
+        let currentTime = Date()
+        let currentCalendarDate = Calendar.current.dateComponents([.day, .year, .month], from: currentTime)
+        let currentDay = currentCalendarDate.day ?? 0
+        let currentMonth = currentCalendarDate.month ?? 0
+        let currentYear = currentCalendarDate.year ?? 0
+        
+        let todaysWeatherList = dailyWeather.filter { (key, value) -> Bool in
+            let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: key)
+            let day = calendarDate.day!
+            let month = calendarDate.month!
+            let year = calendarDate.year!
+            return year == currentYear && month == currentMonth && day == currentDay
+        }.first
+        //print(todaysWeatherList)
+        guard let list = todaysWeatherList else { return [] }
+        return list.value
+    }
+    
+    func isCurrentForecastTimeModel(timeForecast: List) -> Bool {
+        let currentForecastTime = currentWeather.date()
+        let listForecastTime = timeForecast.date()
+        return listForecastTime == currentForecastTime
+    }
+    
+    func updateCurrentWeather(_ list: List) {
+        self.currentWeather = list
+        self.delegate?.mainViewModelDidUpdatedWeatherInfo(self)
+    }
+    
 }
 
 // MARK: - API Request
@@ -153,82 +200,6 @@ extension MainViewModel {
         components.year = year
         let date = Calendar.current.date(from: components)
         return date!
-    }
-}
-
-/**
- 
- self.apiService.request(service: .cityLocation(newData.coordinate.latitude, newData.coordinate.longitude)) { (data, error) in
-     //parse
-     let response = try! JSONDecoder().decode(WeatherModel.self, from:data!)
-     self.processResponse(response)
-     DispatchQueue.main.async {
-         self.tableViewMain.reloadData()
-     }
- }
- 
- 
- private func processResponse(_ response: WeatherModel) {
-     guard let city = response.city, let weatherData = response.list else {
-         // TODO: city veya weather data yok. Hata alerti göster
-         return
-     }
-     
-     let sortedWeatherData = weatherData.sorted { (we1, we2) -> Bool in
-         let date1 = Date(timeIntervalSince1970: TimeInterval(we1.dt!))
-         let date2 = Date(timeIntervalSince1970: TimeInterval(we2.dt!))
-         return date1 < date2
-     }
-     self.currentWeather = sortedWeatherData.first!
-    
-     
-     self.city = city
-     var dct: [String: [List]] = [:]
-     weatherData.forEach { weather in
-         let interval = TimeInterval(weather.dt!)
-         let date = Date(timeIntervalSince1970: interval)
-         let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
-         let identifier = "\(calendarDate.day)-\(calendarDate.month)-\(calendarDate.year)"
-         if dct.keys.contains(identifier) {
-             var arr = dct[identifier]!
-             arr.append(weather)
-             dct[identifier] = arr
-         } else {
-             dct[identifier] = [weather]
-         }
-     }
-     self.dailyWeather = dct
- }
- 
- 
- 
- */
-
-// MARK: - Weather Icon
-extension MainViewModel {
-    private static func weatherIconName(from iconIdentifier: String) -> String {
-        switch iconIdentifier {
-        case "01d", "01n":
-            return "sun.max"
-        case "02d", "02n":
-            return "cloud.sun"
-        case "03d", "03n":
-            return "cloud"
-        case "04d", "04n":
-            return "smoke"
-        case "09d", "09n":
-            return "cloud.heavyrain"
-        case "10d", "10n":
-            return "cloud.rain"
-        case "11d", "11n":
-            return "cloud.bolt"
-        case "13d", "13n":
-            return "snow"
-        case "50d", "50n":
-            return "cloud.fog"
-        default:
-            fatalError("Icon Not Added")
-        }
     }
 }
 

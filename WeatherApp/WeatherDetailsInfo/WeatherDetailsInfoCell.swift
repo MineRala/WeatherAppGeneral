@@ -10,14 +10,9 @@ import UIKit
 class WeatherDetailsInfoCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     @IBOutlet private weak var collectionViewDetails: UICollectionView!
-    var sunrise : UInt = 0
-    var sunset : UInt = 0
-    var seaLevel : Int = 0
-    var grndLevel : Int = 0
-    var windDegree: Int = 0
-    var windSpeed : Double = 0.0
-    var pressure : Int = 0
-    var humudity : Int = 0
+    
+    private var viewModel: MainViewModel!
+    private var cellType: DetailIInfoCellType = .top
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,14 +32,16 @@ class WeatherDetailsInfoCell: UITableViewCell, UICollectionViewDelegate, UIColle
         
         switch indexPath.row {
         case 0:
-            cell.configureCell(title: "sunrise", value: "\(sunrise)")
+            let title = cellType == .top ? "Sunrise" : "Wind Speed"
+            let value = cellType == .top ? viewModel.sunriseValue : viewModel.windSpeedValue
+            cell.configureCell(title: title, value: value)
             
         case 1:
-            cell.configureCell(title: "sunset", value: "\(sunset)")
+            cell.configureCell(title: "sunset", value: "")
         case 2:
-            cell.configureCell(title: "sea Level", value: "\(seaLevel)")
+            cell.configureCell(title: "sea Level", value: "")
         case 3:
-            cell.configureCell(title: "grnd Level", value: "\(grndLevel)")
+            cell.configureCell(title: "grnd Level", value: "")
             
         default:
             break
@@ -53,22 +50,14 @@ class WeatherDetailsInfoCell: UITableViewCell, UICollectionViewDelegate, UIColle
         return cell
     }
     
-    func configureCell(sunset:UInt,sunrise:UInt,seaLevel:Int,grnLevel:Int){
-        self.sunset = sunset
-        self.sunrise = sunrise
-        self.seaLevel = seaLevel
-        self.grndLevel = grnLevel
-    }
-    
-    func configureCell(windSpeed:Double,windDegree:Int,pressure:Int,humudity:Int){
-        self.windSpeed = windSpeed
-        self.windDegree = windDegree
-        self.pressure = pressure
-        self.humudity = humudity
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width / 2 - 32, height: 84)
+    }
+    
+    func configureCell(viewModel: MainViewModel, cellType: DetailIInfoCellType) {
+        self.viewModel = viewModel
+        self.cellType = cellType
+        self.collectionViewDetails.reloadData()
     }
     
     

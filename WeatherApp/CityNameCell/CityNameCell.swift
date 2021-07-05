@@ -15,7 +15,9 @@ class CityNameCell: UITableViewCell {
   
     override func awakeFromNib() {
         super.awakeFromNib()
-      
+        
+        self.lblCity.font = C.Font.demiBold.font(with: 20)
+        self.lblCity.textColor = C.Color.cityInfoTitleColor
       
     }
     
