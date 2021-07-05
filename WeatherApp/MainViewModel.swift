@@ -91,15 +91,15 @@ class MainViewModel {
     }
     
     var pressureValue : String {
-        return "\(currentWeather.main!.pressure)"
+        return "\(currentWeather.main!.pressure) hPa"
     }
     
     var seeLevelValue : String {
-        return "\(currentWeather.main!.sea_level)"
+        return "\(currentWeather.main!.sea_level) MSL"
     }
     
     var humudityVaalue : String {
-        return "\(currentWeather.main!.humidity)"
+        return "\(currentWeather.main!.humidity) g/m3"
     }
 
     init(delegate: MainViewModelDelegate) {
