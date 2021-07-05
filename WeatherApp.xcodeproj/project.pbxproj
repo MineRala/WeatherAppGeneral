@@ -37,7 +37,6 @@
 		FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */; };
 		FDB79B69268F34E80043353B /* WeatherDetailInfoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */; };
 		FDB79B73268F78D90043353B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B72268F78D90043353B /* MainViewModel.swift */; };
-		FDB79B74268F78D90043353B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B72268F78D90043353B /* MainViewModel.swift */; };
 		FDF050D12693194D00EF936A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF050D02693194D00EF936A /* StringExtension.swift */; };
 		FDF050DA2693286200EF936A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF050D92693286200EF936A /* Configuration.swift */; };
 		FDF050DE26932B6900EF936A /* FuturaPTCondBook.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF59F268E5459000A29C1 /* FuturaPTCondBook.otf */; };
@@ -62,6 +61,9 @@
 		FDF050F126932B6900EF936A /* FuturaPTHeavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF598268E5458000A29C1 /* FuturaPTHeavy.otf */; };
 		FDF050F226932B6900EF936A /* FuturaPTExtraBoldOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF59E268E5459000A29C1 /* FuturaPTExtraBoldOblique.otf */; };
 		FDF050F326932B6900EF936A /* FuturaPTBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF5A2268E5459000A29C1 /* FuturaPTBold.otf */; };
+		FDF0511826939D7600EF936A /* MainIpadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0511726939D7600EF936A /* MainIpadViewController.swift */; };
+		FDF0512026939D9F00EF936A /* MainIpad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDF0511F26939D9F00EF936A /* MainIpad.storyboard */; };
+		FDF051282693A23900EF936A /* ChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF051272693A23900EF936A /* ChildVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +150,9 @@
 		FDB79B72268F78D90043353B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FDF050D02693194D00EF936A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		FDF050D92693286200EF936A /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		FDF0511726939D7600EF936A /* MainIpadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainIpadViewController.swift; sourceTree = "<group>"; };
+		FDF0511F26939D9F00EF936A /* MainIpad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainIpad.storyboard; sourceTree = "<group>"; };
+		FDF051272693A23900EF936A /* ChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +335,7 @@
 		E8873A75268DCF2A003702A5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				FDF0510A26939D2D00EF936A /* ViewModel */,
 				FDF050D82693285400EF936A /* Configuration */,
 				FDF050CF269318F900EF936A /* Extension */,
 				E80B2A04268DE3B0007692E9 /* Fonts */,
@@ -344,6 +350,7 @@
 				E8873A84268DCF35003702A5 /* LaunchScreen.storyboard */,
 				E8873A87268DCF35003702A5 /* Info.plist */,
 				E8873A7F268DCF2A003702A5 /* WeatherApp.xcdatamodeld */,
+				FDF0511F26939D9F00EF936A /* MainIpad.storyboard */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -387,8 +394,8 @@
 		FDB79B70268F78610043353B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FDB79B7B268F79500043353B /* DaysViewController */,
-				FDB79B71268F787A0043353B /* MainViewController */,
+				FDF0511526939D4E00EF936A /* Ipad */,
+				FDF0511426939D4500EF936A /* Iphone */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -397,7 +404,6 @@
 			isa = PBXGroup;
 			children = (
 				E80B29CD268DDB60007692E9 /* MainViewController.swift */,
-				FDB79B72268F78D90043353B /* MainViewModel.swift */,
 			);
 			name = MainViewController;
 			sourceTree = "<group>";
@@ -424,6 +430,40 @@
 				FDF050D92693286200EF936A /* Configuration.swift */,
 			);
 			name = Configuration;
+			sourceTree = "<group>";
+		};
+		FDF0510A26939D2D00EF936A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FDB79B72268F78D90043353B /* MainViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		FDF0511426939D4500EF936A /* Iphone */ = {
+			isa = PBXGroup;
+			children = (
+				FDB79B71268F787A0043353B /* MainViewController */,
+				FDB79B7B268F79500043353B /* DaysViewController */,
+			);
+			name = Iphone;
+			sourceTree = "<group>";
+		};
+		FDF0511526939D4E00EF936A /* Ipad */ = {
+			isa = PBXGroup;
+			children = (
+				FDF0511626939D5A00EF936A /* MainIpadViewController */,
+				FDF051272693A23900EF936A /* ChildVC.swift */,
+			);
+			name = Ipad;
+			sourceTree = "<group>";
+		};
+		FDF0511626939D5A00EF936A /* MainIpadViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FDF0511726939D7600EF936A /* MainIpadViewController.swift */,
+			);
+			name = MainIpadViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -558,6 +598,7 @@
 				E80B29E8268DDC62007692E9 /* NextDayCell.xib in Resources */,
 				FDF050EB26932B6900EF936A /* FuturaPTCondExtraBoldOblique.otf in Resources */,
 				E80B29E6268DDC62007692E9 /* WeatherHourlyCell.xib in Resources */,
+				FDF0512026939D9F00EF936A /* MainIpad.storyboard in Resources */,
 				FDF050DF26932B6900EF936A /* FuturaPTExtraBold.otf in Resources */,
 				FDF050DE26932B6900EF936A /* FuturaPTCondBook.otf in Resources */,
 				FDF050EF26932B6900EF936A /* FuturaPTLightOblique.otf in Resources */,
@@ -694,6 +735,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E80B29E5268DDC62007692E9 /* WeatherDetailsInfoCell.swift in Sources */,
+				FDF051282693A23900EF936A /* ChildVC.swift in Sources */,
+				FDF0511826939D7600EF936A /* MainIpadViewController.swift in Sources */,
 				E8873A81268DCF2A003702A5 /* WeatherApp.xcdatamodeld in Sources */,
 				E80B29ED268DDC62007692E9 /* WeatherInfoCell.swift in Sources */,
 				E8CAF51D268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift in Sources */,
@@ -718,7 +761,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8873A91268DCF36003702A5 /* WeatherAppTests.swift in Sources */,
-				FDB79B74268F78D90043353B /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

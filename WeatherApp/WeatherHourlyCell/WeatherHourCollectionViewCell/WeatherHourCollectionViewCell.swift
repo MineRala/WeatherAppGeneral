@@ -40,7 +40,7 @@ class WeatherHourCollectionViewCell: UICollectionViewCell {
         self.labelTime.text = self.currentTimeForecast.dateWithFormat()
         self.ImageIcon.image = UIImage(systemName: self.currentTimeForecast.weatherIcon())
         self.labelDegree.text = currentForecast.degreeValue()
-        self.collectionContentView.backgroundColor = isChosen ? C.Color.hourlCollectionViewCellSelectedBgColor : C.Color.imageIconColor
+        self.collectionContentView.backgroundColor = isChosen ? C.Color.hourlCollectionViewCellSelectedBgColor : .clear
         self.labelDegree.textColor = isChosen ? C.Color.hourlCollectionViewCellSelectedDegreeColor : C.Color.labelDegreeColor
         self.labelTime.textColor = isChosen ? C.Color.hourlCollectionViewCellSelectedTimeColor : C.Color.labelTimeColor
         self.ImageIcon.tintColor = isChosen ? C.Color.hourlCollectionViewCellSelectedIconColor : C.Color.imageIconColor
