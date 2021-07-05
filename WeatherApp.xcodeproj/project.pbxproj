@@ -38,6 +38,30 @@
 		FDB79B69268F34E80043353B /* WeatherDetailInfoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */; };
 		FDB79B73268F78D90043353B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B72268F78D90043353B /* MainViewModel.swift */; };
 		FDB79B74268F78D90043353B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B72268F78D90043353B /* MainViewModel.swift */; };
+		FDF050D12693194D00EF936A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF050D02693194D00EF936A /* StringExtension.swift */; };
+		FDF050DA2693286200EF936A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF050D92693286200EF936A /* Configuration.swift */; };
+		FDF050DE26932B6900EF936A /* FuturaPTCondBook.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF59F268E5459000A29C1 /* FuturaPTCondBook.otf */; };
+		FDF050DF26932B6900EF936A /* FuturaPTExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF59C268E5459000A29C1 /* FuturaPTExtraBold.otf */; };
+		FDF050E026932B6900EF936A /* FuturaPTCondMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF597268E5458000A29C1 /* FuturaPTCondMedium.otf */; };
+		FDF050E126932B6900EF936A /* FuturaPTBoldOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF595268E5458000A29C1 /* FuturaPTBoldOblique.otf */; };
+		FDF050E226932B6900EF936A /* FuturaPTCondBoldOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF594268E5458000A29C1 /* FuturaPTCondBoldOblique.otf */; };
+		FDF050E326932B6900EF936A /* FuturaPTCondMediumOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF5A4268E5459000A29C1 /* FuturaPTCondMediumOblique.otf */; };
+		FDF050E426932B6900EF936A /* FuturaPTDemiOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF5A6268E5459000A29C1 /* FuturaPTDemiOblique.otf */; };
+		FDF050E526932B6900EF936A /* FuturaPTCondBookOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF5A5268E5459000A29C1 /* FuturaPTCondBookOblique.otf */; };
+		FDF050E626932B6900EF936A /* FuturaPTBook.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF5A0268E5459000A29C1 /* FuturaPTBook.otf */; };
+		FDF050E726932B6900EF936A /* FuturaPTCondExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF59D268E5459000A29C1 /* FuturaPTCondExtraBold.otf */; };
+		FDF050E826932B6900EF936A /* FuturaPTHeavyOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF599268E5458000A29C1 /* FuturaPTHeavyOblique.otf */; };
+		FDF050E926932B6900EF936A /* FuturaPTCondBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF596268E5458000A29C1 /* FuturaPTCondBold.otf */; };
+		FDF050EA26932B6900EF936A /* FuturaPTMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF5A3268E5459000A29C1 /* FuturaPTMedium.otf */; };
+		FDF050EB26932B6900EF936A /* FuturaPTCondExtraBoldOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF591268E5458000A29C1 /* FuturaPTCondExtraBoldOblique.otf */; };
+		FDF050EC26932B6900EF936A /* FuturaPTLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF59B268E5459000A29C1 /* FuturaPTLight.otf */; };
+		FDF050ED26932B6900EF936A /* FuturaPTBookOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF593268E5458000A29C1 /* FuturaPTBookOblique.otf */; };
+		FDF050EE26932B6900EF936A /* FuturaPTDemi.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF592268E5458000A29C1 /* FuturaPTDemi.otf */; };
+		FDF050EF26932B6900EF936A /* FuturaPTLightOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF59A268E5458000A29C1 /* FuturaPTLightOblique.otf */; };
+		FDF050F026932B6900EF936A /* FuturaPTMediumOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF5A1268E5459000A29C1 /* FuturaPTMediumOblique.otf */; };
+		FDF050F126932B6900EF936A /* FuturaPTHeavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF598268E5458000A29C1 /* FuturaPTHeavy.otf */; };
+		FDF050F226932B6900EF936A /* FuturaPTExtraBoldOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF59E268E5459000A29C1 /* FuturaPTExtraBoldOblique.otf */; };
+		FDF050F326932B6900EF936A /* FuturaPTBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF5A2268E5459000A29C1 /* FuturaPTBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +146,8 @@
 		FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailInfoCollectionCell.swift; sourceTree = "<group>"; };
 		FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherDetailInfoCollectionCell.xib; sourceTree = "<group>"; };
 		FDB79B72268F78D90043353B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		FDF050D02693194D00EF936A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		FDF050D92693286200EF936A /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +330,8 @@
 		E8873A75268DCF2A003702A5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				FDF050D82693285400EF936A /* Configuration */,
+				FDF050CF269318F900EF936A /* Extension */,
 				E80B2A04268DE3B0007692E9 /* Fonts */,
 				E80B29FE268DDE89007692E9 /* Models */,
 				E80B29F8268DDD7F007692E9 /* API */,
@@ -380,6 +408,22 @@
 				E80DF85A268F55770073DD04 /* DaysViewController.swift */,
 			);
 			name = DaysViewController;
+			sourceTree = "<group>";
+		};
+		FDF050CF269318F900EF936A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FDF050D02693194D00EF936A /* StringExtension.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		FDF050D82693285400EF936A /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				FDF050D92693286200EF936A /* Configuration.swift */,
+			);
+			name = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -490,16 +534,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDF050E826932B6900EF936A /* FuturaPTHeavyOblique.otf in Resources */,
+				FDF050EE26932B6900EF936A /* FuturaPTDemi.otf in Resources */,
+				FDF050EA26932B6900EF936A /* FuturaPTMedium.otf in Resources */,
+				FDF050F326932B6900EF936A /* FuturaPTBold.otf in Resources */,
+				FDF050E026932B6900EF936A /* FuturaPTCondMedium.otf in Resources */,
 				E80B29EC268DDC62007692E9 /* WeatherInfoCell.xib in Resources */,
+				FDF050F026932B6900EF936A /* FuturaPTMediumOblique.otf in Resources */,
+				FDF050EC26932B6900EF936A /* FuturaPTLight.otf in Resources */,
+				FDF050F226932B6900EF936A /* FuturaPTExtraBoldOblique.otf in Resources */,
 				FDB79B69268F34E80043353B /* WeatherDetailInfoCollectionCell.xib in Resources */,
+				FDF050E526932B6900EF936A /* FuturaPTCondBookOblique.otf in Resources */,
 				E8873A86268DCF35003702A5 /* LaunchScreen.storyboard in Resources */,
 				E80B29EB268DDC62007692E9 /* CityNameCell.xib in Resources */,
+				FDF050E326932B6900EF936A /* FuturaPTCondMediumOblique.otf in Resources */,
+				FDF050E426932B6900EF936A /* FuturaPTDemiOblique.otf in Resources */,
+				FDF050ED26932B6900EF936A /* FuturaPTBookOblique.otf in Resources */,
+				FDF050E726932B6900EF936A /* FuturaPTCondExtraBold.otf in Resources */,
+				FDF050E626932B6900EF936A /* FuturaPTBook.otf in Resources */,
 				E80B29E4268DDC62007692E9 /* WeatherDetailsInfoCell.xib in Resources */,
 				E8873A83268DCF35003702A5 /* Assets.xcassets in Resources */,
+				FDF050E926932B6900EF936A /* FuturaPTCondBold.otf in Resources */,
 				E80B29E8268DDC62007692E9 /* NextDayCell.xib in Resources */,
+				FDF050EB26932B6900EF936A /* FuturaPTCondExtraBoldOblique.otf in Resources */,
 				E80B29E6268DDC62007692E9 /* WeatherHourlyCell.xib in Resources */,
+				FDF050DF26932B6900EF936A /* FuturaPTExtraBold.otf in Resources */,
+				FDF050DE26932B6900EF936A /* FuturaPTCondBook.otf in Resources */,
+				FDF050EF26932B6900EF936A /* FuturaPTLightOblique.otf in Resources */,
+				FDF050E226932B6900EF936A /* FuturaPTCondBoldOblique.otf in Resources */,
+				FDF050F126932B6900EF936A /* FuturaPTHeavy.otf in Resources */,
 				E8873A7E268DCF2A003702A5 /* Main.storyboard in Resources */,
 				E8CAF51E268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib in Resources */,
+				FDF050E126932B6900EF936A /* FuturaPTBoldOblique.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,11 +697,13 @@
 				E8873A81268DCF2A003702A5 /* WeatherApp.xcdatamodeld in Sources */,
 				E80B29ED268DDC62007692E9 /* WeatherInfoCell.swift in Sources */,
 				E8CAF51D268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift in Sources */,
+				FDF050D12693194D00EF936A /* StringExtension.swift in Sources */,
 				E80B29E9268DDC62007692E9 /* NextDayCell.swift in Sources */,
 				FDB79B73268F78D90043353B /* MainViewModel.swift in Sources */,
 				E8873A77268DCF2A003702A5 /* AppDelegate.swift in Sources */,
 				E80B29E7268DDC62007692E9 /* WeatherHourlyCell.swift in Sources */,
 				E80B29FA268DDD95007692E9 /* APIService.swift in Sources */,
+				FDF050DA2693286200EF936A /* Configuration.swift in Sources */,
 				FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */,
 				E80DF85B268F55770073DD04 /* DaysViewController.swift in Sources */,
 				E8873A79268DCF2A003702A5 /* SceneDelegate.swift in Sources */,

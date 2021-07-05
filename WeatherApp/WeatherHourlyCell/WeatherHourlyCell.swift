@@ -11,6 +11,9 @@ class WeatherHourlyCell: UITableViewCell,UICollectionViewDelegate, UICollectionV
   
     @IBOutlet private weak var collectionViewHourlyWeather: UICollectionView!
   
+    private var viewModel: MainViewModel!
+    private var todayWeatherList: [List] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.collectionViewHourlyWeather.register(UINib(nibName: "WeatherHourCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WeatherHourCollectionViewCell")
@@ -20,13 +23,14 @@ class WeatherHourlyCell: UITableViewCell,UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return todayWeatherList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherHourCollectionViewCell", for: indexPath) as! WeatherHourCollectionViewCell
-//        let model = self.dailyModel.listForecastData[indexPath.row]
-//        cell.update(with: model)
+        let currentForecast = todayWeatherList[indexPath.row]
+        let isChosen = viewModel.isCurrentForecastTimeModel(timeForecast: currentForecast)
+        cell.configureCell(currentForecast: todayWeatherList[indexPath.row], isChosen: isChosen)
         return cell
     }
     
@@ -35,10 +39,14 @@ class WeatherHourlyCell: UITableViewCell,UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let currentForecast = todayWeatherList[indexPath.row]
+        print("Chosen : \(currentForecast) at index: \(indexPath.row)")
+        self.viewModel.updateCurrentWeather(currentForecast)
     }
     
     func configureCell(_ viewModel: MainViewModel) {
+        self.todayWeatherList = viewModel.getTodayForecastList()
+        self.viewModel = viewModel
         self.collectionViewHourlyWeather.reloadData()
     }
     

@@ -32,6 +32,35 @@ class List: Codable {
     var sys : Sys
     var dt_txt : String = ""
 
+    func date() -> Date {
+        let timeInterval = TimeInterval(self.dt ?? 0)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        return date 
+    }
+    
+    func dateWithFormat() -> String {
+        let timeInterval = TimeInterval(self.dt ?? 0)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
+        return dateFormatter.string(from: date)
+    }
+    
+    func weatherIcon() -> String {
+        guard let currWeather = weather.first else { return "" }
+        return currWeather.icon.convertToIconName()
+    }
+    
+    func degreeValue() -> String {
+        guard let main = main else { return "" }
+        return "\(main.temp)"
+    }
+    
+    
+  
+    
 }
 
 class City: Codable {

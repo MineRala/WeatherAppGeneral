@@ -9,8 +9,15 @@ import UIKit
 import CoreLocation
 import SwiftLocation
 
+enum DetailIInfoCellType {
+    case top
+    case bottom 
+}
+
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    
+    
     @IBOutlet weak var tableViewMain: UITableView!
     
     private var viewModel: MainViewModel!
@@ -22,6 +29,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         viewModel = MainViewModel(delegate: self)
         setUpUI()
         viewModel.initialize()
+        
+        UIFont.familyNames.forEach({ familyName in
+                    let fontNames = UIFont.fontNames(forFamilyName: familyName)
+                    print(familyName, fontNames)
+                })
+        
+        print("asdads")
     }
     
     private func setUpUI() {
@@ -62,13 +76,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return cell
         case .hourlyInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherHourlyCell", for: indexPath) as! WeatherHourlyCell
+            cell.configureCell(viewModel)
             return cell
         case .sunDetail:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailsInfoCell", for: indexPath) as! WeatherDetailsInfoCell
+            cell.configureCell(viewModel: viewModel, cellType: .top)
             //cell.configureCell(sunset: city.sunset, sunrise: city.sunrise, seaLevel: currentWeather.main!.sea_level, grnLevel: currentWeather.main!.grnd_level)
             return cell
         case .windDetail:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailsInfoCell", for: indexPath) as! WeatherDetailsInfoCell
+            cell.configureCell(viewModel: viewModel, cellType: .bottom)
             //cell.configureCell(windSpeed: currentWeather.wind.speed, windDegree: currentWeather.wind.deg, pressure: currentWeather.main!.pressure, humudity: currentWeather.main!.humidity)
             return cell
         default:

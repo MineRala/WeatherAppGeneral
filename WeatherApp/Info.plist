@@ -65,6 +65,10 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>FuturaPTBook.otf</string>
+		<string>FuturaPTBold.otf</string>
+		<string>FuturaPTDemi.otf</string>
+		<string>FuturaPTLight.otf</string>
+		<string>FuturaPTMedium.otf</string>
 	</array>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Konumunuzu kullanmak istiyoruz.</string>
