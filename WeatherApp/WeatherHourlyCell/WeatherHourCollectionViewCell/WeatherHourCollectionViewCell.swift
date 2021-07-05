@@ -24,6 +24,12 @@ class WeatherHourCollectionViewCell: UICollectionViewCell {
         collectionContentView.layer.borderWidth = 1
         collectionContentView.layer.borderColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1).cgColor
         viewImageContentArea.layer.cornerRadius = 18
+        self.labelDegree.font = C.Font.book.font(with: 14)
+        self.labelDegree.textColor = C.Color.labelDegreeColor
+        self.ImageIcon.tintColor = C.Color.imageIconColor
+        self.labelTime.font = C.Font.book.font(with: 14)
+        self.labelTime.textColor = C.Color.labelTimeColor
+        
     }
     
 

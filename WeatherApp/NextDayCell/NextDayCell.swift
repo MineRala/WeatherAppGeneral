@@ -9,9 +9,12 @@ import UIKit
 
 class NextDayCell: UITableViewCell {
 
+    @IBOutlet weak var btnText: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.btnText.tintColor = C.Color.nextDaysColor
     }
   
     
