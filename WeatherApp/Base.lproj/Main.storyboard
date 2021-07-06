@@ -60,7 +60,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bhG-z0-oD1"/>
                     <connections>
-                        <outlet property="mainViewControllerView" destination="xbb-PL-Oqa" id="va4-4e-7Op"/>
+                        <outlet property="mainViewControllerView" destination="xbb-PL-Oqa" id="2w4-rP-Cyt"/>
                         <outlet property="tableViewMain" destination="WKD-w1-BnG" id="ljz-q9-srp"/>
                     </connections>
                 </viewController>

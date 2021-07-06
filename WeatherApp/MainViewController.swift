@@ -27,7 +27,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         viewModel = MainViewModel(delegate: self)
         setUpUI()
         viewModel.initialize()
-     //   darkModeColor()
+        
     }
     
     private func darkModeColor(){
@@ -36,7 +36,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        self.view.backgroundColor = C.Color.viewControllerBackgroundColor
+        self.mainViewControllerView.backgroundColor  = C.Color.viewControllerBackgroundColor
         self.tableViewMain.reloadData()
     }
     
@@ -49,7 +49,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func setUpUI() {
-        self.view.backgroundColor = C.Color.viewControllerBackgroundColor
+        self.mainViewControllerView.backgroundColor  = C.Color.viewControllerBackgroundColor
         tableViewMain.register(UINib(nibName: "CityNameCell", bundle: nil), forCellReuseIdentifier: "CityNameCell")
         tableViewMain.register(UINib(nibName: "WeatherInfoCell", bundle: nil), forCellReuseIdentifier: "WeatherInfoCell")
         tableViewMain.register(UINib(nibName: "NextDayCell", bundle: nil), forCellReuseIdentifier: "NextDayCell")

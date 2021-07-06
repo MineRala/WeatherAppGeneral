@@ -29,6 +29,17 @@ enum WeatherTableItem {
     }
 }
 
+enum WeatherError: Error {
+    case somethingHappened
+    
+    var title: String {
+        switch self {
+        case .somethingHappened:
+            return "Hata Oldu"
+        }
+    }
+}
+
 // MARK: - MainViewModel Delegate
 protocol MainViewModelDelegate: class {
     func mainViewModelDidUpdatedWeatherInfo(_ viewModel: MainViewModel)
@@ -156,7 +167,7 @@ extension MainViewModel {
     private func processResponse(_ response: WeatherModel) {
         guard let city = response.city, let weatherData = response.list else {
             // TODO: city veya weather data yok. Hata alerti göster
-            
+            self.delegate?.mainViewModelDidOccuredError(self, error: WeatherError.somethingHappened)
             return
         }
         
