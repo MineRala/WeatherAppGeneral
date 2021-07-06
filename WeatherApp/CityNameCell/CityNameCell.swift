@@ -18,11 +18,12 @@ class CityNameCell: UITableViewCell {
         super.awakeFromNib()
         
         self.lblCity.font = C.Font.demiBold.font(with: 20)
-        self.lblCity.textColor = C.Color.cityInfoTitleColor
-        self.cityNameContentView.backgroundColor = C.Color.cityNameCVColor
+       
     }
     
     func configureCell(viewModel: MainViewModel) {
+        self.lblCity.textColor = C.Color.cityInfoTitleColor
+        self.cityNameContentView.backgroundColor = C.Color.cityNameCVColor
         self.viewModel = viewModel
         self.lblCity.text = "\(viewModel.cityName), \(viewModel.countryName)"
     }

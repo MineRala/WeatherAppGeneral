@@ -26,17 +26,19 @@ class WeatherHourCollectionViewCell: UICollectionViewCell {
         viewImageContentArea.layer.cornerRadius = 18
         
         self.labelDegree.font = C.Font.book.font(with: 14)
-        self.labelDegree.textColor = C.Color.labelDegreeColor
-        self.ImageIcon.tintColor = C.Color.imageIconColor
         self.labelTime.font = C.Font.book.font(with: 14)
-        self.labelTime.textColor = C.Color.labelTimeColor
-        self.viewImageContentArea.backgroundColor = C.Color.imageContentArea
-        self.collectionContentView.backgroundColor = C.Color.collectionContentViewColor
-        
     }
     
 
     func configureCell(currentForecast: List, isChosen: Bool) {
+       
+        self.labelDegree.textColor = C.Color.labelDegreeColor
+        self.ImageIcon.tintColor = C.Color.imageIconColor
+       
+        self.labelTime.textColor = C.Color.labelTimeColor
+        self.viewImageContentArea.backgroundColor = C.Color.imageContentArea
+        self.collectionContentView.backgroundColor = C.Color.collectionContentViewColor
+        
         self.currentTimeForecast = currentForecast
         self.labelTime.text = self.currentTimeForecast.dateWithFormat()
         self.ImageIcon.image = UIImage(systemName:self.currentTimeForecast.weatherIcon())

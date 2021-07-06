@@ -22,8 +22,14 @@ class WeatherDetailsInfoCell: UITableViewCell, UICollectionViewDelegate, UIColle
         self.collectionViewDetails.dataSource = self
         self.collectionViewDetails.reloadData()
         
-        self.weatherDetailsInfoCellContentView.backgroundColor = C.Color.weatherDetailsInfoCellCVColor
-        self.collectionViewDetails.backgroundColor = C.Color.weatherDetailsInfoCellCVColor
+        //Shadow Opacitiy
+        weatherDetailsInfoCellContentView.layer.shadowOpacity = 1
+        weatherDetailsInfoCellContentView.layer.shadowRadius = 50
+        weatherDetailsInfoCellContentView.layer.shadowColor = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
+        weatherDetailsInfoCellContentView.layer.shouldRasterize = true
+      
+        
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,9 +71,12 @@ class WeatherDetailsInfoCell: UITableViewCell, UICollectionViewDelegate, UIColle
     }
     
     func configureCell(viewModel: MainViewModel, cellType: DetailIInfoCellType) {
+        self.weatherDetailsInfoCellContentView.backgroundColor = C.Color.weatherDetailsInfoCellCVColor
+        self.collectionViewDetails.backgroundColor = C.Color.weatherDetailsInfoCellCVColor
         self.viewModel = viewModel
         self.cellType = cellType
         self.collectionViewDetails.reloadData()
+        
     }
     
     

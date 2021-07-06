@@ -21,14 +21,10 @@ class WeatherInfoCell: UITableViewCell {
         super.awakeFromNib()
         
         self.labelDegree.font = C.Font.book.font(with: 111)
-        self.labelDegree.textColor = C.Color.labelDegreeInfoColor
         self.labelDc.font = C.Font.bold.font(with: 26)
-        self.labelDc.textColor = C.Color.labelDcColor
         self.labelState.font = C.Font.light.font(with: 26)
-        self.labelState.textColor = C.Color.labelStateColor
-        self.weatherInfoCellContentView.backgroundColor = C.Color.weatherInfoCellCVColor
         
-        
+        weatherInfoCellContentView.layer.shadowOpacity = 1
     }
 
     func configureCell(_ viewModel: MainViewModel) {
@@ -38,6 +34,15 @@ class WeatherInfoCell: UITableViewCell {
         self.labelDegree.text = viewModel.weatherDegree
         self.ImageIcon.image = UIImage(systemName: viewModel.weatherIcon)
         // TODO: icon identifier to icon
+        
+       
+        self.labelDegree.textColor = C.Color.labelDegreeInfoColor
+        
+        self.labelDc.textColor = C.Color.labelDcColor
+        
+        self.labelState.textColor = C.Color.labelStateColor
+        self.weatherInfoCellContentView.backgroundColor = C.Color.weatherInfoCellCVColor
+        
     }
     
 }

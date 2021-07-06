@@ -30,20 +30,34 @@ enum WeatherTableItem {
 }
 
 enum WeatherError: Error {
-    case somethingHappened
+    case locationNotFound
+    case apiDataNotFound
     
     var title: String {
         switch self {
-        case .somethingHappened:
-            return "Hata Oldu"
+        case .locationNotFound:
+            return "Location not found."
+        case .apiDataNotFound:
+            return "Api error."
         }
     }
+    
+    var errorDescription : String{
+        switch self{
+        case .locationNotFound:
+            return "We cannot yor location. Please , try again."
+        case .apiDataNotFound:
+            return "We cannot get any data from API."
+        }
+    }
+    
 }
+
 
 // MARK: - MainViewModel Delegate
 protocol MainViewModelDelegate: class {
     func mainViewModelDidUpdatedWeatherInfo(_ viewModel: MainViewModel)
-    func mainViewModelDidOccuredError(_ viewModel: MainViewModel, error: Error)
+    func mainViewModelDidOccuredError(_ viewModel: MainViewModel, error: WeatherError)
 }
 
 // MARK: Main View Model {Class}
@@ -122,10 +136,10 @@ class MainViewModel {
 
 // MARK: - Public
 extension MainViewModel {
-    func initialize() {
+   @objc func initialize() {
         self.findUserCoordinates { (coordinate, error) in
             if let error = error {
-                self.delegate?.mainViewModelDidOccuredError(self, error: error)
+                self.delegate?.mainViewModelDidOccuredError(self, error: WeatherError.locationNotFound)
                 return
             }
             self.requestWeatherInfo(coordinates: coordinate!) { weatherModel in
@@ -156,7 +170,7 @@ extension MainViewModel {
     private func requestWeatherInfo(coordinates: CLLocationCoordinate2D, callback: @escaping (WeatherModel)->() ) {
         self.apiService.request(service: .cityLocation(coordinates.latitude, coordinates.longitude)) { (data, error) in
             if let error = error {
-                self.delegate?.mainViewModelDidOccuredError(self, error: error)
+                self.delegate?.mainViewModelDidOccuredError(self, error: WeatherError.apiDataNotFound)
                 return
             }
             let response = try! JSONDecoder().decode(WeatherModel.self, from:data!)
@@ -167,7 +181,7 @@ extension MainViewModel {
     private func processResponse(_ response: WeatherModel) {
         guard let city = response.city, let weatherData = response.list else {
             // TODO: city veya weather data yok. Hata alerti göster
-            self.delegate?.mainViewModelDidOccuredError(self, error: WeatherError.somethingHappened)
+            self.delegate?.mainViewModelDidOccuredError(self, error: WeatherError.apiDataNotFound)
             return
         }
         

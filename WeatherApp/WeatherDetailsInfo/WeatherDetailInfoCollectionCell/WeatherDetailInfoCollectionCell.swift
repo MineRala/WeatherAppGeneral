@@ -16,16 +16,18 @@ class WeatherDetailInfoCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         self.lblTitle.font = C.Font.demiBold.font(with: 16)
-        self.lblTitle.textColor = C.Color.lblTitleColor
         self.lblValue.font = C.Font.demiBold.font(with: 22)
-        self.lblValue.textColor = C.Color.lblValueColor
-        self.weatherDetailInfoCollectionCell.backgroundColor = C.Color.weatherDetailInfoCollectionCellColor
-        
+
     }
     
     func configureCell(title: String, value: String) {
+        
+       
+        self.lblTitle.textColor = C.Color.lblTitleColor
+        self.lblValue.textColor = C.Color.lblValueColor
+        self.weatherDetailInfoCollectionCell.backgroundColor = C.Color.weatherDetailInfoCollectionCellColor
+        
         self.lblTitle.text = title
         self.lblValue.text = value
     }

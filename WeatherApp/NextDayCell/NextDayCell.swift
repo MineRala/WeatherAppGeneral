@@ -14,14 +14,18 @@ class NextDayCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.btnText.tintColor = C.Color.nextDaysColor
-        self.nextDayContentView.backgroundColor = C.Color.nextDaysCVColor
+       
+       
         
     }
   
+    func  configureCell(_ viewModel : MainViewModel)  {
+        self.btnText.tintColor = C.Color.nextDaysColor
+        self.nextDayContentView.backgroundColor = C.Color.nextDaysCVColor
+    }
+    
     @IBAction func btnNextDays(_ sender: Any) {
-        
+       
     }
     
 }

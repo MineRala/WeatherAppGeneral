@@ -20,7 +20,7 @@ class WeatherHourlyCell: UITableViewCell,UICollectionViewDelegate, UICollectionV
         self.collectionViewHourlyWeather.register(UINib(nibName: "WeatherHourCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WeatherHourCollectionViewCell")
         self.collectionViewHourlyWeather.delegate = self
         self.collectionViewHourlyWeather.dataSource = self
-        self.collectionViewHourlyWeather.backgroundColor = C.Color.collectionViewHourlyWeatherColor
+       
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -28,6 +28,7 @@ class WeatherHourlyCell: UITableViewCell,UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherHourCollectionViewCell", for: indexPath) as! WeatherHourCollectionViewCell
         let currentForecast = todayWeatherList[indexPath.row]
         let isChosen = viewModel.isCurrentForecastTimeModel(timeForecast: currentForecast)
@@ -46,6 +47,7 @@ class WeatherHourlyCell: UITableViewCell,UICollectionViewDelegate, UICollectionV
     }
     
     func configureCell(_ viewModel: MainViewModel) {
+        self.collectionViewHourlyWeather.backgroundColor = C.Color.collectionViewHourlyWeatherColor
         self.todayWeatherList = viewModel.getTodayForecastList()
         self.viewModel = viewModel
         self.collectionViewHourlyWeather.reloadData()
