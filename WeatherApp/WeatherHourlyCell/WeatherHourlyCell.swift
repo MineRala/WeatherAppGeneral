@@ -9,6 +9,7 @@ import UIKit
 
 class WeatherHourlyCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
+    @IBOutlet weak var weatherHourlyCellContentView: UIView!
     @IBOutlet private weak var collectionViewHourlyWeather: UICollectionView!
   
     private var viewModel: MainViewModel!
@@ -19,7 +20,7 @@ class WeatherHourlyCell: UITableViewCell,UICollectionViewDelegate, UICollectionV
         self.collectionViewHourlyWeather.register(UINib(nibName: "WeatherHourCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WeatherHourCollectionViewCell")
         self.collectionViewHourlyWeather.delegate = self
         self.collectionViewHourlyWeather.dataSource = self
-
+        self.collectionViewHourlyWeather.backgroundColor = C.Color.collectionViewHourlyWeatherColor
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

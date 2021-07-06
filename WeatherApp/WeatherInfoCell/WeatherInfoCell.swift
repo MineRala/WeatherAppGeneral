@@ -9,6 +9,7 @@ import UIKit
 
 class WeatherInfoCell: UITableViewCell {
 
+    @IBOutlet weak var weatherInfoCellContentView: UIView!
     @IBOutlet weak var labelState: UILabel!
     @IBOutlet weak var labelDegree: UILabel!
     @IBOutlet weak var ImageIcon: UIImageView!
@@ -25,7 +26,7 @@ class WeatherInfoCell: UITableViewCell {
         self.labelDc.textColor = C.Color.labelDcColor
         self.labelState.font = C.Font.light.font(with: 26)
         self.labelState.textColor = C.Color.labelStateColor
-        
+        self.weatherInfoCellContentView.backgroundColor = C.Color.weatherInfoCellCVColor
         
         
     }

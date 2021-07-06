@@ -9,6 +9,7 @@ import UIKit
 
 class WeatherDetailsInfoCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
+    @IBOutlet weak var weatherDetailsInfoCellContentView: UIView!
     @IBOutlet private weak var collectionViewDetails: UICollectionView!
     
     private var viewModel: MainViewModel!
@@ -20,7 +21,9 @@ class WeatherDetailsInfoCell: UITableViewCell, UICollectionViewDelegate, UIColle
         self.collectionViewDetails.delegate = self
         self.collectionViewDetails.dataSource = self
         self.collectionViewDetails.reloadData()
-
+        
+        self.weatherDetailsInfoCellContentView.backgroundColor = C.Color.weatherDetailsInfoCellCVColor
+        self.collectionViewDetails.backgroundColor = C.Color.weatherDetailsInfoCellCVColor
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

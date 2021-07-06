@@ -31,6 +31,7 @@ class WeatherHourCollectionViewCell: UICollectionViewCell {
         self.labelTime.font = C.Font.book.font(with: 14)
         self.labelTime.textColor = C.Color.labelTimeColor
         self.viewImageContentArea.backgroundColor = C.Color.imageContentArea
+        self.collectionContentView.backgroundColor = C.Color.collectionContentViewColor
         
     }
     
@@ -38,7 +39,7 @@ class WeatherHourCollectionViewCell: UICollectionViewCell {
     func configureCell(currentForecast: List, isChosen: Bool) {
         self.currentTimeForecast = currentForecast
         self.labelTime.text = self.currentTimeForecast.dateWithFormat()
-        self.ImageIcon.image = UIImage(systemName: self.currentTimeForecast.weatherIcon())
+        self.ImageIcon.image = UIImage(systemName:self.currentTimeForecast.weatherIcon())
         self.labelDegree.text = currentForecast.degreeValue()
         self.collectionContentView.backgroundColor = isChosen ? C.Color.hourlCollectionViewCellSelectedBgColor : .clear
         self.labelDegree.textColor = isChosen ? C.Color.hourlCollectionViewCellSelectedDegreeColor : C.Color.labelDegreeColor

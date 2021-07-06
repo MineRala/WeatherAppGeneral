@@ -156,6 +156,7 @@ extension MainViewModel {
     private func processResponse(_ response: WeatherModel) {
         guard let city = response.city, let weatherData = response.list else {
             // TODO: city veya weather data yok. Hata alerti göster
+            
             return
         }
         
@@ -224,4 +225,5 @@ extension MainViewModel {
             }
         }
     }
+    
 }

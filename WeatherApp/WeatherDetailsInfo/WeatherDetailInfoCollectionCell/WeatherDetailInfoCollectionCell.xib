@@ -63,6 +63,7 @@
             <connections>
                 <outlet property="lblTitle" destination="EYN-8E-KEs" id="aOu-gz-xrw"/>
                 <outlet property="lblValue" destination="DKn-Cl-Wcy" id="5TP-eP-484"/>
+                <outlet property="weatherDetailInfoCollectionCell" destination="xcr-Ap-TXg" id="euz-Y1-qkl"/>
             </connections>
             <point key="canvasLocation" x="209.42028985507247" y="87.053571428571431"/>
         </collectionViewCell>

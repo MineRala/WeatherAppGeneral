@@ -78,6 +78,7 @@
                 <outlet property="labelDc" destination="88s-z1-EJA" id="7AR-zl-uAV"/>
                 <outlet property="labelDegree" destination="XHO-UQ-DMv" id="Pze-Tf-Tpd"/>
                 <outlet property="labelState" destination="BgE-LI-mFJ" id="nM2-KO-Nh2"/>
+                <outlet property="weatherInfoCellContentView" destination="H2p-sc-9uM" id="tnC-MH-vMC"/>
             </connections>
             <point key="canvasLocation" x="-543" y="153"/>
         </tableViewCell>

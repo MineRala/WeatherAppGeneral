@@ -42,6 +42,7 @@
             <accessibility key="accessibilityConfiguration" identifier="WeatherDetailsInfoCell"/>
             <connections>
                 <outlet property="collectionViewDetails" destination="3Z4-qB-X2o" id="tur-fI-Tbc"/>
+                <outlet property="weatherDetailsInfoCellContentView" destination="H2p-sc-9uM" id="3I4-Fg-mG8"/>
             </connections>
             <point key="canvasLocation" x="21.739130434782609" y="162.05357142857142"/>
         </tableViewCell>

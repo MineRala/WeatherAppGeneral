@@ -9,15 +9,17 @@ import UIKit
 
 class NextDayCell: UITableViewCell {
 
+    @IBOutlet weak var nextDayContentView: UIView!
     @IBOutlet weak var btnText: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         self.btnText.tintColor = C.Color.nextDaysColor
+        self.nextDayContentView.backgroundColor = C.Color.nextDaysCVColor
+        
     }
   
-    
     @IBAction func btnNextDays(_ sender: Any) {
         
     }

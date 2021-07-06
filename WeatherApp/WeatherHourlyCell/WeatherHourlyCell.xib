@@ -41,6 +41,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="collectionViewHourlyWeather" destination="3ty-U3-lsZ" id="0CA-qs-smG"/>
+                <outlet property="weatherHourlyCellContentView" destination="H2p-sc-9uM" id="hZI-Xg-19j"/>
             </connections>
             <point key="canvasLocation" x="13.043478260869566" y="145.3125"/>
         </tableViewCell>
