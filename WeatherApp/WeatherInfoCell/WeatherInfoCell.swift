@@ -20,6 +20,7 @@ class WeatherInfoCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.selectionStyle = .none
         self.labelDegree.font = C.Font.book.font(with: 111)
         self.labelDc.font = C.Font.bold.font(with: 26)
         self.labelState.font = C.Font.light.font(with: 26)

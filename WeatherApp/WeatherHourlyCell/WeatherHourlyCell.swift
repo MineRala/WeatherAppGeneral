@@ -17,11 +17,26 @@ class WeatherHourlyCell: UITableViewCell,UICollectionViewDelegate, UICollectionV
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = .clear
+        self.selectionStyle = .none
         self.collectionViewHourlyWeather.register(UINib(nibName: "WeatherHourCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WeatherHourCollectionViewCell")
         self.collectionViewHourlyWeather.delegate = self
         self.collectionViewHourlyWeather.dataSource = self
-       
+        
+        self.weatherHourlyCellContentView.layer.cornerRadius = 8
+        self.weatherHourlyCellContentView.addItemShadow()
+        self.collectionViewHourlyWeather.backgroundColor = .clear
+        
+        
     }
+    
+    /**
+     let yourView = UIView()
+     yourView.layer.shadowColor = UIColor.black.cgColor
+     yourView.layer.shadowOpacity = 1
+     yourView.layer.shadowOffset = .zero
+     yourView.layer.shadowRadius = 10
+     */
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return todayWeatherList.count
@@ -44,10 +59,11 @@ class WeatherHourlyCell: UITableViewCell,UICollectionViewDelegate, UICollectionV
         let currentForecast = todayWeatherList[indexPath.row]
         print("Chosen : \(currentForecast) at index: \(indexPath.row)")
         self.viewModel.updateCurrentWeather(currentForecast)
+       
     }
     
     func configureCell(_ viewModel: MainViewModel) {
-        self.collectionViewHourlyWeather.backgroundColor = C.Color.collectionViewHourlyWeatherColor
+        self.weatherHourlyCellContentView.backgroundColor = C.Color.collectionViewHourlyWeatherColor
         self.todayWeatherList = viewModel.getTodayForecastList()
         self.viewModel = viewModel
         self.collectionViewHourlyWeather.reloadData()

@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 class DaysViewController: UIViewController {
 
+    var viewModel: MainViewModel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
 }
