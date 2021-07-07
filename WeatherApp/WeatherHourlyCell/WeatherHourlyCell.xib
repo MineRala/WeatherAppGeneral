@@ -18,37 +18,49 @@
                 <rect key="frame" x="0.0" y="0.0" width="326" height="168"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3ty-U3-lsZ">
-                        <rect key="frame" x="8" y="8" width="310" height="152"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zOa-Hw-1BR">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                    </collectionView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Vd-SK-KUq">
+                        <rect key="frame" x="8" y="36" width="310" height="124"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="MxS-H8-2UE">
+                                <rect key="frame" x="0.0" y="0.0" width="310" height="124"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xZp-2r-Kgz">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <constraints>
+                            <constraint firstItem="MxS-H8-2UE" firstAttribute="leading" secondItem="0Vd-SK-KUq" secondAttribute="leading" id="Au0-hJ-37V"/>
+                            <constraint firstAttribute="bottom" secondItem="MxS-H8-2UE" secondAttribute="bottom" id="PWj-lb-62L"/>
+                            <constraint firstItem="MxS-H8-2UE" firstAttribute="top" secondItem="0Vd-SK-KUq" secondAttribute="top" id="bkS-ox-KyB"/>
+                            <constraint firstAttribute="trailing" secondItem="MxS-H8-2UE" secondAttribute="trailing" id="p1f-CU-mFH"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="3ty-U3-lsZ" secondAttribute="trailing" constant="8" id="DN1-U8-liR"/>
-                    <constraint firstItem="3ty-U3-lsZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Xxm-5Y-M1c"/>
-                    <constraint firstItem="3ty-U3-lsZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="duT-po-Blu"/>
-                    <constraint firstAttribute="bottom" secondItem="3ty-U3-lsZ" secondAttribute="bottom" constant="8" id="w0x-Z6-UjN"/>
+                    <constraint firstAttribute="bottom" secondItem="0Vd-SK-KUq" secondAttribute="bottom" constant="8" id="0Wp-rA-Z0z"/>
+                    <constraint firstItem="0Vd-SK-KUq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="QEJ-gV-1nC"/>
+                    <constraint firstItem="0Vd-SK-KUq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="36" id="Rwo-1a-weL"/>
+                    <constraint firstAttribute="trailing" secondItem="0Vd-SK-KUq" secondAttribute="trailing" constant="8" id="VuD-7P-pMO"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="collectionViewHourlyWeather" destination="3ty-U3-lsZ" id="0CA-qs-smG"/>
-                <outlet property="weatherHourlyCellContentView" destination="H2p-sc-9uM" id="hZI-Xg-19j"/>
+                <outlet property="collectionViewHourlyWeather" destination="MxS-H8-2UE" id="W5a-lE-EvT"/>
+                <outlet property="weatherHourlyCellContentView" destination="0Vd-SK-KUq" id="ppz-3V-1vT"/>
             </connections>
             <point key="canvasLocation" x="13.043478260869566" y="145.3125"/>
         </tableViewCell>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

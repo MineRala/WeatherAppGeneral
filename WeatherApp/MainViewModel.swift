@@ -21,9 +21,9 @@ enum WeatherTableItem {
     var height: CGFloat {
         switch self {
         case .cityInfo: return 60
-        case .weatherInfo: return 250
-        case .nextDay: return 52
-        case .hourlyInfo: return 180
+        case .weatherInfo: return 206
+        case .nextDay: return 98
+        case .hourlyInfo: return 200
         case .sunDetail, .windDetail: return 200
         }
     }
@@ -58,6 +58,7 @@ enum WeatherError: Error {
 protocol MainViewModelDelegate: class {
     func mainViewModelDidUpdatedWeatherInfo(_ viewModel: MainViewModel)
     func mainViewModelDidOccuredError(_ viewModel: MainViewModel, error: WeatherError)
+    func mainViewModelViewControllerShouldNavigateToNextDays(_ viewModel: MainViewModel, weatherDictionary: [Date: [List]])
 }
 
 // MARK: Main View Model {Class}
@@ -65,7 +66,7 @@ class MainViewModel {
     private let apiService = APIService()
     
     private(set) var city: City!
-    private(set) var dailyWeather: [Date: [List]] = [:]
+    private(set) var dailyWeather: [Date: [List]] = [:] // Günlük olarak bölünmüş dictionary
     private(set) var currentHourlyWeatherData: [List] = []
     private(set) var currentWeather: List!
     
@@ -146,6 +147,10 @@ extension MainViewModel {
                 self.processResponse(weatherModel)
             }
         }
+    }
+    
+    func nextFiveDaysDidTapped() {
+        self.delegate?.mainViewModelViewControllerShouldNavigateToNextDays(self, weatherDictionary: self.dailyWeather)
     }
     
     func getTodayForecastList() -> [List] {

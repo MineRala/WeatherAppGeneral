@@ -63,7 +63,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.arrItems[indexPath.row].height
+        var insetBottom: CGFloat = 0
+        if indexPath.row == viewModel.arrItems.count - 1 {
+            insetBottom = 36
+        }
+        return viewModel.arrItems[indexPath.row].height + insetBottom
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,6 +117,14 @@ extension MainViewController: MainViewModelDelegate {
             self.tableViewMain.reloadData()
             self.refreshControl.endRefreshing()
         }
+    }
+    
+    func mainViewModelViewControllerShouldNavigateToNextDays(_ viewModel: MainViewModel, weatherDictionary: [Date : [List]]) {
+        // nabvigate
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let vc = story.instantiateViewController(identifier: "DaysViewController") as! DaysViewController
+        vc.viewModel = viewModel
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func mainViewModelDidOccuredError(_ viewModel: MainViewModel, error: WeatherError) {

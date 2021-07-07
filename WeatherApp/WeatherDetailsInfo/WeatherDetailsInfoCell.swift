@@ -17,19 +17,14 @@ class WeatherDetailsInfoCell: UITableViewCell, UICollectionViewDelegate, UIColle
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
         self.collectionViewDetails.register(UINib(nibName: "WeatherDetailInfoCollectionCell", bundle: nil), forCellWithReuseIdentifier: "WeatherDetailInfoCollectionCell")
         self.collectionViewDetails.delegate = self
         self.collectionViewDetails.dataSource = self
         self.collectionViewDetails.reloadData()
         
-        //Shadow Opacitiy
-        weatherDetailsInfoCellContentView.layer.shadowOpacity = 1
-        weatherDetailsInfoCellContentView.layer.shadowRadius = 50
-        weatherDetailsInfoCellContentView.layer.shadowColor = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
-        weatherDetailsInfoCellContentView.layer.shouldRasterize = true
-      
-        
-        
+        weatherDetailsInfoCellContentView.layer.cornerRadius = 8
+        weatherDetailsInfoCellContentView.addItemShadow()
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -72,7 +67,7 @@ class WeatherDetailsInfoCell: UITableViewCell, UICollectionViewDelegate, UIColle
     
     func configureCell(viewModel: MainViewModel, cellType: DetailIInfoCellType) {
         self.weatherDetailsInfoCellContentView.backgroundColor = C.Color.weatherDetailsInfoCellCVColor
-        self.collectionViewDetails.backgroundColor = C.Color.weatherDetailsInfoCellCVColor
+        self.collectionViewDetails.backgroundColor = .clear
         self.viewModel = viewModel
         self.cellType = cellType
         self.collectionViewDetails.reloadData()

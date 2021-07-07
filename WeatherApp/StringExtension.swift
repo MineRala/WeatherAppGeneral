@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 extension String {
     func convertToIconName() -> String {
         print("ICON: \(self)")

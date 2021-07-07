@@ -18,6 +18,7 @@ class CityNameCell: UITableViewCell {
         super.awakeFromNib()
         
         self.lblCity.font = C.Font.demiBold.font(with: 20)
+        self.selectionStyle = .none
        
     }
     

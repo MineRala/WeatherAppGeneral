@@ -11,45 +11,60 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherDetailsInfoCell" rowHeight="218" id="KGk-i7-Jjw" customClass="WeatherDetailsInfoCell" customModule="WeatherApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="338" height="218"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherDetailsInfoCell" rowHeight="277" id="KGk-i7-Jjw" customClass="WeatherDetailsInfoCell" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="338" height="277"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="338" height="218"/>
+                <rect key="frame" x="0.0" y="0.0" width="338" height="277"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3Z4-qB-X2o">
-                        <rect key="frame" x="8" y="8" width="322" height="202"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EVs-fY-CFM">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                    </collectionView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9aI-cL-2yl">
+                        <rect key="frame" x="8" y="8" width="322" height="184"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="pgI-xB-VSv">
+                                <rect key="frame" x="0.0" y="0.0" width="322" height="184"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="17F-vz-wxt">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <constraints>
+                            <constraint firstItem="pgI-xB-VSv" firstAttribute="leading" secondItem="9aI-cL-2yl" secondAttribute="leading" id="bYE-gg-pu0"/>
+                            <constraint firstItem="pgI-xB-VSv" firstAttribute="top" secondItem="9aI-cL-2yl" secondAttribute="top" id="gST-1J-1vE"/>
+                            <constraint firstAttribute="height" constant="184" id="ipV-24-MJk"/>
+                            <constraint firstAttribute="trailing" secondItem="pgI-xB-VSv" secondAttribute="trailing" id="pS1-D9-BGb"/>
+                            <constraint firstAttribute="bottom" secondItem="pgI-xB-VSv" secondAttribute="bottom" id="s0E-is-XHE"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="3Z4-qB-X2o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="FbZ-sG-l8j"/>
-                    <constraint firstItem="3Z4-qB-X2o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="I6N-xh-hBe"/>
-                    <constraint firstAttribute="trailing" secondItem="3Z4-qB-X2o" secondAttribute="trailing" constant="8" id="aNP-bW-5Uz"/>
-                    <constraint firstAttribute="bottom" secondItem="3Z4-qB-X2o" secondAttribute="bottom" constant="8" id="rOZ-IS-aCv"/>
+                    <constraint firstItem="9aI-cL-2yl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="7do-37-QcN"/>
+                    <constraint firstItem="9aI-cL-2yl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ZLC-lt-KgM"/>
+                    <constraint firstAttribute="trailing" secondItem="9aI-cL-2yl" secondAttribute="trailing" constant="8" id="o89-Au-5tb"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <accessibility key="accessibilityConfiguration" identifier="WeatherDetailsInfoCell"/>
             <connections>
-                <outlet property="collectionViewDetails" destination="3Z4-qB-X2o" id="tur-fI-Tbc"/>
-                <outlet property="weatherDetailsInfoCellContentView" destination="H2p-sc-9uM" id="3I4-Fg-mG8"/>
+                <outlet property="collectionViewDetails" destination="pgI-xB-VSv" id="hbM-FW-zHL"/>
+                <outlet property="weatherDetailsInfoCellContentView" destination="9aI-cL-2yl" id="uTC-uB-nw2"/>
             </connections>
-            <point key="canvasLocation" x="21.739130434782609" y="162.05357142857142"/>
+            <point key="canvasLocation" x="21.739130434782609" y="187.83482142857142"/>
         </tableViewCell>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
