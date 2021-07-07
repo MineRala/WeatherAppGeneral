@@ -15,34 +15,46 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityNameCell" rowHeight="92" id="KGk-i7-Jjw" customClass="CityNameCell" customModule="WeatherApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="285" height="92"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityNameCell" rowHeight="126" id="KGk-i7-Jjw" customClass="CityNameCell" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="279" height="126"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="285" height="92"/>
+                <rect key="frame" x="0.0" y="0.0" width="279" height="126"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJG-mM-Ve7">
-                        <rect key="frame" x="16" y="33" width="253" height="26"/>
-                        <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="20"/>
-                        <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fS-qZ-PKo">
+                        <rect key="frame" x="0.0" y="0.0" width="279" height="126"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="İzmir, Turkey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJG-mM-Ve7">
+                                <rect key="frame" x="16" y="50" width="247" height="26"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="20"/>
+                                <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VJG-mM-Ve7" firstAttribute="centerY" secondItem="5fS-qZ-PKo" secondAttribute="centerY" id="5oY-ai-HaU"/>
+                            <constraint firstAttribute="trailing" secondItem="VJG-mM-Ve7" secondAttribute="trailing" constant="16" id="F0O-FZ-KXn"/>
+                            <constraint firstItem="VJG-mM-Ve7" firstAttribute="leading" secondItem="5fS-qZ-PKo" secondAttribute="leading" constant="16" id="POh-IZ-Ozj"/>
+                        </constraints>
+                    </view>
                 </subviews>
-                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="VJG-mM-Ve7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bLH-bt-wHo"/>
-                    <constraint firstAttribute="trailing" secondItem="VJG-mM-Ve7" secondAttribute="trailing" constant="16" id="e7h-Cx-zn2"/>
-                    <constraint firstItem="VJG-mM-Ve7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ioS-mh-4Zn"/>
+                    <constraint firstAttribute="trailing" secondItem="5fS-qZ-PKo" secondAttribute="trailing" id="1Kh-Tn-S0d"/>
+                    <constraint firstItem="5fS-qZ-PKo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="A2O-NU-jrL"/>
+                    <constraint firstItem="5fS-qZ-PKo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="M4E-ww-lU6"/>
+                    <constraint firstAttribute="bottom" secondItem="5fS-qZ-PKo" secondAttribute="bottom" id="zu5-8g-L1P"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="cityNameContentView" destination="H2p-sc-9uM" id="un2-iM-JR3"/>
                 <outlet property="lblCity" destination="VJG-mM-Ve7" id="45r-j1-uA6"/>
             </connections>
-            <point key="canvasLocation" x="-90.579710144927546" y="111.83035714285714"/>
+            <point key="canvasLocation" x="-94.927536231884062" y="123.21428571428571"/>
         </tableViewCell>
     </objects>
 </document>

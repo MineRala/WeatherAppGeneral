@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 enum ForecastService {
     case cityLocation(Double,Double)
@@ -20,35 +21,64 @@ enum ForecastService {
     }
 }
 
-class APIService {
-    var city = ""
+enum APIServiceError: Error {
+    case apiServiceDeallocated
+    case apiServiceError
+    case apiServiceResponseCodeIsNotOK
+    
+    var title: String {
+        switch self {
+        case .apiServiceDeallocated, .apiServiceError, .apiServiceResponseCodeIsNotOK:
+            return "Error"
+        }
+    }
+    
+    var errorDescription: String {
+        switch self {
+        case .apiServiceDeallocated, .apiServiceError, .apiServiceResponseCodeIsNotOK :
+            return "API does not responding to your request. Please try again later."
+        }
+    }
+}
 
-    func request(service: ForecastService, callBack: @escaping (Data?, Error?) -> ()) {
-        
+struct APIServiceResponse {
+    let data: Data?
+    let error: APIServiceError?
+}
+
+
+class APIService {
+
+    public func requestRx(service: ForecastService) -> AnyPublisher<APIServiceResponse, Never> {
+        return Future { promise in
+            self.request(service: service) { (data, error) in
+                let response = APIServiceResponse(data: data, error: error)
+                promise(.success(response))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    private func request(service: ForecastService, callBack: @escaping (Data?, APIServiceError?) -> ()) {
         let urlString = service.requestURL
         let url = URL(string: urlString)
-        
         let request = URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 10)
-        
-        
         let dataTask = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             guard let self = self else {
-                callBack(nil, nil)
+                callBack(nil, APIServiceError.apiServiceDeallocated)
                 return
             }
             
             if let error = error {
-                callBack(nil, error)
+                callBack(nil, APIServiceError.apiServiceError)
                 return
             }
             
             guard let response = response, let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                callBack(nil, nil)
+                callBack(nil, APIServiceError.apiServiceResponseCodeIsNotOK)
                 return
             }
             
             callBack(data,nil)
-
         }
         dataTask.resume()
     }

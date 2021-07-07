@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import SwiftLocation
+import Combine
 
 enum DetailIInfoCellType {
     case top
@@ -19,17 +20,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var mainViewControllerView: UIView!
     @IBOutlet weak var tableViewMain: UITableView!
     
-    private var viewModel: MainViewModel!
+    private let viewModel = MainViewModel()
     private let refreshControl = UIRefreshControl()
+    
+    private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        viewModel = MainViewModel(delegate: self)
         setUpUI()
+        addListeners()
         viewModel.initialize()
-        tableViewMain.refreshControl = refreshControl
-        refreshControl.addTarget(viewModel, action: #selector(MainViewModel.initialize), for: .valueChanged)
+        
         
     }
     
@@ -56,6 +57,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableViewMain.register(UINib(nibName: "WeatherDetailsInfoCell", bundle: nil), forCellReuseIdentifier: "WeatherDetailsInfoCell")
         tableViewMain.delegate = self
         tableViewMain.dataSource = self
+        
+        tableViewMain.refreshControl = refreshControl
+        refreshControl.addTarget(viewModel, action: #selector(MainViewModel.initialize), for: .valueChanged)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,28 +114,25 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 }
 
-//MARK : MainViewModel Delegate
-extension MainViewController: MainViewModelDelegate {
-    func mainViewModelDidUpdatedWeatherInfo(_ viewModel: MainViewModel) {
-        DispatchQueue.main.async {
+// MARK: - Listeners
+extension MainViewController {
+    private func addListeners() {
+        viewModel.shouldUpdateTableView.receive(on: DispatchQueue.main).sink { _ in
             self.tableViewMain.reloadData()
             self.refreshControl.endRefreshing()
-        }
-    }
-    
-    func mainViewModelViewControllerShouldNavigateToNextDays(_ viewModel: MainViewModel, weatherDictionary: [Date : [List]]) {
-        // nabvigate
-        let story = UIStoryboard(name: "Main", bundle: nil)
-        let vc = story.instantiateViewController(identifier: "DaysViewController") as! DaysViewController
-        vc.viewModel = viewModel
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func mainViewModelDidOccuredError(_ viewModel: MainViewModel, error: WeatherError) {
-        DispatchQueue.main.async {
+        }.store(in: &cancellables)
+        
+        viewModel.shouldShowAlertViewForError.receive(on: DispatchQueue.main).sink { error in
             self.printError(error: error)
             self.tableViewMain.reloadData()
             self.refreshControl.endRefreshing()
-        }   
+        }.store(in: &cancellables)
+        
+        viewModel.shouldNavigateToDaysViewController.receive(on: DispatchQueue.main).sink { _ in
+            let story = UIStoryboard(name: "Main", bundle: nil)
+            let vc = story.instantiateViewController(identifier: "DaysViewController") as! DaysViewController
+            vc.viewModel = self.viewModel
+            self.navigationController?.pushViewController(vc, animated: true)
+        }.store(in: &cancellables)
     }
 }
