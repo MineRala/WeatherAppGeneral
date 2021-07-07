@@ -8,6 +8,7 @@
 import Foundation
 import SwiftLocation
 import CoreLocation
+import Combine
 
 // MARK: - WeatherTableItem
 enum WeatherTableItem {
@@ -53,13 +54,14 @@ enum WeatherError: Error {
     
 }
 
-
+/*
 // MARK: - MainViewModel Delegate
 protocol MainViewModelDelegate: class {
     func mainViewModelDidUpdatedWeatherInfo(_ viewModel: MainViewModel)
     func mainViewModelDidOccuredError(_ viewModel: MainViewModel, error: WeatherError)
     func mainViewModelViewControllerShouldNavigateToNextDays(_ viewModel: MainViewModel, weatherDictionary: [Date: [List]])
 }
+*/
 
 // MARK: Main View Model {Class}
 class MainViewModel {
@@ -70,9 +72,14 @@ class MainViewModel {
     private(set) var currentHourlyWeatherData: [List] = []
     private(set) var currentWeather: List!
     
-    private(set) var arrItems: [WeatherTableItem] = []
+   // private(set) var areYouOK = CurrentValueSubject<Bool, Never>(true)
+    private(set) var shouldUpdateTableView = PassthroughSubject<Void, Never>()
+    private(set) var shouldShowAlertViewForError = PassthroughSubject<WeatherError, Never>()
+    private(set) var shouldNavigateToDaysViewController = PassthroughSubject<Void, Never>()
     
-    private weak var delegate: MainViewModelDelegate?
+    private var cancellables = Set<AnyCancellable>()
+    
+    private(set) var arrItems: [WeatherTableItem] = []
     
     // MARK: - Getters
     var cityName: String {
@@ -130,27 +137,34 @@ class MainViewModel {
         return "\(currentWeather.main!.humidity) g/m3"
     }
 
-    init(delegate: MainViewModelDelegate) {
-        self.delegate = delegate
+    init() {
+        
+    }
+    
+    deinit {
+        self.cancellables.forEach { $0.cancel() }
     }
 }
 
 // MARK: - Public
 extension MainViewModel {
    @objc func initialize() {
-        self.findUserCoordinates { (coordinate, error) in
-            if let error = error {
-                self.delegate?.mainViewModelDidOccuredError(self, error: WeatherError.locationNotFound)
-                return
-            }
-            self.requestWeatherInfo(coordinates: coordinate!) { weatherModel in
-                self.processResponse(weatherModel)
-            }
-        }
+    let publisher = self.findUserCoordinates().flatMap { coordinates -> AnyPublisher<WeatherModel?, Never> in
+        guard let coord = coordinates else { return Just(nil).eraseToAnyPublisher() }
+        return self.requestWeatherInfo(coordinates: coord)
+    }.flatMap { model -> AnyPublisher<Bool, Never> in
+        guard let md = model else { return Just(true).eraseToAnyPublisher() }
+        return self.processResponse(md)
+    }
+    
+    self.shouldUpdateTableView.send()
+    publisher.sink { _ in
+        self.shouldUpdateTableView.send()
+    }.store(in: &cancellables)
     }
     
     func nextFiveDaysDidTapped() {
-        self.delegate?.mainViewModelViewControllerShouldNavigateToNextDays(self, weatherDictionary: self.dailyWeather)
+        self.shouldNavigateToDaysViewController.send()
     }
     
     func getTodayForecastList() -> [List] {
@@ -165,29 +179,34 @@ extension MainViewModel {
     
     func updateCurrentWeather(_ list: List) {
         self.currentWeather = list
-        self.delegate?.mainViewModelDidUpdatedWeatherInfo(self)
+        self.shouldUpdateTableView.send()
     }
     
 }
 
 // MARK: - API Request
 extension MainViewModel {
-    private func requestWeatherInfo(coordinates: CLLocationCoordinate2D, callback: @escaping (WeatherModel)->() ) {
-        self.apiService.request(service: .cityLocation(coordinates.latitude, coordinates.longitude)) { (data, error) in
-            if let error = error {
-                self.delegate?.mainViewModelDidOccuredError(self, error: WeatherError.apiDataNotFound)
-                return
-            }
-            let response = try! JSONDecoder().decode(WeatherModel.self, from:data!)
-            callback(response)
-        }
+    private func requestWeatherInfo(coordinates: CLLocationCoordinate2D) ->AnyPublisher<WeatherModel?, Never> {
+        return apiService.requestRx(service: .cityLocation(coordinates.latitude, coordinates.longitude))
+            .flatMap { apiResponse -> AnyPublisher<WeatherModel?, Never> in
+                if let error = apiResponse.error {
+                    self.shouldShowAlertViewForError.send(.apiDataNotFound)
+                    return Just(nil).eraseToAnyPublisher()
+                }
+                do {
+                    let model = try JSONDecoder().decode(WeatherModel.self, from: apiResponse.data!)
+                    return Just(model).eraseToAnyPublisher()
+                } catch let jsonError {
+                    self.shouldShowAlertViewForError.send(.apiDataNotFound)
+                    return Just(nil).eraseToAnyPublisher()
+                }
+            }.eraseToAnyPublisher()
     }
     
-    private func processResponse(_ response: WeatherModel) {
+    private func processResponse(_ response: WeatherModel) -> AnyPublisher<Bool, Never> {
         guard let city = response.city, let weatherData = response.list else {
-            // TODO: city veya weather data yok. Hata alerti göster
-            self.delegate?.mainViewModelDidOccuredError(self, error: WeatherError.apiDataNotFound)
-            return
+            self.shouldShowAlertViewForError.send(.apiDataNotFound)
+            return Just(true).eraseToAnyPublisher()
         }
         
         let sortedWeatherData = weatherData.sorted { (we1, we2) -> Bool in
@@ -222,7 +241,8 @@ extension MainViewModel {
         self.city = city
         
         self.arrItems = [.cityInfo, .weatherInfo, .nextDay, .hourlyInfo, .sunDetail, .windDetail]
-        self.delegate?.mainViewModelDidUpdatedWeatherInfo(self)
+        
+        return Just(true).eraseToAnyPublisher()
     }
     
     private func dateFrom(day: Int, month: Int, year: Int) -> Date {
@@ -240,20 +260,20 @@ extension MainViewModel {
 
 // MARK: - User Location
 extension MainViewModel {
-    private func findUserCoordinates(callback: @escaping (CLLocationCoordinate2D?, Error?) -> ()) {
-        SwiftLocation.gpsLocationWith {
-            $0.subscription = .single
-            $0.accuracy = .block
-        }.then { result in // you can attach one or more subscriptions via `then`.
-            switch result {
-            case .success(let newData):
-                print(newData)
-                callback(newData.coordinate, nil)
-            case .failure(let error):
-                callback(nil, error)
-                //print("An error has occurred: \(error.localizedDescription)")
+    private func findUserCoordinates() -> AnyPublisher<CLLocationCoordinate2D? , Never> {
+        return Future { promise in
+            SwiftLocation.gpsLocationWith {
+                $0.subscription = .single
+                $0.accuracy = .neighborhood
+            }.then { result in // you can attach one or more subscriptions via `then`.
+                switch result {
+                case .success(let newData):
+                    promise(.success(newData.coordinate))
+                case .failure(let error):
+                    self.shouldShowAlertViewForError.send(WeatherError.locationNotFound)
+                    promise(.success(nil))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
-    
 }

@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -39,7 +38,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="DKn-Cl-Wcy" secondAttribute="trailing" constant="8" id="9b1-jX-tNO"/>
                             <constraint firstItem="DKn-Cl-Wcy" firstAttribute="top" secondItem="EYN-8E-KEs" secondAttribute="bottom" constant="1" id="9ih-Fb-8iY"/>
@@ -53,6 +52,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="xcr-Ap-TXg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7Cl-7k-GzC"/>
                 <constraint firstAttribute="bottom" secondItem="xcr-Ap-TXg" secondAttribute="bottom" id="Kag-uJ-rIq"/>
@@ -68,9 +68,4 @@
             <point key="canvasLocation" x="209.42028985507247" y="87.053571428571431"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

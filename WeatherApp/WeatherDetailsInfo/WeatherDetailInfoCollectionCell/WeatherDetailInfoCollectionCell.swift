@@ -26,8 +26,7 @@ class WeatherDetailInfoCollectionCell: UICollectionViewCell {
        
         self.lblTitle.textColor = C.Color.lblTitleColor
         self.lblValue.textColor = C.Color.lblValueColor
-        self.weatherDetailInfoCollectionCell.backgroundColor = C.Color.weatherDetailInfoCollectionCellColor
-        
+       
         self.lblTitle.text = title
         self.lblValue.text = value
     }
