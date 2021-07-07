@@ -9,7 +9,6 @@ import UIKit
 
 class CityNameCell: UITableViewCell {
 
-    @IBOutlet weak var cityNameContentView: UIView!
     @IBOutlet weak var lblCity: UILabel!
     
     private var viewModel: MainViewModel!
@@ -19,12 +18,11 @@ class CityNameCell: UITableViewCell {
         
         self.lblCity.font = C.Font.demiBold.font(with: 20)
         self.selectionStyle = .none
-       
     }
     
     func configureCell(viewModel: MainViewModel) {
         self.lblCity.textColor = C.Color.cityInfoTitleColor
-        self.cityNameContentView.backgroundColor = C.Color.cityNameCVColor
+       
         self.viewModel = viewModel
         self.lblCity.text = "\(viewModel.cityName), \(viewModel.countryName)"
     }

@@ -9,7 +9,7 @@ import UIKit
 
 class NextDayCell: UITableViewCell {
 
-    @IBOutlet weak var nextDayContentView: UIView!
+   
     @IBOutlet weak var btnText: UIButton!
     
     private var viewModel: MainViewModel!
@@ -22,7 +22,7 @@ class NextDayCell: UITableViewCell {
     func  configureCell(_ viewModel : MainViewModel)  {
         self.viewModel = viewModel
         self.btnText.tintColor = C.Color.nextDaysColor
-        self.nextDayContentView.backgroundColor = C.Color.nextDaysCVColor
+        
     }
     
     @IBAction func btnNextDays(_ sender: Any) {

@@ -50,7 +50,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="N7O-fM-mP5"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xbb-PL-Oqa" firstAttribute="leading" secondItem="N7O-fM-mP5" secondAttribute="leading" id="6nZ-T8-cmf"/>
                             <constraint firstAttribute="bottom" secondItem="xbb-PL-Oqa" secondAttribute="bottom" id="QsE-K1-zcQ"/>
