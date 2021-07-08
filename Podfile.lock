@@ -1,16 +1,20 @@
 PODS:
+  - ReachabilitySwift (5.0.0)
   - SwiftLocation/Core (5.1.0)
 
 DEPENDENCIES:
+  - ReachabilitySwift
   - SwiftLocation/Core
 
 SPEC REPOS:
   trunk:
+    - ReachabilitySwift
     - SwiftLocation
 
 SPEC CHECKSUMS:
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SwiftLocation: 83e0ea75a1969cee3a1197e2b7095603fc23fde5
 
-PODFILE CHECKSUM: 7e74e1accd3b99366681f3a777aa29fc3244ff2e
+PODFILE CHECKSUM: 82b4c4ee0dfcb2c61fee8fde5c31a258534e183f
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0

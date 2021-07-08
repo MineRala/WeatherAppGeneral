@@ -65,6 +65,7 @@
 		FDF0511826939D7600EF936A /* MainIpadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0511726939D7600EF936A /* MainIpadViewController.swift */; };
 		FDF0512026939D9F00EF936A /* MainIpad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDF0511F26939D9F00EF936A /* MainIpad.storyboard */; };
 		FDF051282693A23900EF936A /* ChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF051272693A23900EF936A /* ChildVC.swift */; };
+		FDF8C98E26975797000E48A9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF8C98D26975797000E48A9 /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +156,7 @@
 		FDF0511726939D7600EF936A /* MainIpadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainIpadViewController.swift; sourceTree = "<group>"; };
 		FDF0511F26939D9F00EF936A /* MainIpad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainIpad.storyboard; sourceTree = "<group>"; };
 		FDF051272693A23900EF936A /* ChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildVC.swift; sourceTree = "<group>"; };
+		FDF8C98D26975797000E48A9 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 		E8873A75268DCF2A003702A5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				FDF8C98C26975771000E48A9 /* Helper */,
 				FDF0510A26939D2D00EF936A /* ViewModel */,
 				FDF050D82693285400EF936A /* Configuration */,
 				FDF050CF269318F900EF936A /* Extension */,
@@ -467,6 +470,14 @@
 				FDF0511726939D7600EF936A /* MainIpadViewController.swift */,
 			);
 			name = MainIpadViewController;
+			sourceTree = "<group>";
+		};
+		FDF8C98C26975771000E48A9 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FDF8C98D26975797000E48A9 /* Network.swift */,
+			);
+			name = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -742,6 +753,7 @@
 				FDF0511826939D7600EF936A /* MainIpadViewController.swift in Sources */,
 				E8873A81268DCF2A003702A5 /* WeatherApp.xcdatamodeld in Sources */,
 				E80B29ED268DDC62007692E9 /* WeatherInfoCell.swift in Sources */,
+				FDF8C98E26975797000E48A9 /* Network.swift in Sources */,
 				E8CAF51D268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift in Sources */,
 				FDE98DEC2695B84500FD9E66 /* UIViewExtensions.swift in Sources */,
 				FDF050D12693194D00EF936A /* StringExtension.swift in Sources */,
@@ -934,7 +946,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 29JK24NZ4B;
+				DEVELOPMENT_TEAM = PJ9SW5348L;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -955,7 +967,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 29JK24NZ4B;
+				DEVELOPMENT_TEAM = PJ9SW5348L;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
