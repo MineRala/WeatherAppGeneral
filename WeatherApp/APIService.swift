@@ -25,10 +25,11 @@ enum APIServiceError: Error {
     case apiServiceDeallocated
     case apiServiceError
     case apiServiceResponseCodeIsNotOK
+    case noInternetConnection
     
     var title: String {
         switch self {
-        case .apiServiceDeallocated, .apiServiceError, .apiServiceResponseCodeIsNotOK:
+        case .apiServiceDeallocated, .apiServiceError, .apiServiceResponseCodeIsNotOK, .noInternetConnection:
             return "Error"
         }
     }
@@ -37,6 +38,8 @@ enum APIServiceError: Error {
         switch self {
         case .apiServiceDeallocated, .apiServiceError, .apiServiceResponseCodeIsNotOK :
             return "API does not responding to your request. Please try again later."
+        case .noInternetConnection:
+            return "Your internet connection appears offline."
         }
     }
 }
@@ -59,6 +62,10 @@ class APIService {
     }
     
     private func request(service: ForecastService, callBack: @escaping (Data?, APIServiceError?) -> ()) {
+        guard Network.shared.networkStatus.value == .online else {
+            callBack(nil, APIServiceError.noInternetConnection)
+            return
+        }
         let urlString = service.requestURL
         let url = URL(string: urlString)
         let request = URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 10)

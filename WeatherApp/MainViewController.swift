@@ -25,13 +25,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private var cancellables = Set<AnyCancellable>()
     
+    deinit {
+        cancellables.forEach { $0.cancel() }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
         addListeners()
         viewModel.initialize()
-        
-        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -40,12 +42,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableViewMain.reloadData()
     }
     
-    func printError(error:WeatherError){
-        let alert = UIAlertController(title: error.title, message: error.errorDescription, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(okButton)
-        self.present(alert, animated: true, completion: nil)
-          
+    func printError(error: WeatherError){
+        if error == .noInternetConnection {
+            // Yukarıdan alert kutusu çıkar
+        } else {
+            let alert = UIAlertController(title: error.title, message: error.errorDescription, preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     private func setUpUI() {
@@ -133,6 +138,10 @@ extension MainViewController {
             let vc = story.instantiateViewController(identifier: "DaysViewController") as! DaysViewController
             vc.viewModel = self.viewModel
             self.navigationController?.pushViewController(vc, animated: true)
+        }.store(in: &cancellables)
+        
+        Network.shared.networkStatus.receive(on: DispatchQueue.main).sink { status in
+            print("Current Status: \(status)")
         }.store(in: &cancellables)
     }
 }

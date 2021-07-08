@@ -33,6 +33,7 @@ enum WeatherTableItem {
 enum WeatherError: Error {
     case locationNotFound
     case apiDataNotFound
+    case noInternetConnection
     
     var title: String {
         switch self {
@@ -40,6 +41,8 @@ enum WeatherError: Error {
             return "Location not found."
         case .apiDataNotFound:
             return "Api error."
+        case .noInternetConnection:
+            return "No Internet Connection"
         }
     }
     
@@ -49,6 +52,8 @@ enum WeatherError: Error {
             return "We cannot yor location. Please , try again."
         case .apiDataNotFound:
             return "We cannot get any data from API."
+        case .noInternetConnection:
+            return "Your internet connection status is offline."
         }
     }
     
@@ -190,7 +195,12 @@ extension MainViewModel {
         return apiService.requestRx(service: .cityLocation(coordinates.latitude, coordinates.longitude))
             .flatMap { apiResponse -> AnyPublisher<WeatherModel?, Never> in
                 if let error = apiResponse.error {
-                    self.shouldShowAlertViewForError.send(.apiDataNotFound)
+                    if error == .noInternetConnection {
+                        self.shouldShowAlertViewForError.send(.noInternetConnection)
+                    } else {
+                        self.shouldShowAlertViewForError.send(.apiDataNotFound)
+                    }
+                    
                     return Just(nil).eraseToAnyPublisher()
                 }
                 do {
