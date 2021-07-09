@@ -36,6 +36,11 @@
 		F42B4C87AA5F970EBED36B1B /* Pods_WeatherApp_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E078D806327A73648992F4 /* Pods_WeatherApp_WeatherAppUITests.framework */; };
 		FD6E477226989B54004D879F /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E477126989B54004D879F /* ToastView.swift */; };
 		FD6E477A2698A13F004D879F /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E47792698A13F004D879F /* UIViewControllerExtensions.swift */; };
+		FD6E47802698A456004D879F /* DataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E477F2698A456004D879F /* DataLayer.swift */; };
+		FD6E47882698A4A9004D879F /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E47872698A4A9004D879F /* FileService.swift */; };
+		FD6E478D2698B17F004D879F /* WeatherAppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E478C2698B17F004D879F /* WeatherAppError.swift */; };
+		FD6E47932698B810004D879F /* LocSimA.gpx in Resources */ = {isa = PBXBuildFile; fileRef = FD6E47922698B810004D879F /* LocSimA.gpx */; };
+		FD6E479B2698B860004D879F /* Ankara.gpx in Resources */ = {isa = PBXBuildFile; fileRef = FD6E479A2698B860004D879F /* Ankara.gpx */; };
 		FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */; };
 		FDB79B69268F34E80043353B /* WeatherDetailInfoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */; };
 		FDB79B73268F78D90043353B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B72268F78D90043353B /* MainViewModel.swift */; };
@@ -151,6 +156,11 @@
 		FBDDFCC3A3DC7EB76FFC3E56 /* Pods-WeatherApp-WeatherAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp-WeatherAppUITests/Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FD6E477126989B54004D879F /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FD6E47792698A13F004D879F /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		FD6E477F2698A456004D879F /* DataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLayer.swift; sourceTree = "<group>"; };
+		FD6E47872698A4A9004D879F /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
+		FD6E478C2698B17F004D879F /* WeatherAppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppError.swift; sourceTree = "<group>"; };
+		FD6E47922698B810004D879F /* LocSimA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocSimA.gpx; sourceTree = "<group>"; };
+		FD6E479A2698B860004D879F /* Ankara.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Ankara.gpx; sourceTree = "<group>"; };
 		FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailInfoCollectionCell.swift; sourceTree = "<group>"; };
 		FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherDetailInfoCollectionCell.xib; sourceTree = "<group>"; };
 		FDB79B72268F78D90043353B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -343,6 +353,8 @@
 		E8873A75268DCF2A003702A5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				FD6E47912698B7E9004D879F /* LocationData */,
+				FD6E477E2698A447004D879F /* DataLayer */,
 				FD6E477026989B45004D879F /* Views */,
 				FDF8C98C26975771000E48A9 /* Helper */,
 				FDF0510A26939D2D00EF936A /* ViewModel */,
@@ -398,6 +410,24 @@
 				FD6E477126989B54004D879F /* ToastView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FD6E477E2698A447004D879F /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				FD6E477F2698A456004D879F /* DataLayer.swift */,
+				FD6E47872698A4A9004D879F /* FileService.swift */,
+			);
+			name = DataLayer;
+			sourceTree = "<group>";
+		};
+		FD6E47912698B7E9004D879F /* LocationData */ = {
+			isa = PBXGroup;
+			children = (
+				FD6E47922698B810004D879F /* LocSimA.gpx */,
+				FD6E479A2698B860004D879F /* Ankara.gpx */,
+			);
+			name = LocationData;
 			sourceTree = "<group>";
 		};
 		FDB79B62268F341F0043353B /* WeatherDetailInfoCollectionCell */ = {
@@ -490,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				FDF8C98D26975797000E48A9 /* Network.swift */,
+				FD6E478C2698B17F004D879F /* WeatherAppError.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -607,6 +638,7 @@
 				FDF050EA26932B6900EF936A /* FuturaPTMedium.otf in Resources */,
 				FDF050F326932B6900EF936A /* FuturaPTBold.otf in Resources */,
 				FDF050E026932B6900EF936A /* FuturaPTCondMedium.otf in Resources */,
+				FD6E479B2698B860004D879F /* Ankara.gpx in Resources */,
 				E80B29EC268DDC62007692E9 /* WeatherInfoCell.xib in Resources */,
 				FDF050F026932B6900EF936A /* FuturaPTMediumOblique.otf in Resources */,
 				FDF050EC26932B6900EF936A /* FuturaPTLight.otf in Resources */,
@@ -614,6 +646,7 @@
 				FDB79B69268F34E80043353B /* WeatherDetailInfoCollectionCell.xib in Resources */,
 				FDF050E526932B6900EF936A /* FuturaPTCondBookOblique.otf in Resources */,
 				E8873A86268DCF35003702A5 /* LaunchScreen.storyboard in Resources */,
+				FD6E47932698B810004D879F /* LocSimA.gpx in Resources */,
 				E80B29EB268DDC62007692E9 /* CityNameCell.xib in Resources */,
 				FDF050E326932B6900EF936A /* FuturaPTCondMediumOblique.otf in Resources */,
 				FDF050E426932B6900EF936A /* FuturaPTDemiOblique.otf in Resources */,
@@ -763,9 +796,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E80B29E5268DDC62007692E9 /* WeatherDetailsInfoCell.swift in Sources */,
+				FD6E47802698A456004D879F /* DataLayer.swift in Sources */,
 				FDF051282693A23900EF936A /* ChildVC.swift in Sources */,
 				FDF0511826939D7600EF936A /* MainIpadViewController.swift in Sources */,
 				E8873A81268DCF2A003702A5 /* WeatherApp.xcdatamodeld in Sources */,
+				FD6E478D2698B17F004D879F /* WeatherAppError.swift in Sources */,
 				E80B29ED268DDC62007692E9 /* WeatherInfoCell.swift in Sources */,
 				FDF8C98E26975797000E48A9 /* Network.swift in Sources */,
 				FD6E477226989B54004D879F /* ToastView.swift in Sources */,
@@ -779,6 +814,7 @@
 				E80B29FA268DDD95007692E9 /* APIService.swift in Sources */,
 				FDF050DA2693286200EF936A /* Configuration.swift in Sources */,
 				FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */,
+				FD6E47882698A4A9004D879F /* FileService.swift in Sources */,
 				E80DF85B268F55770073DD04 /* DaysViewController.swift in Sources */,
 				E8873A79268DCF2A003702A5 /* SceneDelegate.swift in Sources */,
 				FD6E477A2698A13F004D879F /* UIViewControllerExtensions.swift in Sources */,

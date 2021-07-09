@@ -47,7 +47,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableViewMain.reloadData()
     }
 
-    func printError(error: WeatherError){
+    func printError(error: WeatherAppError){
         if error == .noInternetConnection {
             ToastView.show(with: "No internet connection !")
         } else {
