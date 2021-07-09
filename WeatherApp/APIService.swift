@@ -15,40 +15,16 @@ enum ForecastService {
         switch self {
         case .cityLocation(let lat, let lon):
            // 40.198336, 29.035903
-            return "https://api.openweathermap.org/data/2.5/forecast?lat=40.198336&lon=29.035903&appid=bbcf57969e78d1300a815765b7d587f0&units=metric"
+            //return "https://api.openweathermap.org/data/2.5/forecast?lat=40.198336&lon=29.035903&appid=bbcf57969e78d1300a815765b7d587f0&units=metric"
             return "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=bbcf57969e78d1300a815765b7d587f0&units=metric"
-        }
-    }
-}
-
-enum APIServiceError: Error {
-    case apiServiceDeallocated
-    case apiServiceError
-    case apiServiceResponseCodeIsNotOK
-    case noInternetConnection
-    
-    var title: String {
-        switch self {
-        case .apiServiceDeallocated, .apiServiceError, .apiServiceResponseCodeIsNotOK, .noInternetConnection:
-            return "Error"
-        }
-    }
-    
-    var errorDescription: String {
-        switch self {
-        case .apiServiceDeallocated, .apiServiceError, .apiServiceResponseCodeIsNotOK :
-            return "API does not responding to your request. Please try again later."
-        case .noInternetConnection:
-            return "Your internet connection appears offline."
         }
     }
 }
 
 struct APIServiceResponse {
     let data: Data?
-    let error: APIServiceError?
+    let error: WeatherAppError?
 }
-
 
 class APIService {
 
@@ -61,9 +37,9 @@ class APIService {
         }.eraseToAnyPublisher()
     }
     
-    private func request(service: ForecastService, callBack: @escaping (Data?, APIServiceError?) -> ()) {
+    private func request(service: ForecastService, callBack: @escaping (Data?, WeatherAppError?) -> ()) {
         guard Network.shared.networkStatus.value == .online else {
-            callBack(nil, APIServiceError.noInternetConnection)
+            callBack(nil, WeatherAppError.noInternetConnection)
             return
         }
         let urlString = service.requestURL
@@ -71,17 +47,17 @@ class APIService {
         let request = URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 10)
         let dataTask = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             guard let self = self else {
-                callBack(nil, APIServiceError.apiServiceDeallocated)
+                callBack(nil, WeatherAppError.apiServiceDeallocated)
                 return
             }
             
             if let error = error {
-                callBack(nil, APIServiceError.apiServiceError)
+                callBack(nil, WeatherAppError.apiServiceError)
                 return
             }
             
             guard let response = response, let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                callBack(nil, APIServiceError.apiServiceResponseCodeIsNotOK)
+                callBack(nil, .apiServiceResponseCodeIsNotOK)
                 return
             }
             

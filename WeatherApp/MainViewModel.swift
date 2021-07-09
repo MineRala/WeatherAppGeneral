@@ -31,46 +31,14 @@ enum WeatherTableItem {
 }
 
 enum WeatherError: Error {
-    case locationNotFound
-    case apiDataNotFound
-    case noInternetConnection
-    
-    var title: String {
-        switch self {
-        case .locationNotFound:
-            return "Location not found."
-        case .apiDataNotFound:
-            return "Api error."
-        case .noInternetConnection:
-            return "No Internet Connection"
-        }
-    }
-    
-    var errorDescription : String{
-        switch self{
-        case .locationNotFound:
-            return "We cannot yor location. Please , try again."
-        case .apiDataNotFound:
-            return "We cannot get any data from API."
-        case .noInternetConnection:
-            return "Your internet connection status is offline."
-        }
-    }
+   
     
 }
-
-/*
-// MARK: - MainViewModel Delegate
-protocol MainViewModelDelegate: class {
-    func mainViewModelDidUpdatedWeatherInfo(_ viewModel: MainViewModel)
-    func mainViewModelDidOccuredError(_ viewModel: MainViewModel, error: WeatherError)
-    func mainViewModelViewControllerShouldNavigateToNextDays(_ viewModel: MainViewModel, weatherDictionary: [Date: [List]])
-}
-*/
 
 // MARK: Main View Model {Class}
 class MainViewModel {
-    private let apiService = APIService()
+    
+    private let dataLayer = DataLayer()
     
     private(set) var city: City!
     private(set) var dailyWeather: [Date: [List]] = [:] // Günlük olarak bölünmüş dictionary
@@ -79,7 +47,7 @@ class MainViewModel {
     
    // private(set) var areYouOK = CurrentValueSubject<Bool, Never>(true)
     private(set) var shouldUpdateTableView = PassthroughSubject<Void, Never>()
-    private(set) var shouldShowAlertViewForError = PassthroughSubject<WeatherError, Never>()
+    private(set) var shouldShowAlertViewForError = PassthroughSubject<WeatherAppError, Never>()
     private(set) var shouldNavigateToDaysViewController = PassthroughSubject<Void, Never>()
     
     private var cancellables = Set<AnyCancellable>()
@@ -143,7 +111,7 @@ class MainViewModel {
     }
 
     init() {
-        
+        addListeners()
     }
     
     deinit {
@@ -154,6 +122,7 @@ class MainViewModel {
 // MARK: - Public
 extension MainViewModel {
    @objc func initialize() {
+    
     let publisher = self.findUserCoordinates().flatMap { coordinates -> AnyPublisher<WeatherModel?, Never> in
         guard let coord = coordinates else { return Just(nil).eraseToAnyPublisher() }
         return self.requestWeatherInfo(coordinates: coord)
@@ -192,25 +161,22 @@ extension MainViewModel {
 // MARK: - API Request
 extension MainViewModel {
     private func requestWeatherInfo(coordinates: CLLocationCoordinate2D) ->AnyPublisher<WeatherModel?, Never> {
-        return apiService.requestRx(service: .cityLocation(coordinates.latitude, coordinates.longitude))
-            .flatMap { apiResponse -> AnyPublisher<WeatherModel?, Never> in
-                if let error = apiResponse.error {
-                    if error == .noInternetConnection {
-                        self.shouldShowAlertViewForError.send(.noInternetConnection)
-                    } else {
-                        self.shouldShowAlertViewForError.send(.apiDataNotFound)
-                    }
-                    
-                    return Just(nil).eraseToAnyPublisher()
-                }
-                do {
-                    let model = try JSONDecoder().decode(WeatherModel.self, from: apiResponse.data!)
-                    return Just(model).eraseToAnyPublisher()
-                } catch let jsonError {
-                    self.shouldShowAlertViewForError.send(.apiDataNotFound)
-                    return Just(nil).eraseToAnyPublisher()
-                }
-            }.eraseToAnyPublisher()
+        if Network.shared.networkStatus.value == .offline {
+            self.shouldShowAlertViewForError.send(WeatherAppError.noInternetConnection)
+        }
+        return self.dataLayer.requestWeatherData(latitude: coordinates.latitude, longitude: coordinates.longitude).flatMap { weatherData -> AnyPublisher<WeatherModel?, Never> in
+            guard let weatherData = weatherData else {
+                // TODO: Show Error
+                return Just(nil).eraseToAnyPublisher()
+            }
+            do {
+                let model = try JSONDecoder().decode(WeatherModel.self, from: weatherData)
+                return Just(model).eraseToAnyPublisher()
+            } catch let jsonError {
+                self.shouldShowAlertViewForError.send(.apiDataNotFound)
+                return Just(nil).eraseToAnyPublisher()
+            }
+        }.eraseToAnyPublisher()
     }
     
     private func processResponse(_ response: WeatherModel) -> AnyPublisher<Bool, Never> {
@@ -280,10 +246,19 @@ extension MainViewModel {
                 case .success(let newData):
                     promise(.success(newData.coordinate))
                 case .failure(let error):
-                    self.shouldShowAlertViewForError.send(WeatherError.locationNotFound)
+                    self.shouldShowAlertViewForError.send(.locationNotFound)
                     promise(.success(nil))
                 }
             }
         }.eraseToAnyPublisher()
+    }
+}
+
+// MARK: - Listeners
+extension MainViewModel {
+    private func addListeners() {
+        dataLayer.shouldShowError.receive(on: DispatchQueue.main).sink { err in
+            self.shouldShowAlertViewForError.send(err)
+        }.store(in: &cancellables)
     }
 }
