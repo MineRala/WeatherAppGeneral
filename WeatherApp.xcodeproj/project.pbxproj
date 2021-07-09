@@ -34,6 +34,8 @@
 		E8CAF51D268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CAF51B268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift */; };
 		E8CAF51E268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF51C268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib */; };
 		F42B4C87AA5F970EBED36B1B /* Pods_WeatherApp_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E078D806327A73648992F4 /* Pods_WeatherApp_WeatherAppUITests.framework */; };
+		FD6E477226989B54004D879F /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E477126989B54004D879F /* ToastView.swift */; };
+		FD6E477A2698A13F004D879F /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E47792698A13F004D879F /* UIViewControllerExtensions.swift */; };
 		FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */; };
 		FDB79B69268F34E80043353B /* WeatherDetailInfoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */; };
 		FDB79B73268F78D90043353B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B72268F78D90043353B /* MainViewModel.swift */; };
@@ -147,6 +149,8 @@
 		E8CAF5A6268E5459000A29C1 /* FuturaPTDemiOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FuturaPTDemiOblique.otf; sourceTree = "<group>"; };
 		F2962EF1D99A008ED312D352 /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDDFCC3A3DC7EB76FFC3E56 /* Pods-WeatherApp-WeatherAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp-WeatherAppUITests/Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FD6E477126989B54004D879F /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		FD6E47792698A13F004D879F /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailInfoCollectionCell.swift; sourceTree = "<group>"; };
 		FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherDetailInfoCollectionCell.xib; sourceTree = "<group>"; };
 		FDB79B72268F78D90043353B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -339,6 +343,7 @@
 		E8873A75268DCF2A003702A5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				FD6E477026989B45004D879F /* Views */,
 				FDF8C98C26975771000E48A9 /* Helper */,
 				FDF0510A26939D2D00EF936A /* ViewModel */,
 				FDF050D82693285400EF936A /* Configuration */,
@@ -387,6 +392,14 @@
 			path = WeatherHourCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		FD6E477026989B45004D879F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD6E477126989B54004D879F /* ToastView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		FDB79B62268F341F0043353B /* WeatherDetailInfoCollectionCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +439,7 @@
 			children = (
 				FDF050D02693194D00EF936A /* StringExtension.swift */,
 				FDE98DEB2695B84500FD9E66 /* UIViewExtensions.swift */,
+				FD6E47792698A13F004D879F /* UIViewControllerExtensions.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -754,6 +768,7 @@
 				E8873A81268DCF2A003702A5 /* WeatherApp.xcdatamodeld in Sources */,
 				E80B29ED268DDC62007692E9 /* WeatherInfoCell.swift in Sources */,
 				FDF8C98E26975797000E48A9 /* Network.swift in Sources */,
+				FD6E477226989B54004D879F /* ToastView.swift in Sources */,
 				E8CAF51D268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift in Sources */,
 				FDE98DEC2695B84500FD9E66 /* UIViewExtensions.swift in Sources */,
 				FDF050D12693194D00EF936A /* StringExtension.swift in Sources */,
@@ -766,6 +781,7 @@
 				FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */,
 				E80DF85B268F55770073DD04 /* DaysViewController.swift in Sources */,
 				E8873A79268DCF2A003702A5 /* SceneDelegate.swift in Sources */,
+				FD6E477A2698A13F004D879F /* UIViewControllerExtensions.swift in Sources */,
 				E80B29CE268DDB60007692E9 /* MainViewController.swift in Sources */,
 				E80B29EA268DDC62007692E9 /* CityNameCell.swift in Sources */,
 				E80B2A00268DDE99007692E9 /* WeatherModel.swift in Sources */,

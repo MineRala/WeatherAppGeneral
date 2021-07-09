@@ -29,6 +29,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cancellables.forEach { $0.cancel() }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
@@ -41,43 +46,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.tableViewMain.reloadData()
     }
-    
-    func showToast(message: String){
-        guard let window = UIApplication.shared.keyWindow else {return}
-       
-        let toastLbl = UILabel()
-        toastLbl.text = message
-        toastLbl.textAlignment = .center
-        toastLbl.font = UIFont.systemFont(ofSize: 20)
-        toastLbl.textColor = C.Color.toastTextColor
-        toastLbl.backgroundColor = C.Color.toastBackgroundColor.withAlphaComponent(0.8)
-        toastLbl.numberOfLines = 0
-        let textSize = toastLbl.intrinsicContentSize
-        let labelHeight = ( textSize.width / window.frame.width) * 30
-        let labelWidht = min(textSize.width, window.frame.width - 40)
-        let adjustedHeight = max(labelHeight, textSize.height + 20)
-        toastLbl.frame = CGRect(x: 20, y: (window.frame.height - 90) - adjustedHeight, width: labelWidht + 20, height: adjustedHeight)
-        toastLbl.center.x = window.center.x
-        toastLbl.layer.cornerRadius = 10
-        toastLbl.layer.masksToBounds = true
-        window.addSubview(toastLbl)
-        UIView.animate(withDuration: 4, animations: {
-            toastLbl.alpha = 0
-        }) { (_) in
-                toastLbl.removeFromSuperview()
-                }
-    }
-                    
-                    
-    
+
     func printError(error: WeatherError){
         if error == .noInternetConnection {
-            showToast(message: "no internet connection")
+            ToastView.show(with: "No internet connection !")
         } else {
-            let alert = UIAlertController(title: error.title, message: error.errorDescription, preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true, completion: nil)
+            self.showAlert(with: error.title, message: error.errorDescription)
         }
     }
     
@@ -140,9 +114,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherDetailsInfoCell", for: indexPath) as! WeatherDetailsInfoCell
             cell.configureCell(viewModel: viewModel, cellType: .bottom)
             return cell
-            
-        default:
-            fatalError()
         }
     }
 }
@@ -171,7 +142,7 @@ extension MainViewController {
         Network.shared.networkStatus.receive(on: DispatchQueue.main).sink { status in
             print("Current Status: \(status)")
             if status == .offline{
-                self.showToast(message: "no internet connection")
+                ToastView.show(with: "No internet connection !")
             }
         }.store(in: &cancellables)
     }
