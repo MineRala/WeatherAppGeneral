@@ -58,6 +58,10 @@ struct C {
         static var weatherInfoCellCVColor :  UIColor { UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1) : #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)}
         static var collectionViewHourlyWeatherColor : UIColor { UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)  : #colorLiteral(red: 0.1843137255, green: 0.1843137255, blue: 0.1843137255, alpha: 1)}
         static var collectionContentViewColor : UIColor { UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)}
+        
+        static var toastBackgroundColor: UIColor { UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) :  #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)}
+
+        static var toastTextColor: UIColor { UITraitCollection.current.userInterfaceStyle == .light ?  #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0):  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) }
     }
     }
 
