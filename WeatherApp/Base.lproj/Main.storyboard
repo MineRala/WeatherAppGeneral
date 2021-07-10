@@ -75,13 +75,25 @@
                     <view key="view" contentMode="scaleToFill" id="Zws-Sa-vwq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwl-aa-56e">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="qTB-Ke-6Cr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wwl-aa-56e" firstAttribute="leading" secondItem="qTB-Ke-6Cr" secondAttribute="leading" id="Oqg-0U-fbl"/>
+                            <constraint firstAttribute="bottom" secondItem="wwl-aa-56e" secondAttribute="bottom" id="cZB-s1-gzy"/>
+                            <constraint firstItem="qTB-Ke-6Cr" firstAttribute="trailing" secondItem="wwl-aa-56e" secondAttribute="trailing" id="eJE-6n-ErL"/>
+                            <constraint firstItem="wwl-aa-56e" firstAttribute="top" secondItem="Zws-Sa-vwq" secondAttribute="top" id="xPr-1Z-YbV"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pR-2h-Bzb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1465" y="-13"/>
+            <point key="canvasLocation" x="1462.3188405797102" y="-13.392857142857142"/>
         </scene>
     </scenes>
     <resources>
