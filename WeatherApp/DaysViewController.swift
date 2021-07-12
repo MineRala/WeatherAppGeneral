@@ -14,19 +14,35 @@ class DaysViewController: UIViewController {
     @IBOutlet weak var DaysView: UIView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var labelNext5Days: UILabel!
-    var viewModel: MainViewModel!
     
+    private var viewModel: MainViewModel!
+    private var cancellables = Set<AnyCancellable>()
+}
+
+// MARK: - Lifecycle
+extension DaysViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        viewModel.initializeListViewItems()
     }
-    
+}
+
+// MARK: - Actions
+extension DaysViewController {
     @IBAction func backButtonClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
 }
 
-//MARK: - Set up uı
+// MARK: - Public
+extension DaysViewController {
+    func setViewModel(_ viewModel: MainViewModel) {
+        self.viewModel = viewModel
+    }
+}
+
+//MARK: - Set up UI
 extension DaysViewController {
     private func setUpUI() {
         self.DaysView.backgroundColor = C.Color.daysViewColor
@@ -48,7 +64,8 @@ extension DaysViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DaysTableViewCell",for: indexPath)as! DaysTableViewCell
-        cell.configureCell( viewModel: viewModel)
+        let viewDataItem = self.viewModel.arrListViewData[indexPath.row]
+        cell.configureCell(with: viewDataItem)
         return cell
         
     }
@@ -58,4 +75,12 @@ extension DaysViewController: UITableViewDelegate, UITableViewDataSource{
     }
 }
 
+// MARK: - Add Listeners
+extension DaysViewController {
+    private func addListeners() {
+        viewModel.shouldUpdateTableView.receive(on: DispatchQueue.main).sink { _ in
+            self.tableViewDays.reloadData()
+        }.store(in: &cancellables)
+    }
+}
 

@@ -47,17 +47,17 @@
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23j-SC-o90">
-                                        <rect key="frame" x="143" y="0.0" width="32" height="54"/>
+                                        <rect key="frame" x="143" y="0.0" width="1" height="54"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1" id="kRX-FB-bSI"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32.15°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y70-3L-bvz">
-                                        <rect key="frame" x="183" y="0.0" width="95" height="54"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.15°C" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="28" translatesAutoresizingMaskIntoConstraints="NO" id="y70-3L-bvz">
+                                        <rect key="frame" x="152" y="0.0" width="126" height="54"/>
                                         <color key="tintColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="95" id="Ztp-Ep-xor"/>
+                                            <constraint firstAttribute="width" constant="126" id="Ztp-Ep-xor"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="32"/>
                                         <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>

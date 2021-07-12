@@ -30,10 +30,18 @@ enum WeatherTableItem {
     }
 }
 
-enum WeatherError: Error {
-   
-    
+// MARK: - List View Data
+struct ListViewData {
+    let dayName: String
+    let icon: String
+    let degree: String
+    let windSpeed: String
+    let humidity: String
+    let pressure: String
+    let windDegree: String
 }
+
+
 
 // MARK: Main View Model {Class}
 class MainViewModel {
@@ -44,10 +52,12 @@ class MainViewModel {
     private(set) var dailyWeather: [Date: [List]] = [:] // Günlük olarak bölünmüş dictionary
     private(set) var currentHourlyWeatherData: [List] = []
     private(set) var currentWeather: List!
+    private(set) var arrListViewData: [ListViewData] = []
   
     private(set) var shouldUpdateTableView = PassthroughSubject<Void, Never>()
     private(set) var shouldShowAlertViewForError = PassthroughSubject<WeatherAppError, Never>()
     private(set) var shouldNavigateToDaysViewController = PassthroughSubject<Void, Never>()
+    private(set) var shouldShowLoadingAnimation = CurrentValueSubject<Bool, Never>(false)
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -90,7 +100,7 @@ class MainViewModel {
     }
 
     var windDegreeValue: String {
-        return "\(currentWeather.wind.deg) °C"
+        return "\(currentWeather.wind.deg) °"
     }
     
     var groundLevelValue : String {
@@ -121,19 +131,29 @@ class MainViewModel {
 // MARK: - Public
 extension MainViewModel {
    @objc func initialize() {
-    
-    let publisher = self.findUserCoordinates().flatMap { coordinates -> AnyPublisher<WeatherModel?, Never> in
-        guard let coord = coordinates else { return Just(nil).eraseToAnyPublisher() }
-        return self.requestWeatherInfo(coordinates: coord)
-    }.flatMap { model -> AnyPublisher<Bool, Never> in
-        guard let md = model else { return Just(true).eraseToAnyPublisher() }
-        return self.processResponse(md)
+        self.shouldShowLoadingAnimation.send(true)
+        let publisher = self.findUserCoordinates().flatMap { coordinates -> AnyPublisher<WeatherModel?, Never> in
+            guard let coord = coordinates else { return Just(nil).eraseToAnyPublisher() }
+            return self.requestWeatherInfo(coordinates: coord)
+        }.flatMap { model -> AnyPublisher<Bool, Never> in
+            guard let md = model else { return Just(true).eraseToAnyPublisher() }
+            return self.processResponse(md)
+        }
+        
+        self.shouldUpdateTableView.send()
+        publisher.sink { _ in
+            self.shouldUpdateTableView.send()
+            self.shouldShowLoadingAnimation.send(false)
+        }.store(in: &cancellables)
     }
     
-    self.shouldUpdateTableView.send()
-    publisher.sink { _ in
-        self.shouldUpdateTableView.send()
-    }.store(in: &cancellables)
+    func initializeListViewItems() {
+        let publisher = self.convertListModelsToListDatas()
+        
+        publisher.sink { listArr in
+            self.arrListViewData = listArr
+            self.shouldUpdateTableView.send()
+        }.store(in: &cancellables)
     }
     
     func nextFiveDaysDidTapped() {
@@ -154,6 +174,8 @@ extension MainViewModel {
         self.currentWeather = list
         self.shouldUpdateTableView.send()
     }
+    
+    
     
 }
 
@@ -212,9 +234,10 @@ extension MainViewModel {
             }
         }
         
-//        self.dailyWeather.forEach { (key , value) in
-//            print("\(key)->\(value)")
-//        }
+        self.dailyWeather.forEach { (key , value) in
+            print("\(key)->\(value)")
+        }
+        
         self.currentWeather = sortedWeatherData.first!
         self.city = city
         
@@ -262,5 +285,59 @@ extension MainViewModel {
         dataLayer.shouldShowError.receive(on: DispatchQueue.main).sink { err in
             self.shouldShowAlertViewForError.send(err)
         }.store(in: &cancellables)
+    }
+}
+
+// MARK: - DaysViewController
+extension MainViewModel {
+    private func convertListModelsToListDatas() -> AnyPublisher<[ListViewData], Never> {
+        return self.convertWeatherDictionaryToListArrayRx()
+            .flatMap { listModels -> AnyPublisher<[ListViewData], Never> in
+                let viewDatas = listModels.compactMap { model -> ListViewData? in
+                    guard let main = model.main else { return nil }
+                    let dayName = model.date().nameOfTheDay
+                    let icon = model.weatherIcon()
+                   let degree = "\(main.temp) °C"
+                    let windSpeed = "\(model.wind.speed) km/h"
+                    let humidity = "\(main.humidity) g/m3"
+                    let pressure = "\(main.pressure) hPa"
+                    let windDegree = "\(model.wind.deg) °"
+                    let viewData = ListViewData(dayName: dayName, icon: icon, degree: degree, windSpeed: windSpeed, humidity: humidity, pressure: pressure, windDegree: windDegree)
+                    return viewData
+                }
+                return Just(viewDatas).eraseToAnyPublisher()
+        }.eraseToAnyPublisher()
+    }
+    
+    private func convertWeatherDictionaryToListArrayRx() -> AnyPublisher<[List], Never> {
+        return Future { promise in
+            DispatchQueue.global().async {
+                let listArr = self.convertWeatherDictionaryToListArray()
+                promise(.success(listArr))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    private func convertWeatherDictionaryToListArray() -> [List] {
+        let sortedKeys = Array(self.dailyWeather.keys).sorted { (date1, date2) -> Bool in
+            return date1 < date2
+        }
+        
+        var arrWeatherListData: [List] = []
+        for key in sortedKeys {
+            let currentList = self.dailyWeather[key]!
+            if currentList.count > 0 {
+                let sortedListItems = currentList.sorted { (list1, list2) -> Bool in
+                    return list1.date() < list2.date()
+                }
+                let currentItem = sortedListItems[sortedListItems.count/2]
+                arrWeatherListData.append(currentItem)
+            }
+        }
+        
+//        arrWeatherListData.forEach {
+//            print("Weather: \($0.date()) : \($0)")
+//        }
+        return arrWeatherListData
     }
 }

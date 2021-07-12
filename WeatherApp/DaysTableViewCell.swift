@@ -17,7 +17,7 @@ class DaysTableViewCell: UITableViewCell ,UICollectionViewDelegate , UICollectio
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var labelDegree: UILabel!
    
-    private var viewModel: MainViewModel!
+    private var viewDataItem: ListViewData!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +29,7 @@ class DaysTableViewCell: UITableViewCell ,UICollectionViewDelegate , UICollectio
         collectionViewDays.register(UINib(nibName: "DaysCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DaysCollectionViewCell")
         self.collectionViewDays.delegate = self
         self.collectionViewDays.dataSource = self
-       
+        self.collectionViewDays.backgroundColor = .clear
     }
  
     
@@ -39,22 +39,22 @@ class DaysTableViewCell: UITableViewCell ,UICollectionViewDelegate , UICollectio
         switch indexPath.row {
         case 0:
             let title = "Wind Speed"
-            let value = "1.67"
+            let value = viewDataItem.windSpeed
             cell.configureCell(title: title, value: value)
             
         case 1:
             let title = "Pressure"
-            let value = "1000"
+            let value = viewDataItem.pressure
             cell.configureCell(title: title, value: value)
             
         case 2:
             let title = "Humudity"
-            let value = "1000"
+            let value = viewDataItem.humidity
             cell.configureCell(title: title, value: value)
             
         case 3:
             let title = "Wind Degree"
-            let value = "100"
+            let value = viewDataItem.windDegree
             cell.configureCell(title: title, value: value)
             
         default:
@@ -80,10 +80,11 @@ func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection s
    }
     
     
-    func configureCell(viewModel: MainViewModel) {
-//        self.weatherDetailsInfoCellContentView.backgroundColor = C.Color.weatherDetailsInfoCellCVColor
-        self.collectionViewDays.backgroundColor = .clear
-        self.viewModel = viewModel
+    func configureCell(with item: ListViewData) {        
+       viewDataItem = item
+        self.labelDegree.text = viewDataItem.degree
+        self.labelDayName.text = item.dayName
+        self.iconImage.image = UIImage(systemName: item.icon)
         self.collectionViewDays.reloadData()
     }
     

@@ -6,6 +6,7 @@ target 'WeatherApp' do
   use_frameworks!
   pod 'SwiftLocation/Core'
   pod 'ReachabilitySwift'
+  pod 'lottie-ios'
 
 
   # Pods for WeatherApp
