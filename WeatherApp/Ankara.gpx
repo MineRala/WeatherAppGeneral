@@ -1,14 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="Open GPX Tracker for iOS">
-  <wpt lat="38.2007" lon="26.3318">
-    <time>2019-12-06T12:00:00Z</time>
-    <name>Çeşme</name>
-    <desc>Description of point 1</desc>
-  </wpt>
-  <wpt lat="38.2416" lon="27.0649">
-    <time>2019-12-06T12:00:20Z</time>
-    <name>İzmir Konak</name>
-    <desc>Description of point 2</desc>
-  </wpt>
-  
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode">
+    
+    <!--
+     Provide one or more waypoints containing a latitude/longitude pair. If you provide one
+     waypoint, Xcode will simulate that specific location. If you provide multiple waypoints,
+     Xcode will simulate a route visiting each waypoint.
+    39.923329, 32.855543
+     -->
+    <wpt lat="39.923329" lon="32.855543">
+        <name>Cupertino</name>
+        
+        <!--
+         Optionally provide a time element for each waypoint. Xcode will interpolate movement
+         at a rate of speed based on the time elapsed between each waypoint. If you do not provide
+         a time element, then Xcode will use a fixed rate of speed.
+         
+         Waypoints must be sorted by time in ascending order.
+         -->
+        <time>2014-09-24T14:55:37Z</time>
+    </wpt>
+    
 </gpx>

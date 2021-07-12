@@ -65,7 +65,7 @@ extension MainViewController{
     }
 }
 
-//MARK: -Table View
+//MARK: - Table View
 extension MainViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -134,7 +134,7 @@ extension MainViewController {
         viewModel.shouldNavigateToDaysViewController.receive(on: DispatchQueue.main).sink { _ in
             let story = UIStoryboard(name: "Main", bundle: nil)
             let vc = story.instantiateViewController(identifier: "DaysViewController") as! DaysViewController
-            vc.viewModel = self.viewModel
+            vc.setViewModel(self.viewModel)
             self.navigationController?.pushViewController(vc, animated: true)
         }.store(in: &cancellables)
         

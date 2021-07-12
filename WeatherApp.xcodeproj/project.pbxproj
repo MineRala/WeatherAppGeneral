@@ -44,7 +44,9 @@
 		FD6E47882698A4A9004D879F /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E47872698A4A9004D879F /* FileService.swift */; };
 		FD6E478D2698B17F004D879F /* WeatherAppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E478C2698B17F004D879F /* WeatherAppError.swift */; };
 		FD6E47932698B810004D879F /* LocSimA.gpx in Resources */ = {isa = PBXBuildFile; fileRef = FD6E47922698B810004D879F /* LocSimA.gpx */; };
-		FD6E479B2698B860004D879F /* Ankara.gpx in Resources */ = {isa = PBXBuildFile; fileRef = FD6E479A2698B860004D879F /* Ankara.gpx */; };
+		FD6E479B2698B860004D879F /* Cesme.gpx in Resources */ = {isa = PBXBuildFile; fileRef = FD6E479A2698B860004D879F /* Cesme.gpx */; };
+		FD970227269CB7C50055F437 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD970226269CB7C50055F437 /* DateExtensions.swift */; };
+		FD97022C269CBF030055F437 /* Ankara.gpx in Resources */ = {isa = PBXBuildFile; fileRef = FD97022B269CBF030055F437 /* Ankara.gpx */; };
 		FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */; };
 		FDB79B69268F34E80043353B /* WeatherDetailInfoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */; };
 		FDB79B73268F78D90043353B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B72268F78D90043353B /* MainViewModel.swift */; };
@@ -168,7 +170,9 @@
 		FD6E47872698A4A9004D879F /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		FD6E478C2698B17F004D879F /* WeatherAppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppError.swift; sourceTree = "<group>"; };
 		FD6E47922698B810004D879F /* LocSimA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocSimA.gpx; sourceTree = "<group>"; };
-		FD6E479A2698B860004D879F /* Ankara.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Ankara.gpx; sourceTree = "<group>"; };
+		FD6E479A2698B860004D879F /* Cesme.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Cesme.gpx; sourceTree = "<group>"; };
+		FD970226269CB7C50055F437 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		FD97022B269CBF030055F437 /* Ankara.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Ankara.gpx; sourceTree = "<group>"; };
 		FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailInfoCollectionCell.swift; sourceTree = "<group>"; };
 		FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherDetailInfoCollectionCell.xib; sourceTree = "<group>"; };
 		FDB79B72268F78D90043353B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -453,7 +457,8 @@
 			isa = PBXGroup;
 			children = (
 				FD6E47922698B810004D879F /* LocSimA.gpx */,
-				FD6E479A2698B860004D879F /* Ankara.gpx */,
+				FD6E479A2698B860004D879F /* Cesme.gpx */,
+				FD97022B269CBF030055F437 /* Ankara.gpx */,
 			);
 			name = LocationData;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 				FDF050D02693194D00EF936A /* StringExtension.swift */,
 				FDE98DEB2695B84500FD9E66 /* UIViewExtensions.swift */,
 				FD6E47792698A13F004D879F /* UIViewControllerExtensions.swift */,
+				FD970226269CB7C50055F437 /* DateExtensions.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -666,7 +672,8 @@
 				FDF050EA26932B6900EF936A /* FuturaPTMedium.otf in Resources */,
 				FDF050F326932B6900EF936A /* FuturaPTBold.otf in Resources */,
 				FDF050E026932B6900EF936A /* FuturaPTCondMedium.otf in Resources */,
-				FD6E479B2698B860004D879F /* Ankara.gpx in Resources */,
+				FD97022C269CBF030055F437 /* Ankara.gpx in Resources */,
+				FD6E479B2698B860004D879F /* Cesme.gpx in Resources */,
 				E80B29EC268DDC62007692E9 /* WeatherInfoCell.xib in Resources */,
 				FDF050F026932B6900EF936A /* FuturaPTMediumOblique.otf in Resources */,
 				FDF050EC26932B6900EF936A /* FuturaPTLight.otf in Resources */,
@@ -847,6 +854,7 @@
 				FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */,
 				E8644CAB269B155B00D2249C /* DaysTableViewCell.swift in Sources */,
 				FD6E47882698A4A9004D879F /* FileService.swift in Sources */,
+				FD970227269CB7C50055F437 /* DateExtensions.swift in Sources */,
 				E80DF85B268F55770073DD04 /* DaysViewController.swift in Sources */,
 				E8873A79268DCF2A003702A5 /* SceneDelegate.swift in Sources */,
 				FD6E477A2698A13F004D879F /* UIViewControllerExtensions.swift in Sources */,

@@ -34,7 +34,7 @@ enum WeatherAppError {
         case .noInternetConnection:
             return "No internet connection !"
         case .locationNotFound:
-            return "We cannot yor location. Please , try again."
+            return "We cannot find your location. Please , try again."
         case .apiDataNotFound:
             return "We cannot get any data from API."
         case .fileProcessingError:
