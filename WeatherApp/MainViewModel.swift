@@ -57,6 +57,7 @@ class MainViewModel {
     private(set) var shouldUpdateTableView = PassthroughSubject<Void, Never>()
     private(set) var shouldShowAlertViewForError = PassthroughSubject<WeatherAppError, Never>()
     private(set) var shouldNavigateToDaysViewController = PassthroughSubject<Void, Never>()
+    private(set) var shouldShowLoadingAnimation = CurrentValueSubject<Bool, Never>(false)
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -130,6 +131,7 @@ class MainViewModel {
 // MARK: - Public
 extension MainViewModel {
    @objc func initialize() {
+        self.shouldShowLoadingAnimation.send(true)
         let publisher = self.findUserCoordinates().flatMap { coordinates -> AnyPublisher<WeatherModel?, Never> in
             guard let coord = coordinates else { return Just(nil).eraseToAnyPublisher() }
             return self.requestWeatherInfo(coordinates: coord)
@@ -141,6 +143,7 @@ extension MainViewModel {
         self.shouldUpdateTableView.send()
         publisher.sink { _ in
             self.shouldUpdateTableView.send()
+            self.shouldShowLoadingAnimation.send(false)
         }.store(in: &cancellables)
     }
     

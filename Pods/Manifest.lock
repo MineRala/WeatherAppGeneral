@@ -1,20 +1,24 @@
 PODS:
+  - lottie-ios (3.2.3)
   - ReachabilitySwift (5.0.0)
   - SwiftLocation/Core (5.1.0)
 
 DEPENDENCIES:
+  - lottie-ios
   - ReachabilitySwift
   - SwiftLocation/Core
 
 SPEC REPOS:
   trunk:
+    - lottie-ios
     - ReachabilitySwift
     - SwiftLocation
 
 SPEC CHECKSUMS:
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SwiftLocation: 83e0ea75a1969cee3a1197e2b7095603fc23fde5
 
-PODFILE CHECKSUM: 82b4c4ee0dfcb2c61fee8fde5c31a258534e183f
+PODFILE CHECKSUM: f77eac5baa238003ff583dbfbe542928340c2d24
 
 COCOAPODS: 1.10.0

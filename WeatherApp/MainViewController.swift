@@ -120,6 +120,10 @@ extension MainViewController : UITableViewDataSource, UITableViewDelegate {
 // MARK: - Listeners
 extension MainViewController {
     private func addListeners() {
+        viewModel.shouldShowLoadingAnimation.receive(on: DispatchQueue.main).sink { isShowing in
+            isShowing == true ? LoadingView.show() : LoadingView.hide()
+        }.store(in: &cancellables)
+        
         viewModel.shouldUpdateTableView.receive(on: DispatchQueue.main).sink { _ in
             self.tableViewMain.reloadData()
             self.refreshControl.endRefreshing()

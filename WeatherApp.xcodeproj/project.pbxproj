@@ -47,6 +47,8 @@
 		FD6E479B2698B860004D879F /* Cesme.gpx in Resources */ = {isa = PBXBuildFile; fileRef = FD6E479A2698B860004D879F /* Cesme.gpx */; };
 		FD970227269CB7C50055F437 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD970226269CB7C50055F437 /* DateExtensions.swift */; };
 		FD97022C269CBF030055F437 /* Ankara.gpx in Resources */ = {isa = PBXBuildFile; fileRef = FD97022B269CBF030055F437 /* Ankara.gpx */; };
+		FD97023A269CC1860055F437 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD970239269CC1860055F437 /* LoadingView.swift */; };
+		FD970240269CC3550055F437 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = FD97023F269CC3550055F437 /* loading.json */; };
 		FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */; };
 		FDB79B69268F34E80043353B /* WeatherDetailInfoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */; };
 		FDB79B73268F78D90043353B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B72268F78D90043353B /* MainViewModel.swift */; };
@@ -173,6 +175,8 @@
 		FD6E479A2698B860004D879F /* Cesme.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Cesme.gpx; sourceTree = "<group>"; };
 		FD970226269CB7C50055F437 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		FD97022B269CBF030055F437 /* Ankara.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Ankara.gpx; sourceTree = "<group>"; };
+		FD970239269CC1860055F437 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		FD97023F269CC3550055F437 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		FDB79B66268F34E80043353B /* WeatherDetailInfoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailInfoCollectionCell.swift; sourceTree = "<group>"; };
 		FDB79B67268F34E80043353B /* WeatherDetailInfoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherDetailInfoCollectionCell.xib; sourceTree = "<group>"; };
 		FDB79B72268F78D90043353B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -376,6 +380,7 @@
 		E8873A75268DCF2A003702A5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				FD97023E269CC3420055F437 /* LottieFiles */,
 				FD6E47912698B7E9004D879F /* LocationData */,
 				FD6E477E2698A447004D879F /* DataLayer */,
 				FD6E477026989B45004D879F /* Views */,
@@ -440,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				FD6E477126989B54004D879F /* ToastView.swift */,
+				FD970239269CC1860055F437 /* LoadingView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -461,6 +467,14 @@
 				FD97022B269CBF030055F437 /* Ankara.gpx */,
 			);
 			name = LocationData;
+			sourceTree = "<group>";
+		};
+		FD97023E269CC3420055F437 /* LottieFiles */ = {
+			isa = PBXGroup;
+			children = (
+				FD97023F269CC3550055F437 /* loading.json */,
+			);
+			name = LottieFiles;
 			sourceTree = "<group>";
 		};
 		FDB79B62268F341F0043353B /* WeatherDetailInfoCollectionCell */ = {
@@ -699,6 +713,7 @@
 				FDF050DF26932B6900EF936A /* FuturaPTExtraBold.otf in Resources */,
 				FDF050DE26932B6900EF936A /* FuturaPTCondBook.otf in Resources */,
 				E8B77804269C9C9700636D10 /* DaysCollectionViewCell.xib in Resources */,
+				FD970240269CC3550055F437 /* loading.json in Resources */,
 				FDF050EF26932B6900EF936A /* FuturaPTLightOblique.otf in Resources */,
 				FDF050E226932B6900EF936A /* FuturaPTCondBoldOblique.otf in Resources */,
 				FDF050F126932B6900EF936A /* FuturaPTHeavy.otf in Resources */,
@@ -855,6 +870,7 @@
 				E8644CAB269B155B00D2249C /* DaysTableViewCell.swift in Sources */,
 				FD6E47882698A4A9004D879F /* FileService.swift in Sources */,
 				FD970227269CB7C50055F437 /* DateExtensions.swift in Sources */,
+				FD97023A269CC1860055F437 /* LoadingView.swift in Sources */,
 				E80DF85B268F55770073DD04 /* DaysViewController.swift in Sources */,
 				E8873A79268DCF2A003702A5 /* SceneDelegate.swift in Sources */,
 				FD6E477A2698A13F004D879F /* UIViewControllerExtensions.swift in Sources */,
