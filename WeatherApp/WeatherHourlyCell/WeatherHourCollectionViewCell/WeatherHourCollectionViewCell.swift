@@ -17,36 +17,41 @@ class WeatherHourCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var collectionContentView: UIView!
     
     private var currentTimeForecast: List!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        collectionContentView.layer.cornerRadius = 32
-        collectionContentView.layer.borderWidth = 1
-        collectionContentView.layer.borderColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1).cgColor
-        viewImageContentArea.layer.cornerRadius = 18
-        
-        self.labelDegree.font = C.Font.book.font(with: 14)
-        self.labelTime.font = C.Font.book.font(with: 14)
-    }
-    
+}
 
-    func configureCell(currentForecast: List, isChosen: Bool) {
-       
-        self.labelDegree.textColor = C.Color.labelDegreeColor
-        self.ImageIcon.tintColor = C.Color.imageIconColor
-       
-        self.labelTime.textColor = C.Color.labelTimeColor
-        self.viewImageContentArea.backgroundColor = C.Color.imageContentArea
-        self.collectionContentView.backgroundColor = C.Color.collectionContentViewColor
-        
-        self.currentTimeForecast = currentForecast
-        self.labelTime.text = self.currentTimeForecast.dateWithFormat()
-        self.ImageIcon.image = UIImage(systemName:self.currentTimeForecast.weatherIcon())
-        self.labelDegree.text = currentForecast.degreeValue()
-        self.collectionContentView.backgroundColor = isChosen ? C.Color.hourlCollectionViewCellSelectedBgColor : .clear
-        self.labelDegree.textColor = isChosen ? C.Color.hourlCollectionViewCellSelectedDegreeColor : C.Color.labelDegreeColor
-        self.labelTime.textColor = isChosen ? C.Color.hourlCollectionViewCellSelectedTimeColor : C.Color.labelTimeColor
-        self.ImageIcon.tintColor = isChosen ? C.Color.hourlCollectionViewCellSelectedIconColor : C.Color.imageIconColor
-        self.viewImageContentArea.backgroundColor = isChosen ? C.Color.hourlCollectionViewCellSelectedEllipsColor : C.Color.imageContentArea
-    }
+//MARK: -Set up uı
+    extension WeatherHourCollectionViewCell {
+        override func awakeFromNib() {
+            super.awakeFromNib()
+            collectionContentView.layer.cornerRadius = 32
+            collectionContentView.layer.borderWidth = 1
+            collectionContentView.layer.borderColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1).cgColor
+            viewImageContentArea.layer.cornerRadius = 18
+            
+            self.labelDegree.font = C.Font.book.font(with: 14)
+            self.labelTime.font = C.Font.book.font(with: 14)
+        }
+}
+
+//MARK: -Configure Cell
+    extension WeatherHourCollectionViewCell{
+        func configureCell(currentForecast: List, isChosen: Bool) {
+           
+            self.labelDegree.textColor = C.Color.labelDegreeColor
+            self.ImageIcon.tintColor = C.Color.imageIconColor
+           
+            self.labelTime.textColor = C.Color.labelTimeColor
+            self.viewImageContentArea.backgroundColor = C.Color.imageContentArea
+            self.collectionContentView.backgroundColor = C.Color.collectionContentViewColor
+            
+            self.currentTimeForecast = currentForecast
+            self.labelTime.text = self.currentTimeForecast.dateWithFormat()
+            self.ImageIcon.image = UIImage(systemName:self.currentTimeForecast.weatherIcon())
+            self.labelDegree.text = currentForecast.degreeValue()
+            self.collectionContentView.backgroundColor = isChosen ? C.Color.hourlCollectionViewCellSelectedBgColor : .clear
+            self.labelDegree.textColor = isChosen ? C.Color.hourlCollectionViewCellSelectedDegreeColor : C.Color.labelDegreeColor
+            self.labelTime.textColor = isChosen ? C.Color.hourlCollectionViewCellSelectedTimeColor : C.Color.labelTimeColor
+            self.ImageIcon.tintColor = isChosen ? C.Color.hourlCollectionViewCellSelectedIconColor : C.Color.imageIconColor
+            self.viewImageContentArea.backgroundColor = isChosen ? C.Color.hourlCollectionViewCellSelectedEllipsColor : C.Color.imageContentArea
+        }
 }

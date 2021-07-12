@@ -9,24 +9,27 @@ import UIKit
 
 class NextDayCell: UITableViewCell {
 
-   
-    @IBOutlet weak var btnText: UIButton!
+   @IBOutlet weak var btnText: UIButton!
     
     private var viewModel: MainViewModel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.selectionStyle = .none
-    }
-  
-    func  configureCell(_ viewModel : MainViewModel)  {
-        self.viewModel = viewModel
-        self.btnText.tintColor = C.Color.nextDaysColor
-        
-    }
     
     @IBAction func btnNextDays(_ sender: Any) {
         self.viewModel.nextFiveDaysDidTapped()
     }
-    
+}
+
+//MARK: -Set up uı
+extension NextDayCell {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectionStyle = .none
+    }
+}
+
+//MARK: -Configure Cell
+extension NextDayCell {
+    func  configureCell(_ viewModel : MainViewModel)  {
+        self.viewModel = viewModel
+        self.btnText.tintColor = C.Color.nextDaysColor
+    }
 }

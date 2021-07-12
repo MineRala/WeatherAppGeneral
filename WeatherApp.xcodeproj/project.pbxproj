@@ -23,6 +23,8 @@
 		E80B29FA268DDD95007692E9 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B29F9268DDD95007692E9 /* APIService.swift */; };
 		E80B2A00268DDE99007692E9 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B29FF268DDE99007692E9 /* WeatherModel.swift */; };
 		E80DF85B268F55770073DD04 /* DaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DF85A268F55770073DD04 /* DaysViewController.swift */; };
+		E8644CAB269B155B00D2249C /* DaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8644CA9269B155B00D2249C /* DaysTableViewCell.swift */; };
+		E8644CAC269B155B00D2249C /* DaysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8644CAA269B155B00D2249C /* DaysTableViewCell.xib */; };
 		E8873A77268DCF2A003702A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8873A76268DCF2A003702A5 /* AppDelegate.swift */; };
 		E8873A79268DCF2A003702A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8873A78268DCF2A003702A5 /* SceneDelegate.swift */; };
 		E8873A7E268DCF2A003702A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8873A7C268DCF2A003702A5 /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 		E8873A86268DCF35003702A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8873A84268DCF35003702A5 /* LaunchScreen.storyboard */; };
 		E8873A91268DCF36003702A5 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8873A90268DCF36003702A5 /* WeatherAppTests.swift */; };
 		E8873A9C268DCF36003702A5 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8873A9B268DCF36003702A5 /* WeatherAppUITests.swift */; };
+		E8B77803269C9C9700636D10 /* DaysCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B77801269C9C9700636D10 /* DaysCollectionViewCell.swift */; };
+		E8B77804269C9C9700636D10 /* DaysCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B77802269C9C9700636D10 /* DaysCollectionViewCell.xib */; };
 		E8CAF51D268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CAF51B268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift */; };
 		E8CAF51E268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF51C268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib */; };
 		F42B4C87AA5F970EBED36B1B /* Pods_WeatherApp_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E078D806327A73648992F4 /* Pods_WeatherApp_WeatherAppUITests.framework */; };
@@ -114,6 +118,8 @@
 		E80B29F9268DDD95007692E9 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		E80B29FF268DDE99007692E9 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		E80DF85A268F55770073DD04 /* DaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysViewController.swift; sourceTree = "<group>"; };
+		E8644CA9269B155B00D2249C /* DaysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysTableViewCell.swift; sourceTree = "<group>"; };
+		E8644CAA269B155B00D2249C /* DaysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DaysTableViewCell.xib; sourceTree = "<group>"; };
 		E8873A73268DCF2A003702A5 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8873A76268DCF2A003702A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8873A78268DCF2A003702A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +134,8 @@
 		E8873A97268DCF36003702A5 /* WeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8873A9B268DCF36003702A5 /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		E8873A9D268DCF36003702A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8B77801269C9C9700636D10 /* DaysCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCollectionViewCell.swift; sourceTree = "<group>"; };
+		E8B77802269C9C9700636D10 /* DaysCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DaysCollectionViewCell.xib; sourceTree = "<group>"; };
 		E8CAF51B268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHourCollectionViewCell.swift; sourceTree = "<group>"; };
 		E8CAF51C268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherHourCollectionViewCell.xib; sourceTree = "<group>"; };
 		E8CAF591268E5458000A29C1 /* FuturaPTCondExtraBoldOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FuturaPTCondExtraBoldOblique.otf; sourceTree = "<group>"; };
@@ -274,6 +282,7 @@
 		E80B29F1268DDC68007692E9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				E8644CA8269B154500D2249C /* DaysCell */,
 				E80B29E1268DDC62007692E9 /* WeatherInfoCell */,
 				E80B29D8268DDC62007692E9 /* WeatherHourlyCell */,
 				E80B29D5268DDC62007692E9 /* WeatherDetailsInfo */,
@@ -328,6 +337,16 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		E8644CA8269B154500D2249C /* DaysCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8B77808269C9E8B00636D10 /* DaysCollectionCell */,
+				E8644CA9269B155B00D2249C /* DaysTableViewCell.swift */,
+				E8644CAA269B155B00D2249C /* DaysTableViewCell.xib */,
+			);
+			name = DaysCell;
+			sourceTree = "<group>";
+		};
 		E8873A6A268DCF2A003702A5 = {
 			isa = PBXGroup;
 			children = (
@@ -366,13 +385,13 @@
 				E80B29F1268DDC68007692E9 /* Cell */,
 				FDB79B70268F78610043353B /* ViewControllers */,
 				E8873A76268DCF2A003702A5 /* AppDelegate.swift */,
+				E8873A82268DCF35003702A5 /* Assets.xcassets */,
 				E8873A78268DCF2A003702A5 /* SceneDelegate.swift */,
 				E8873A7C268DCF2A003702A5 /* Main.storyboard */,
-				E8873A82268DCF35003702A5 /* Assets.xcassets */,
+				FDF0511F26939D9F00EF936A /* MainIpad.storyboard */,
 				E8873A84268DCF35003702A5 /* LaunchScreen.storyboard */,
 				E8873A87268DCF35003702A5 /* Info.plist */,
 				E8873A7F268DCF2A003702A5 /* WeatherApp.xcdatamodeld */,
-				FDF0511F26939D9F00EF936A /* MainIpad.storyboard */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -393,6 +412,15 @@
 				E8873A9D268DCF36003702A5 /* Info.plist */,
 			);
 			path = WeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		E8B77808269C9E8B00636D10 /* DaysCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8B77801269C9C9700636D10 /* DaysCollectionViewCell.swift */,
+				E8B77802269C9C9700636D10 /* DaysCollectionViewCell.xib */,
+			);
+			name = DaysCollectionCell;
 			sourceTree = "<group>";
 		};
 		E8CAF51A268E0CB0000A29C1 /* WeatherHourCollectionViewCell */ = {
@@ -651,6 +679,7 @@
 				FDF050E326932B6900EF936A /* FuturaPTCondMediumOblique.otf in Resources */,
 				FDF050E426932B6900EF936A /* FuturaPTDemiOblique.otf in Resources */,
 				FDF050ED26932B6900EF936A /* FuturaPTBookOblique.otf in Resources */,
+				E8644CAC269B155B00D2249C /* DaysTableViewCell.xib in Resources */,
 				FDF050E726932B6900EF936A /* FuturaPTCondExtraBold.otf in Resources */,
 				FDF050E626932B6900EF936A /* FuturaPTBook.otf in Resources */,
 				E80B29E4268DDC62007692E9 /* WeatherDetailsInfoCell.xib in Resources */,
@@ -662,6 +691,7 @@
 				FDF0512026939D9F00EF936A /* MainIpad.storyboard in Resources */,
 				FDF050DF26932B6900EF936A /* FuturaPTExtraBold.otf in Resources */,
 				FDF050DE26932B6900EF936A /* FuturaPTCondBook.otf in Resources */,
+				E8B77804269C9C9700636D10 /* DaysCollectionViewCell.xib in Resources */,
 				FDF050EF26932B6900EF936A /* FuturaPTLightOblique.otf in Resources */,
 				FDF050E226932B6900EF936A /* FuturaPTCondBoldOblique.otf in Resources */,
 				FDF050F126932B6900EF936A /* FuturaPTHeavy.otf in Resources */,
@@ -806,6 +836,7 @@
 				FD6E477226989B54004D879F /* ToastView.swift in Sources */,
 				E8CAF51D268E0CE4000A29C1 /* WeatherHourCollectionViewCell.swift in Sources */,
 				FDE98DEC2695B84500FD9E66 /* UIViewExtensions.swift in Sources */,
+				E8B77803269C9C9700636D10 /* DaysCollectionViewCell.swift in Sources */,
 				FDF050D12693194D00EF936A /* StringExtension.swift in Sources */,
 				E80B29E9268DDC62007692E9 /* NextDayCell.swift in Sources */,
 				FDB79B73268F78D90043353B /* MainViewModel.swift in Sources */,
@@ -814,6 +845,7 @@
 				E80B29FA268DDD95007692E9 /* APIService.swift in Sources */,
 				FDF050DA2693286200EF936A /* Configuration.swift in Sources */,
 				FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */,
+				E8644CAB269B155B00D2249C /* DaysTableViewCell.swift in Sources */,
 				FD6E47882698A4A9004D879F /* FileService.swift in Sources */,
 				E80DF85B268F55770073DD04 /* DaysViewController.swift in Sources */,
 				E8873A79268DCF2A003702A5 /* SceneDelegate.swift in Sources */,

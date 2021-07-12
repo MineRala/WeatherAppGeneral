@@ -8,6 +8,14 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FuturaPTBoldOblique.otf">
+            <string>FuturaPT-BoldObl</string>
+        </array>
+        <array key="FuturaPTDemi.otf">
+            <string>FuturaPT-Demi</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="h6u-hK-9eM">
@@ -78,7 +86,52 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwl-aa-56e">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf6-8Q-m0c">
+                                        <rect key="frame" x="0.0" y="52" width="85" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="85" id="BTo-mM-jnI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="FuturaPT-BoldObl" family="Futura PT Bold Italic" pointSize="23"/>
+                                        <color key="tintColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="chevron.backward" catalog="system">
+                                            <color key="titleColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" weight="bold">
+                                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="23"/>
+                                            </preferredSymbolConfiguration>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButtonClicked:" destination="Px3-8L-Pil" eventType="touchUpInside" id="M5k-2v-mpj"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next 5 Days" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXf-2f-0wu">
+                                        <rect key="frame" x="154" y="56" width="106.5" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="lex-VQ-LSh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="20"/>
+                                        <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kbH-7S-FQ0">
+                                        <rect key="frame" x="0.0" y="106" width="414" height="790"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kbH-7S-FQ0" secondAttribute="bottom" id="ATb-4h-6Hw"/>
+                                    <constraint firstItem="kbH-7S-FQ0" firstAttribute="leading" secondItem="wwl-aa-56e" secondAttribute="leading" id="Bs1-Nd-yQG"/>
+                                    <constraint firstAttribute="bottom" secondItem="kbH-7S-FQ0" secondAttribute="bottom" id="El8-AK-1b1"/>
+                                    <constraint firstItem="QXf-2f-0wu" firstAttribute="top" secondItem="wwl-aa-56e" secondAttribute="top" constant="56" id="FRs-4U-xVK"/>
+                                    <constraint firstItem="Lf6-8Q-m0c" firstAttribute="leading" secondItem="wwl-aa-56e" secondAttribute="leading" id="GIs-6e-vWf"/>
+                                    <constraint firstItem="QXf-2f-0wu" firstAttribute="centerX" secondItem="wwl-aa-56e" secondAttribute="centerX" id="Lxo-sH-eqb"/>
+                                    <constraint firstItem="Lf6-8Q-m0c" firstAttribute="top" secondItem="wwl-aa-56e" secondAttribute="top" constant="52" id="R4X-ue-WY9"/>
+                                    <constraint firstItem="kbH-7S-FQ0" firstAttribute="top" secondItem="Lf6-8Q-m0c" secondAttribute="bottom" constant="24" id="Us2-dA-Bid"/>
+                                    <constraint firstAttribute="trailing" secondItem="kbH-7S-FQ0" secondAttribute="trailing" id="YW6-Oa-gIr"/>
+                                    <constraint firstAttribute="trailing" secondItem="kbH-7S-FQ0" secondAttribute="trailing" id="Zgh-am-wdh"/>
+                                    <constraint firstItem="kbH-7S-FQ0" firstAttribute="leading" secondItem="wwl-aa-56e" secondAttribute="leading" id="yy4-JB-noZ"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qTB-Ke-6Cr"/>
@@ -90,6 +143,12 @@
                             <constraint firstItem="wwl-aa-56e" firstAttribute="top" secondItem="Zws-Sa-vwq" secondAttribute="top" id="xPr-1Z-YbV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="DaysView" destination="wwl-aa-56e" id="9JT-cW-rjP"/>
+                        <outlet property="backButton" destination="Lf6-8Q-m0c" id="rp1-iT-fIS"/>
+                        <outlet property="labelNext5Days" destination="QXf-2f-0wu" id="PDu-Fk-pat"/>
+                        <outlet property="tableViewDays" destination="kbH-7S-FQ0" id="mmJ-Fb-t8G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pR-2h-Bzb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,6 +156,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

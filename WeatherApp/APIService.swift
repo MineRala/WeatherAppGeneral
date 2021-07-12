@@ -14,8 +14,6 @@ enum ForecastService {
     var requestURL: String {
         switch self {
         case .cityLocation(let lat, let lon):
-           // 40.198336, 29.035903
-            //return "https://api.openweathermap.org/data/2.5/forecast?lat=40.198336&lon=29.035903&appid=bbcf57969e78d1300a815765b7d587f0&units=metric"
             return "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=bbcf57969e78d1300a815765b7d587f0&units=metric"
         }
     }
@@ -60,7 +58,6 @@ class APIService {
                 callBack(nil, .apiServiceResponseCodeIsNotOK)
                 return
             }
-            
             callBack(data,nil)
         }
         dataTask.resume()

@@ -15,7 +15,7 @@ enum DetailIInfoCellType {
     case bottom 
 }
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: UIViewController {
 
     @IBOutlet weak var mainViewControllerView: UIView!
     @IBOutlet weak var tableViewMain: UITableView!
@@ -40,21 +40,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         addListeners()
         viewModel.initialize()
     }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        self.mainViewControllerView.backgroundColor  = C.Color.viewControllerBackgroundColor
-        
-        self.tableViewMain.reloadData()
-    }
+}
 
-    func printError(error: WeatherAppError){
-        if error == .noInternetConnection {
-            ToastView.show(with: "No internet connection !")
-        } else {
-            self.showAlert(with: error.title, message: error.errorDescription)
-        }
-    }
-    
+//MARK: -Set up uı
+extension MainViewController{
     private func setUpUI() {
         self.mainViewControllerView.backgroundColor  = C.Color.viewControllerBackgroundColor
         tableViewMain.register(UINib(nibName: "CityNameCell", bundle: nil), forCellReuseIdentifier: "CityNameCell")
@@ -68,7 +57,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableViewMain.refreshControl = refreshControl
         refreshControl.addTarget(viewModel, action: #selector(MainViewModel.initialize), for: .valueChanged)
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        self.mainViewControllerView.backgroundColor  = C.Color.viewControllerBackgroundColor
+        
+        self.tableViewMain.reloadData()
+    }
+}
 
+//MARK: -Table View
+extension MainViewController : UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.arrItems.count
     }
@@ -115,7 +114,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.configureCell(viewModel: viewModel, cellType: .bottom)
             return cell
         }
-    }
+   }
 }
 
 // MARK: - Listeners
@@ -145,5 +144,16 @@ extension MainViewController {
                 ToastView.show(with: "No internet connection !")
             }
         }.store(in: &cancellables)
+    }
+}
+
+//MARK: Print Error
+extension MainViewController {
+    func printError(error: WeatherAppError){
+        if error == .noInternetConnection {
+            ToastView.show(with: "No internet connection !")
+        } else {
+            self.showAlert(with: error.title, message: error.errorDescription)
+        }
     }
 }

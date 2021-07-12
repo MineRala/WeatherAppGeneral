@@ -44,8 +44,7 @@ class MainViewModel {
     private(set) var dailyWeather: [Date: [List]] = [:] // Günlük olarak bölünmüş dictionary
     private(set) var currentHourlyWeatherData: [List] = []
     private(set) var currentWeather: List!
-    
-   // private(set) var areYouOK = CurrentValueSubject<Bool, Never>(true)
+  
     private(set) var shouldUpdateTableView = PassthroughSubject<Void, Never>()
     private(set) var shouldShowAlertViewForError = PassthroughSubject<WeatherAppError, Never>()
     private(set) var shouldNavigateToDaysViewController = PassthroughSubject<Void, Never>()
@@ -213,6 +212,9 @@ extension MainViewModel {
             }
         }
         
+//        self.dailyWeather.forEach { (key , value) in
+//            print("\(key)->\(value)")
+//        }
         self.currentWeather = sortedWeatherData.first!
         self.city = city
         
