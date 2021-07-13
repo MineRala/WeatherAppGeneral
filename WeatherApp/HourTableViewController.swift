@@ -9,6 +9,8 @@ import UIKit
 
 class HourTableViewController: UIViewController , UITableViewDelegate, UITableViewDataSource {
 
+    var viewModel: MainViewModel!
+    
     @IBOutlet var hourView: UIView!
     
     @IBOutlet weak var hourTableView: UITableView!
@@ -35,4 +37,18 @@ class HourTableViewController: UIViewController , UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 88
-    }}
+    }
+    
+}
+
+// MARK: - Public
+extension HourTableViewController: IpadChildViewControllerProtocol {
+    func setViewModel(_ viewModel: MainViewModel) {
+        self.viewModel = viewModel
+        
+    }
+    
+  
+}
+
+

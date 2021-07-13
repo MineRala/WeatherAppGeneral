@@ -29,6 +29,6 @@ extension CityNameCell {
         self.lblCity.textColor = C.Color.cityInfoTitleColor
        
         self.viewModel = viewModel
-        self.lblCity.text = "\(viewModel.cityName), \(viewModel.countryName)"
+        self.lblCity.text = viewModel.currentWeatherViewData.locationText
     }
 }

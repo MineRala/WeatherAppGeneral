@@ -10,13 +10,21 @@ import Combine
 
 class MainIpadViewController: UIViewController {
     
-    @IBOutlet weak var dayTableView: UIView!
-    var dayTableVC: DayTableViewController!
-     var hourTableVc: HourTableViewController!
+    @IBOutlet weak var viewContainerWeatherDataCollectionView: UIView!
+    @IBOutlet weak var viewContainerDayTableView: UIView!
+    @IBOutlet weak var viewContainerHourTableView: UIView!
+   
+    @IBOutlet weak var imViewIcon: UIImageView!
+    @IBOutlet weak var lblWeatherState: UILabel!
+    @IBOutlet weak var lblDegree: UILabel!
+    @IBOutlet weak var lblCity: UILabel!
     
-    @IBOutlet weak var hourTableView: UIView!
-    @IBOutlet weak var hourTable: HourTableViewController!
-    @IBOutlet weak var viewContent: UIView!
+    private var dayTableVC: DayTableViewController!
+    private var hourTableVC: HourTableViewController!
+    private var weatherDataCollectionVC: WeatherDataCollectionView!
+
+    private let viewModel = MainViewModel()
+    
     private var cancellables = Set<AnyCancellable>()
     
 }
@@ -25,16 +33,56 @@ class MainIpadViewController: UIViewController {
 extension MainIpadViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUI()
+        addListeners()
+        viewModel.initialize()
+    }
+}
+
+// MARK: - Set Up UI
+extension MainIpadViewController {
+    private func setUpUI() {
+        self.view.backgroundColor = C.Color.viewControllerBackgroundColor
         
-        self.dayTableVC = self.children.compactMap({ (child) -> DayTableViewController? in
-            guard let viewController = child as? DayTableViewController else{return nil}
-            return viewController
-        }).first
+        self.children.forEach { childVC in
+            if let viewController = childVC as? DayTableViewController {
+                self.dayTableVC = viewController
+                dayTableVC.setViewModel(self.viewModel)
+            } else if let viewController = childVC as? HourTableViewController {
+                self.hourTableVC = viewController
+                hourTableVC.setViewModel(self.viewModel)
+            } else if let viewController = childVC as? WeatherDataCollectionView {
+                self.weatherDataCollectionVC = viewController
+                weatherDataCollectionVC.setViewModel(self.viewModel)
+            }
+        }
+    }
+}
+
+// MARK: - Update Info
+extension MainIpadViewController {
+    private func updateWeatherInfoUI() {
+        guard self.viewModel.currentWeatherViewData != nil else { return }
+        self.lblCity.text = self.viewModel.currentWeatherViewData.locationText
+        self.lblDegree.text = self.viewModel.currentWeatherViewData.weatherDegree
+        self.imViewIcon.image = UIImage(systemName: viewModel.currentWeatherViewData.weatherIcon)
+        self.lblWeatherState.text = self.viewModel.currentWeatherViewData.weatherState
+    }
+}
+
+// MARK: - Listeners
+extension MainIpadViewController {
+    private func addListeners() {
+        viewModel.shouldShowLoadingAnimation
+            .receive(on: DispatchQueue.main)
+            .sink { show in
+            show ? LoadingView.show() : LoadingView.hide()
+        }.store(in: &cancellables)
         
-        self.hourTableVc = self.children.compactMap({ (child) -> HourTableViewController? in
-            guard let viewController = child as? HourTableViewController else{return nil}
-            return viewController
-        }).first
-        
+        viewModel.shouldUpdateTableView
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.updateWeatherInfoUI()
+        }.store(in: &cancellables)
     }
 }

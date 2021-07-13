@@ -10,54 +10,6 @@ import SwiftLocation
 import CoreLocation
 import Combine
 
-// MARK: - WeatherTableItem
-enum WeatherTableItem {
-    case cityInfo
-    case weatherInfo
-    case nextDay
-    case hourlyInfo
-    case sunDetail
-    case windDetail
-    
-    var height: CGFloat {
-        switch self {
-        case .cityInfo: return 60
-        case .weatherInfo: return 206
-        case .nextDay: return 98
-        case .hourlyInfo: return 200
-        case .sunDetail, .windDetail: return 200
-        }
-    }
-}
-
-// MARK: - List View Data
-struct ListViewData {
-    let dayName: String
-    let icon: String
-    let degree: String
-    let windSpeed: String
-    let humidity: String
-    let pressure: String
-    let windDegree: String
-}
-
-struct WeatherViewData {
-    let cityName : String
-    let countryName : String
-    let weatherState : String
-    let weatherDegree : String
-    let weatherIcon : String
-    let sunriseValue : String
-    let sunsetValue : String
-    let windSpeedValue : String
-    let groundLevelValue : String
-    let pressureValue : String
-    let seeLevelValue : String
-    let humudityVaalue : String
-}
-
-
-
 // MARK: Main View Model {Class}
 class MainViewModel {
     
@@ -68,6 +20,7 @@ class MainViewModel {
     private(set) var currentHourlyWeatherData: [List] = []
     private(set) var currentWeather: List!
     private(set) var arrListViewData: [ListViewData] = []
+    private(set) var currentWeatherViewData: WeatherViewData!
   
     private(set) var shouldUpdateTableView = PassthroughSubject<Void, Never>()
     private(set) var shouldShowAlertViewForError = PassthroughSubject<WeatherAppError, Never>()
@@ -78,62 +31,6 @@ class MainViewModel {
     
     private(set) var arrItems: [WeatherTableItem] = []
     
-    // MARK: - Getters
-    var cityName: String {
-        return city.name
-    }
-    
-    var countryName: String {
-        return city.country
-    }
-    
-    var weatherState: String {
-        guard let weather = currentWeather.weather.first else { return "" }
-        return weather.description.capitalized
-    }
-    
-    var weatherDegree: String {
-        guard let main = currentWeather.main else { return "" }
-        return "\(main.temp)"
-    }
-    
-    var weatherIcon: String {
-        guard let weather = currentWeather.weather.first else { return "" }
-        return weather.icon.convertToIconName()
-    }
-    
-    var sunriseValue: String {
-        return "".sunriseAndSunsetValue(value: Int(self.city.sunrise))
-    }
-    
-    var sunsetValue: String {
-        return "".sunriseAndSunsetValue(value: Int(self.city.sunset))
-    }
-    
-    var windSpeedValue: String {
-        return "\(currentWeather.wind.speed) km/h"
-    }
-
-    var windDegreeValue: String {
-        return "\(currentWeather.wind.deg) °"
-    }
-    
-    var groundLevelValue : String {
-        return "\(currentWeather.main!.grnd_level)"
-    }
-    
-    var pressureValue : String {
-        return "\(currentWeather.main!.pressure) hPa"
-    }
-    
-    var seeLevelValue : String {
-        return "\(currentWeather.main!.sea_level) MSL"
-    }
-    
-    var humudityVaalue : String {
-        return "\(currentWeather.main!.humidity) g/m3"
-    }
-
     init() {
         addListeners()
     }
@@ -189,9 +86,6 @@ extension MainViewModel {
         self.currentWeather = list
         self.shouldUpdateTableView.send()
     }
-    
-    
-    
 }
 
 // MARK: - API Request
@@ -258,8 +152,28 @@ extension MainViewModel {
         
         self.arrItems = [.cityInfo, .weatherInfo, .nextDay, .hourlyInfo, .sunDetail, .windDetail]
         
+       createWeatherViewData()
         return Just(true).eraseToAnyPublisher()
     }
+    
+    private func createWeatherViewData() {
+        guard let weather = currentWeather.weather.first, let main = currentWeather.main else { return }
+        let locationText = "\(self.city.name), \(self.city.country)"
+        let weatherState = weather.description.capitalized
+        let weatherDegree = "\(main.temp)"
+        let icon = weather.icon.convertToIconName()
+        let sunriseVal = Date(timeIntervalSince1970: TimeInterval(self.city.sunrise)).sunriseAndSunsetValue
+        let sunsetVal = Date(timeIntervalSince1970: TimeInterval(self.city.sunset)).sunriseAndSunsetValue
+        let windSpeed = "\(currentWeather.wind.speed) km/h"
+        let groundLevel = "\(main.grnd_level) °"
+        let pressureLevel = "\(main.pressure) hPa"
+        let seaLevel = "\(main.sea_level) MSL"
+        let humidity = "\(main.humidity) g/m^3"
+        let windDegree = "\(currentWeather.wind.deg) °"
+        self.currentWeatherViewData = WeatherViewData(locationText: locationText, weatherState: weatherState, weatherDegree: weatherDegree, weatherIcon: icon, sunriseValue: sunriseVal, sunsetValue: sunsetVal, windSpeedValue: windSpeed, groundLevelValue: groundLevel, pressureValue: pressureLevel, seeLevelValue: seaLevel, humidityValue: humidity, windDegreeValue: windDegree)
+    }
+    
+    
     
     private func dateFrom(day: Int, month: Int, year: Int) -> Date {
         var components = DateComponents()

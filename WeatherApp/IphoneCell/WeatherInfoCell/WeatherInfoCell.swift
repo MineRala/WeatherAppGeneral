@@ -35,9 +35,9 @@ class WeatherInfoCell: UITableViewCell {
         func configureCell(_ viewModel: MainViewModel) {
             self.viewModel = viewModel
             
-            self.labelState.text = viewModel.weatherState
-            self.labelDegree.text = viewModel.weatherDegree
-            self.ImageIcon.image = UIImage(systemName: viewModel.weatherIcon)
+            self.labelState.text = viewModel.currentWeatherViewData.weatherState
+            self.labelDegree.text = viewModel.currentWeatherViewData.weatherDegree
+            self.ImageIcon.image = UIImage(systemName: viewModel.currentWeatherViewData.weatherIcon)
 
             self.labelDegree.textColor = C.Color.labelDegreeInfoColor
             self.labelDc.textColor = C.Color.labelDcColor
