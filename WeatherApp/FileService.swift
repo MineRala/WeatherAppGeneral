@@ -8,8 +8,7 @@
 import Foundation
 import Combine
 
-class FileService {
-    
+class FileService {    
 }
 
 struct FileServiceResponse {

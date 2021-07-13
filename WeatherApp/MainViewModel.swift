@@ -41,6 +41,21 @@ struct ListViewData {
     let windDegree: String
 }
 
+struct WeatherViewData {
+    let cityName : String
+    let countryName : String
+    let weatherState : String
+    let weatherDegree : String
+    let weatherIcon : String
+    let sunriseValue : String
+    let sunsetValue : String
+    let windSpeedValue : String
+    let groundLevelValue : String
+    let pressureValue : String
+    let seeLevelValue : String
+    let humudityVaalue : String
+}
+
 
 
 // MARK: Main View Model {Class}
@@ -288,6 +303,17 @@ extension MainViewModel {
     }
 }
 
+//MARK: -MainViewController
+//extension MainViewModel {
+//    private func convertWeatherModelToWeatherDatas() -> AnyPublisher<[WeatherViewData],Never>{
+//        guard  let main = model.main  else { return nil}
+//        let cityName = model
+//
+//        }
+//
+//    }
+//}
+
 // MARK: - DaysViewController
 extension MainViewModel {
     private func convertListModelsToListDatas() -> AnyPublisher<[ListViewData], Never> {
@@ -297,7 +323,7 @@ extension MainViewModel {
                     guard let main = model.main else { return nil }
                     let dayName = model.date().nameOfTheDay
                     let icon = model.weatherIcon()
-                   let degree = "\(main.temp) °C"
+                    let degree = "\(main.temp) °C"
                     let windSpeed = "\(model.wind.speed) km/h"
                     let humidity = "\(main.humidity) g/m3"
                     let pressure = "\(main.pressure) hPa"

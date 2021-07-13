@@ -25,6 +25,11 @@
 		E80DF85B268F55770073DD04 /* DaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DF85A268F55770073DD04 /* DaysViewController.swift */; };
 		E8644CAB269B155B00D2249C /* DaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8644CA9269B155B00D2249C /* DaysTableViewCell.swift */; };
 		E8644CAC269B155B00D2249C /* DaysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8644CAA269B155B00D2249C /* DaysTableViewCell.xib */; };
+		E865168F269D97F200A797BD /* IpadDaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E865168D269D97F200A797BD /* IpadDaysTableViewCell.swift */; };
+		E8651690269D97F200A797BD /* IpadDaysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E865168E269D97F200A797BD /* IpadDaysTableViewCell.xib */; };
+		E865169D269DB04600A797BD /* HourTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E865169C269DB04600A797BD /* HourTableViewController.swift */; };
+		E86516A4269DB2D300A797BD /* IpadHoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86516A2269DB2D300A797BD /* IpadHoursTableViewCell.swift */; };
+		E86516A5269DB2D300A797BD /* IpadHoursTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86516A3269DB2D300A797BD /* IpadHoursTableViewCell.xib */; };
 		E8873A77268DCF2A003702A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8873A76268DCF2A003702A5 /* AppDelegate.swift */; };
 		E8873A79268DCF2A003702A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8873A78268DCF2A003702A5 /* SceneDelegate.swift */; };
 		E8873A7E268DCF2A003702A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8873A7C268DCF2A003702A5 /* Main.storyboard */; };
@@ -79,7 +84,7 @@
 		FDF050F326932B6900EF936A /* FuturaPTBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8CAF5A2268E5459000A29C1 /* FuturaPTBold.otf */; };
 		FDF0511826939D7600EF936A /* MainIpadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0511726939D7600EF936A /* MainIpadViewController.swift */; };
 		FDF0512026939D9F00EF936A /* MainIpad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDF0511F26939D9F00EF936A /* MainIpad.storyboard */; };
-		FDF051282693A23900EF936A /* ChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF051272693A23900EF936A /* ChildVC.swift */; };
+		FDF051282693A23900EF936A /* DayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF051272693A23900EF936A /* DayTableViewController.swift */; };
 		FDF8C98E26975797000E48A9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF8C98D26975797000E48A9 /* Network.swift */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +129,11 @@
 		E80DF85A268F55770073DD04 /* DaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysViewController.swift; sourceTree = "<group>"; };
 		E8644CA9269B155B00D2249C /* DaysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysTableViewCell.swift; sourceTree = "<group>"; };
 		E8644CAA269B155B00D2249C /* DaysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DaysTableViewCell.xib; sourceTree = "<group>"; };
+		E865168D269D97F200A797BD /* IpadDaysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpadDaysTableViewCell.swift; sourceTree = "<group>"; };
+		E865168E269D97F200A797BD /* IpadDaysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IpadDaysTableViewCell.xib; sourceTree = "<group>"; };
+		E865169C269DB04600A797BD /* HourTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourTableViewController.swift; sourceTree = "<group>"; };
+		E86516A2269DB2D300A797BD /* IpadHoursTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpadHoursTableViewCell.swift; sourceTree = "<group>"; };
+		E86516A3269DB2D300A797BD /* IpadHoursTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IpadHoursTableViewCell.xib; sourceTree = "<group>"; };
 		E8873A73268DCF2A003702A5 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8873A76268DCF2A003702A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8873A78268DCF2A003702A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -185,7 +195,7 @@
 		FDF050D92693286200EF936A /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		FDF0511726939D7600EF936A /* MainIpadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainIpadViewController.swift; sourceTree = "<group>"; };
 		FDF0511F26939D9F00EF936A /* MainIpad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainIpad.storyboard; sourceTree = "<group>"; };
-		FDF051272693A23900EF936A /* ChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildVC.swift; sourceTree = "<group>"; };
+		FDF051272693A23900EF936A /* DayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewController.swift; sourceTree = "<group>"; };
 		FDF8C98D26975797000E48A9 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -290,12 +300,8 @@
 		E80B29F1268DDC68007692E9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				E8644CA8269B154500D2249C /* DaysCell */,
-				E80B29E1268DDC62007692E9 /* WeatherInfoCell */,
-				E80B29D8268DDC62007692E9 /* WeatherHourlyCell */,
-				E80B29D5268DDC62007692E9 /* WeatherDetailsInfo */,
-				E80B29DB268DDC62007692E9 /* NextDayCell */,
-				E80B29DE268DDC62007692E9 /* CityNameCell */,
+				E86516AC269DBCB300A797BD /* IphoneCell */,
+				E865168B269D978400A797BD /* IpadCell */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -353,6 +359,47 @@
 				E8644CAA269B155B00D2249C /* DaysTableViewCell.xib */,
 			);
 			name = DaysCell;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		E865168B269D978400A797BD /* IpadCell */ = {
+			isa = PBXGroup;
+			children = (
+				E86516A1269DB2B100A797BD /* IpadHoursCell */,
+				E865168C269D97AB00A797BD /* IpadDaysCell */,
+			);
+			name = IpadCell;
+			sourceTree = "<group>";
+		};
+		E865168C269D97AB00A797BD /* IpadDaysCell */ = {
+			isa = PBXGroup;
+			children = (
+				E865168D269D97F200A797BD /* IpadDaysTableViewCell.swift */,
+				E865168E269D97F200A797BD /* IpadDaysTableViewCell.xib */,
+			);
+			name = IpadDaysCell;
+			sourceTree = "<group>";
+		};
+		E86516A1269DB2B100A797BD /* IpadHoursCell */ = {
+			isa = PBXGroup;
+			children = (
+				E86516A2269DB2D300A797BD /* IpadHoursTableViewCell.swift */,
+				E86516A3269DB2D300A797BD /* IpadHoursTableViewCell.xib */,
+			);
+			name = IpadHoursCell;
+			sourceTree = "<group>";
+		};
+		E86516AC269DBCB300A797BD /* IphoneCell */ = {
+			isa = PBXGroup;
+			children = (
+				E80B29DE268DDC62007692E9 /* CityNameCell */,
+				E8644CA8269B154500D2249C /* DaysCell */,
+				E80B29DB268DDC62007692E9 /* NextDayCell */,
+				E80B29D5268DDC62007692E9 /* WeatherDetailsInfo */,
+				E80B29D8268DDC62007692E9 /* WeatherHourlyCell */,
+				E80B29E1268DDC62007692E9 /* WeatherInfoCell */,
+			);
+			path = IphoneCell;
 			sourceTree = "<group>";
 		};
 		E8873A6A268DCF2A003702A5 = {
@@ -551,7 +598,8 @@
 			isa = PBXGroup;
 			children = (
 				FDF0511626939D5A00EF936A /* MainIpadViewController */,
-				FDF051272693A23900EF936A /* ChildVC.swift */,
+				FDF051272693A23900EF936A /* DayTableViewController.swift */,
+				E865169C269DB04600A797BD /* HourTableViewController.swift */,
 			);
 			name = Ipad;
 			sourceTree = "<group>";
@@ -689,6 +737,7 @@
 				FD97022C269CBF030055F437 /* Ankara.gpx in Resources */,
 				FD6E479B2698B860004D879F /* Cesme.gpx in Resources */,
 				E80B29EC268DDC62007692E9 /* WeatherInfoCell.xib in Resources */,
+				E86516A5269DB2D300A797BD /* IpadHoursTableViewCell.xib in Resources */,
 				FDF050F026932B6900EF936A /* FuturaPTMediumOblique.otf in Resources */,
 				FDF050EC26932B6900EF936A /* FuturaPTLight.otf in Resources */,
 				FDF050F226932B6900EF936A /* FuturaPTExtraBoldOblique.otf in Resources */,
@@ -717,6 +766,7 @@
 				FDF050EF26932B6900EF936A /* FuturaPTLightOblique.otf in Resources */,
 				FDF050E226932B6900EF936A /* FuturaPTCondBoldOblique.otf in Resources */,
 				FDF050F126932B6900EF936A /* FuturaPTHeavy.otf in Resources */,
+				E8651690269D97F200A797BD /* IpadDaysTableViewCell.xib in Resources */,
 				E8873A7E268DCF2A003702A5 /* Main.storyboard in Resources */,
 				E8CAF51E268E0CE4000A29C1 /* WeatherHourCollectionViewCell.xib in Resources */,
 				FDF050E126932B6900EF936A /* FuturaPTBoldOblique.otf in Resources */,
@@ -849,8 +899,10 @@
 			files = (
 				E80B29E5268DDC62007692E9 /* WeatherDetailsInfoCell.swift in Sources */,
 				FD6E47802698A456004D879F /* DataLayer.swift in Sources */,
-				FDF051282693A23900EF936A /* ChildVC.swift in Sources */,
+				FDF051282693A23900EF936A /* DayTableViewController.swift in Sources */,
+				E86516A4269DB2D300A797BD /* IpadHoursTableViewCell.swift in Sources */,
 				FDF0511826939D7600EF936A /* MainIpadViewController.swift in Sources */,
+				E865168F269D97F200A797BD /* IpadDaysTableViewCell.swift in Sources */,
 				E8873A81268DCF2A003702A5 /* WeatherApp.xcdatamodeld in Sources */,
 				FD6E478D2698B17F004D879F /* WeatherAppError.swift in Sources */,
 				E80B29ED268DDC62007692E9 /* WeatherInfoCell.swift in Sources */,
@@ -868,6 +920,7 @@
 				FDF050DA2693286200EF936A /* Configuration.swift in Sources */,
 				FDB79B68268F34E80043353B /* WeatherDetailInfoCollectionCell.swift in Sources */,
 				E8644CAB269B155B00D2249C /* DaysTableViewCell.swift in Sources */,
+				E865169D269DB04600A797BD /* HourTableViewController.swift in Sources */,
 				FD6E47882698A4A9004D879F /* FileService.swift in Sources */,
 				FD970227269CB7C50055F437 /* DateExtensions.swift in Sources */,
 				FD97023A269CC1860055F437 /* LoadingView.swift in Sources */,

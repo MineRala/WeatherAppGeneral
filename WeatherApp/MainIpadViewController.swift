@@ -10,31 +10,31 @@ import Combine
 
 class MainIpadViewController: UIViewController {
     
-     var childVC: ChildVC!
+    @IBOutlet weak var dayTableView: UIView!
+    var dayTableVC: DayTableViewController!
+     var hourTableVc: HourTableViewController!
+    
+    @IBOutlet weak var hourTableView: UIView!
+    @IBOutlet weak var hourTable: HourTableViewController!
     @IBOutlet weak var viewContent: UIView!
     private var cancellables = Set<AnyCancellable>()
+    
 }
 
 // MARK: - Lifecycle
 extension MainIpadViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        /*
-        self.childVC = self.children.compactMap {
-            return $0 as? ChildVC
-        }.first
-      
-        print(self.childVC)
         
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        print(documentsDirectory)
-        */
+        self.dayTableVC = self.children.compactMap({ (child) -> DayTableViewController? in
+            guard let viewController = child as? DayTableViewController else{return nil}
+            return viewController
+        }).first
         
-        Network.shared.networkStatus.receive(on: DispatchQueue.main).sink { status in
-            print("Current Status: \(status)")
-        }.store(in: &cancellables)
+        self.hourTableVc = self.children.compactMap({ (child) -> HourTableViewController? in
+            guard let viewController = child as? HourTableViewController else{return nil}
+            return viewController
+        }).first
         
     }
 }

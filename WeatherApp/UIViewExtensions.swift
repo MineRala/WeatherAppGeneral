@@ -26,4 +26,14 @@ extension UIView {
         self.layer.shouldRasterize = true
         self.layer.masksToBounds = false
     }
+    
+    func hoursItemShadow() {
+        self.layer.shadowColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1).withAlphaComponent(0.1).cgColor
+        self.layer.shadowOpacity = 1
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowRadius = 30
+        self.layer.shouldRasterize = true
+        self.layer.masksToBounds = false
+    }
+    
 }
