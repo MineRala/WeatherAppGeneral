@@ -40,22 +40,23 @@ extension WeatherDetailsInfoCell : UICollectionViewDelegate, UICollectionViewDel
             switch indexPath.row {
             case 0:
                 let title = cellType == .top ? "Sunrise" : "Wind Speed"
-                let value = cellType == .top ? viewModel.sunriseValue : viewModel.windSpeedValue
+              
+                let value = cellType == .top ? viewModel.currentWeatherViewData.sunriseValue : viewModel.currentWeatherViewData.windSpeedValue
                 cell.configureCell(title: title, value: value)
                 
             case 1:
                 let title = cellType == .top ? "Sunset" : "Wind Degree"
-                let value = cellType == .top ? viewModel.sunsetValue : viewModel.windDegreeValue
+                let value = cellType == .top ? viewModel.currentWeatherViewData.sunsetValue : viewModel.currentWeatherViewData.windDegreeValue
                 cell.configureCell(title: title, value: value)
                 
             case 2:
                 let title = cellType == .top ? "Ground Level" : "Pressure"
-                let value = cellType == .top ? viewModel.groundLevelValue : viewModel.pressureValue
+                let value = cellType == .top ? viewModel.currentWeatherViewData.groundLevelValue : viewModel.currentWeatherViewData.pressureValue
                 cell.configureCell(title: title, value: value)
                 
             case 3:
                 let title = cellType == .top ? "Sea Level" : "Humudity"
-                let value = cellType == .top ? viewModel.seeLevelValue : viewModel.humudityVaalue
+                let value = cellType == .top ? viewModel.currentWeatherViewData.seeLevelValue : viewModel.currentWeatherViewData.humidityValue
                 cell.configureCell(title: title, value: value)
                 
             default:

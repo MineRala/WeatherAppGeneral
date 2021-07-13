@@ -31,7 +31,6 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       
     }
     
     override func viewDidLoad() {
@@ -56,6 +55,7 @@ extension MainViewController{
         
         tableViewMain.refreshControl = refreshControl
         refreshControl.addTarget(viewModel, action: #selector(MainViewModel.initialize), for: .valueChanged)
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil 
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

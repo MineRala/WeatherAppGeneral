@@ -8,7 +8,7 @@
 import UIKit
 
 class DayTableViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-  
+    var viewModel: MainViewModel!
   
     @IBOutlet weak var headerView: UIView!
     
@@ -36,4 +36,11 @@ class DayTableViewController: UIViewController,UITableViewDelegate,UITableViewDa
         return 85
     }
 
+}
+
+// MARK: - Public
+extension DayTableViewController: IpadChildViewControllerProtocol {
+    func setViewModel(_ viewModel: MainViewModel) {
+        self.viewModel = viewModel
+    }
 }

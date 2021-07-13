@@ -36,10 +36,10 @@ class APIService {
     }
     
     private func request(service: ForecastService, callBack: @escaping (Data?, WeatherAppError?) -> ()) {
-        guard Network.shared.networkStatus.value == .online else {
-            callBack(nil, WeatherAppError.noInternetConnection)
-            return
-        }
+//        guard Network.shared.networkStatus.value == .online else {
+//            callBack(nil, WeatherAppError.noInternetConnection)
+//            return
+//        }
         let urlString = service.requestURL
         let url = URL(string: urlString)
         let request = URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 10)

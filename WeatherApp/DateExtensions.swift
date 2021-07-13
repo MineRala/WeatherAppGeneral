@@ -15,4 +15,14 @@ extension Date {
          let dayInWeek = dateFormatter.string(from: date)
         return dayInWeek
     }
+    
+    var sunriseAndSunsetValue: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
+        return dateFormatter.string(from: self)
+    }
+    
+   
 }
