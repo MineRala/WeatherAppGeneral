@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 class DayTableViewController: UIViewController {
-    
 
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var dayTableView: UITableView!
@@ -21,6 +20,7 @@ class DayTableViewController: UIViewController {
 extension DayTableViewController: IpadChildViewControllerProtocol {
     func setViewModel(_ viewModel: MainViewModel) {
         self.viewModel = viewModel
+        self.addListeners()
     }
 }
 
@@ -28,17 +28,18 @@ extension DayTableViewController: IpadChildViewControllerProtocol {
     extension DayTableViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
-            setUpUı()
+            setUpUI()
+            
         }
 }
 
 //MARK: - Set Up UI
 extension DayTableViewController {
-    private func setUpUı() {
+    private func setUpUI() {
         dayTableView.register(UINib(nibName: "IpadDaysTableViewCell", bundle: nil), forCellReuseIdentifier: "IpadDaysTableViewCell")
         dayTableView.delegate = self
         dayTableView.dataSource = self
-        dayTableView.allowsSelection = false
+        //dayTableView.allowsSelection = false
         dayTableView.tableFooterView = UIView()
  }
 }
@@ -47,20 +48,26 @@ extension DayTableViewController {
 extension DayTableViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let vm = viewModel else { return 0 }
-        guard vm.currentListViewData != nil else { return 0 }
-        return 5
+        return vm.arrListViewData.count
 }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IpadDaysTableViewCell", for: indexPath) as! IpadDaysTableViewCell
-        
-        let viewDataItem = self.viewModel.arrListViewData[indexPath.row]
-        cell.configure(with: viewDataItem)
+        var viewDataItem = self.viewModel.arrListViewData[indexPath.row]
+        viewDataItem.isSelected = self.viewModel.isCurrentForecastDayModel(dateText: viewDataItem.dayAndMonth)
+        cell.configure(with: viewDataItem, viewModel: viewModel)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selected : \(indexPath.row)")
+        let selectedItem = viewModel.arrListViewData[indexPath.row]
+        guard selectedItem.isSelected == false else { return }
+        viewModel.selectCurrentWeatherList(at: indexPath.row)
     }
 }
 

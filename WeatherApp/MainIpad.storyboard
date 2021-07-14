@@ -145,6 +145,7 @@
                     <navigationItem key="navigationItem" id="KEl-05-z8u"/>
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
+                        <outlet property="hourTableViewContainerHeightConstraint" destination="ruV-mJ-aL4" id="R7d-fy-yQ4"/>
                         <outlet property="imViewIcon" destination="JLa-bC-RSY" id="clg-8K-0Si"/>
                         <outlet property="lblCelcius" destination="ia5-8u-arc" id="KDe-5B-PfA"/>
                         <outlet property="lblCity" destination="rS9-My-6DZ" id="OvN-RI-P2m"/>
@@ -233,7 +234,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="201" height="440"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dPx-lp-Dpv">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dPx-lp-Dpv">
                                 <rect key="frame" x="0.0" y="0.0" width="201" height="440"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

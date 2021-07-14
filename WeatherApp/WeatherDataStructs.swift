@@ -38,6 +38,7 @@ struct ListViewData {
     let humidity: String
     let pressure: String
     let windDegree: String
+    var isSelected: Bool
 }
 
 // MARK: - Weather View Data
@@ -54,4 +55,12 @@ struct WeatherViewData {
     let seeLevelValue : String
     let humidityValue : String
     let windDegreeValue: String
+}
+
+// MARK: - Weather Hourly DataView
+struct WeatherHourlyDataView {
+    let timeText: String
+    let degreeText: String
+    let icon: String
+    var isSelected: Bool 
 }

@@ -10,13 +10,12 @@ import Combine
 
 class HourTableViewController: UIViewController {
 
-   
-    @IBOutlet var hourView: UIView!
-    @IBOutlet weak var hourTableView: UITableView!
     var viewModel: MainViewModel!
     private var cancellables = Set<AnyCancellable>()
-   
-    private var todayWeatherList: [List] = []
+    
+    @IBOutlet var hourView: UIView!
+    @IBOutlet weak var hourTableView: UITableView!
+
 }
 
 
@@ -32,19 +31,18 @@ extension HourTableViewController: IpadChildViewControllerProtocol {
 extension HourTableViewController {
     override func viewDidLoad() {
        super.viewDidLoad()
-      setUpUı()
+      setUpUI()
     }
 }
 
 //MARK: - Set Up Uı
 extension HourTableViewController {
-    private func setUpUı() {
+    private func setUpUI() {
         hourTableView.register(UINib(nibName: "IpadHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "IpadHoursTableViewCell")
         hourTableView.delegate = self
         hourTableView.dataSource = self
-        hourTableView.allowsSelection = false
         hourTableView.tableFooterView = UIView()
- }
+    }
 }
 
 
@@ -54,20 +52,26 @@ extension HourTableViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let vm = viewModel else { return 0 }
-        guard vm.currentListViewData != nil else { return 0 }
-        return 5
+        return vm.currentWeatherHourlyDataViews.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IpadHoursTableViewCell", for: indexPath) as! IpadHoursTableViewCell
-        let currentForecast = todayWeatherList[indexPath.row]
-        cell.configureCell(currentForecast: currentForecast)
+        var current = viewModel.currentWeatherHourlyDataViews[indexPath.row]
+        current.isSelected = viewModel.isCurrentForecastHourModel(hourText: current.timeText)
+        cell.configureCell(currentForecast: current)
+       // let currentForecast = todayWeatherList[indexPath.row]
+        //cell.configureCell(currentForecast: currentForecast)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 88
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.viewModel.selectCurrentHour(at: indexPath.row)
     }
 
 }

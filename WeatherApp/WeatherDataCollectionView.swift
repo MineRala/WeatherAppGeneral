@@ -116,7 +116,6 @@ extension WeatherDataCollectionView: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("Collection Frame : \(collectionView.frame)")
         return CGSize(width: collectionView.frame.size.width / 3  , height: collectionView.frame.size.height / 2)
     }
 }
