@@ -10,6 +10,11 @@ import UIKit
 class IpadHoursTableViewCell: UITableViewCell {
 
     @IBOutlet weak var hourView: UIView!
+    @IBOutlet weak var lblDegree: UILabel!
+    @IBOutlet weak var lblHour: UILabel!
+    @IBOutlet weak var imgIcon: UIImageView!
+    
+    private var currentTimeForecast: List!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,5 +30,15 @@ class IpadHoursTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
+    func configureCell(currentForecast: List) {
+        
+        self.currentTimeForecast = currentForecast
+        self.lblHour.text = self.currentTimeForecast.dateWithFormat()
+        self.imgIcon.image = UIImage(systemName:self.currentTimeForecast.weatherIcon())
+        self.lblDegree.text = currentForecast.degreeValue()
+    }
+    
     
 }

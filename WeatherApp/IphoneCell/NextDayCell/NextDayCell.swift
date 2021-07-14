@@ -23,6 +23,7 @@ extension NextDayCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
+       // btnText.isHidden = true
     }
 }
 

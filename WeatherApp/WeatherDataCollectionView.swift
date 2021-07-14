@@ -44,6 +44,7 @@ extension WeatherDataCollectionView {
 // MARK: - Set Up UI
 extension WeatherDataCollectionView {
     private func setUpUI() {
+      
         
         collectionViewWeatherData.register(UINib(nibName: "WeatherDataCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WeatherDataCollectionViewCell")
         collectionViewWeatherData.delegate = self

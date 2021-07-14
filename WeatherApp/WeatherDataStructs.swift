@@ -31,6 +31,7 @@ enum WeatherTableItem {
 // MARK: - List View Data
 struct ListViewData {
     let dayName: String
+    let dayAndMonth: String
     let icon: String
     let degree: String
     let windSpeed: String

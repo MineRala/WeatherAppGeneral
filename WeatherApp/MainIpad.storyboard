@@ -146,9 +146,11 @@
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
                         <outlet property="imViewIcon" destination="JLa-bC-RSY" id="clg-8K-0Si"/>
+                        <outlet property="lblCelcius" destination="ia5-8u-arc" id="KDe-5B-PfA"/>
                         <outlet property="lblCity" destination="rS9-My-6DZ" id="OvN-RI-P2m"/>
                         <outlet property="lblDegree" destination="f4k-YC-FPC" id="cVo-0r-LAP"/>
                         <outlet property="lblWeatherState" destination="8Ak-2j-WGl" id="DLE-05-2Zd"/>
+                        <outlet property="mainIpadView" destination="vyO-WH-yWf" id="4tG-Lt-0XG"/>
                         <outlet property="viewContainerDayTableView" destination="x71-VF-4qT" id="jVq-0y-ZIX"/>
                         <outlet property="viewContainerHourTableView" destination="fMX-qP-i76" id="ahD-e2-WyF"/>
                         <outlet property="viewContainerWeatherDataCollectionView" destination="eNb-OB-GaW" id="vJB-LI-5uP"/>

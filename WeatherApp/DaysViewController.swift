@@ -73,6 +73,11 @@ extension DaysViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 154
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.popViewController(animated: true)
+        print("\(indexPath.row) clicked")
+    }
 }
 
 // MARK: - Add Listeners

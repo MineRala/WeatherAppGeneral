@@ -10,7 +10,7 @@ import SwiftLocation
 import CoreLocation
 import Combine
 
-// MARK: Main View Model {Class}
+// MARK: - Main View Model {Class}
 class MainViewModel {
     
     private let dataLayer = DataLayer()
@@ -21,6 +21,8 @@ class MainViewModel {
     private(set) var currentWeather: List!
     private(set) var arrListViewData: [ListViewData] = []
     private(set) var currentWeatherViewData: WeatherViewData!
+    private(set) var currentListViewData: ListViewData!
+  
   
     private(set) var shouldUpdateTableView = PassthroughSubject<Void, Never>()
     private(set) var shouldShowAlertViewForError = PassthroughSubject<WeatherAppError, Never>()
@@ -66,6 +68,25 @@ extension MainViewModel {
             self.arrListViewData = listArr
             self.shouldUpdateTableView.send()
         }.store(in: &cancellables)
+    }
+    
+    func initializeForIpad(){
+        self.shouldShowLoadingAnimation.send(true)
+        let publisher = self.findUserCoordinates().flatMap { coordinates -> AnyPublisher<WeatherModel?, Never> in
+            guard let coord = coordinates else { return Just(nil).eraseToAnyPublisher() }
+            return self.requestWeatherInfo(coordinates: coord)
+        }.flatMap { model -> AnyPublisher<Bool, Never> in
+            guard let md = model else { return Just(true).eraseToAnyPublisher() }
+            return self.processResponse(md)
+        }.flatMap { (_) -> AnyPublisher<[ListViewData],Never> in
+            return  self.convertListModelsToListDatas()
+        }
+        publisher.sink { listArr in
+            self.arrListViewData = listArr
+            self.shouldShowLoadingAnimation.send(false)
+            self.shouldUpdateTableView.send()
+        }.store(in: &cancellables)
+       
     }
     
     func nextFiveDaysDidTapped() {
@@ -172,9 +193,7 @@ extension MainViewModel {
         let windDegree = "\(currentWeather.wind.deg) °"
         self.currentWeatherViewData = WeatherViewData(locationText: locationText, weatherState: weatherState, weatherDegree: weatherDegree, weatherIcon: icon, sunriseValue: sunriseVal, sunsetValue: sunsetVal, windSpeedValue: windSpeed, groundLevelValue: groundLevel, pressureValue: pressureLevel, seeLevelValue: seaLevel, humidityValue: humidity, windDegreeValue: windDegree)
     }
-    
-    
-    
+
     private func dateFrom(day: Int, month: Int, year: Int) -> Date {
         var components = DateComponents()
         components.hour = 0
@@ -217,16 +236,6 @@ extension MainViewModel {
     }
 }
 
-//MARK: -MainViewController
-//extension MainViewModel {
-//    private func convertWeatherModelToWeatherDatas() -> AnyPublisher<[WeatherViewData],Never>{
-//        guard  let main = model.main  else { return nil}
-//        let cityName = model
-//
-//        }
-//
-//    }
-//}
 
 // MARK: - DaysViewController
 extension MainViewModel {
@@ -236,13 +245,15 @@ extension MainViewModel {
                 let viewDatas = listModels.compactMap { model -> ListViewData? in
                     guard let main = model.main else { return nil }
                     let dayName = model.date().nameOfTheDay
+                    let dayAndMonth = model.date().numberOfTheDayAndMonth
                     let icon = model.weatherIcon()
                     let degree = "\(main.temp) °C"
                     let windSpeed = "\(model.wind.speed) km/h"
                     let humidity = "\(main.humidity) g/m3"
                     let pressure = "\(main.pressure) hPa"
                     let windDegree = "\(model.wind.deg) °"
-                    let viewData = ListViewData(dayName: dayName, icon: icon, degree: degree, windSpeed: windSpeed, humidity: humidity, pressure: pressure, windDegree: windDegree)
+                    let viewData = ListViewData(dayName: dayName, dayAndMonth: dayAndMonth, icon: icon, degree: degree, windSpeed: windSpeed, humidity: humidity, pressure: pressure, windDegree: windDegree)
+                    print(viewData)
                     return viewData
                 }
                 return Just(viewDatas).eraseToAnyPublisher()
@@ -274,10 +285,10 @@ extension MainViewModel {
                 arrWeatherListData.append(currentItem)
             }
         }
-        
-//        arrWeatherListData.forEach {
-//            print("Weather: \($0.date()) : \($0)")
-//        }
+        print("ArrWeather")
+        arrWeatherListData.forEach {
+            print("Weather: \($0.date()) : \($0)")
+        }
         return arrWeatherListData
     }
 }

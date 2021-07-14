@@ -24,5 +24,13 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    var numberOfTheDayAndMonth: String {
+        let date = self
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "dd/MM"
+        let dayInWeek =  dateFormatter.string(from: date)
+        return dayInWeek
+    }
+    
    
 }

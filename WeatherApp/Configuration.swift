@@ -32,6 +32,7 @@ struct C {
             return UIFont(name: self.rawValue, size: size)!
         }
     }
+
     
     struct Color {
         static var viewControllerBackgroundColor: UIColor { UITraitCollection.current.userInterfaceStyle == .light ?  #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1) : #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1) }
@@ -80,6 +81,11 @@ struct C {
         static var cellContentViewColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1) : #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1) }
 
         static var cellViewColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1) : #colorLiteral(red: 0.1843137255, green: 0.1843137255, blue: 0.1843137255, alpha: 1) }
+        static var ipadCollectionViewInfoColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.5764705882, green: 0.5764705882, blue: 0.5764705882, alpha: 1) : #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1) }
+        static var ipadCollectionViewInfoValueColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.4745098039, green: 0.4745098039, blue: 0.4745098039, alpha: 1) : #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1) }
+        
+        static var ipadCollectionViewBackgroundColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1) : #colorLiteral(red: 0.1843137255, green: 0.1843137255, blue: 0.1843137255, alpha: 1) }
+        
     }
     }
 

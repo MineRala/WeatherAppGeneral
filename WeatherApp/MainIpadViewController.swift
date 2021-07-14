@@ -10,6 +10,7 @@ import Combine
 
 class MainIpadViewController: UIViewController {
     
+    @IBOutlet var mainIpadView: UIView!
     @IBOutlet weak var viewContainerWeatherDataCollectionView: UIView!
     @IBOutlet weak var viewContainerDayTableView: UIView!
     @IBOutlet weak var viewContainerHourTableView: UIView!
@@ -19,6 +20,7 @@ class MainIpadViewController: UIViewController {
     @IBOutlet weak var lblDegree: UILabel!
     @IBOutlet weak var lblCity: UILabel!
     
+    @IBOutlet weak var lblCelcius: UILabel!
     private var dayTableVC: DayTableViewController!
     private var hourTableVC: HourTableViewController!
     private var weatherDataCollectionVC: WeatherDataCollectionView!
@@ -35,14 +37,16 @@ extension MainIpadViewController {
         super.viewDidLoad()
         setUpUI()
         addListeners()
-        viewModel.initialize()
+        viewModel.initializeForIpad()
     }
 }
 
 // MARK: - Set Up UI
 extension MainIpadViewController {
     private func setUpUI() {
-        self.view.backgroundColor = C.Color.viewControllerBackgroundColor
+      //  self.mainIpadView.backgroundColor  = C.Color.viewControllerBackgroundColor
+        
+        
         
         self.children.forEach { childVC in
             if let viewController = childVC as? DayTableViewController {
@@ -56,6 +60,16 @@ extension MainIpadViewController {
                 weatherDataCollectionVC.setViewModel(self.viewModel)
             }
         }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        self.mainIpadView.backgroundColor  = C.Color.viewControllerBackgroundColor
+        
+        self.lblCity.textColor = C.Color.cityInfoTitleColor
+        self.lblDegree.textColor = C.Color.labelDegreeColor
+        self.lblWeatherState.textColor = C.Color.labelStateColor
+        self.imViewIcon.tintColor = C.Color.imageIconInfo
+        self.lblCelcius.textColor = C.Color.labelDegreeColor
     }
 }
 

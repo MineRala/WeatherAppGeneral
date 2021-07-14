@@ -77,6 +77,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="hourView" destination="Ymh-2P-pn4" id="wW1-61-eFh"/>
+                <outlet property="imgIcon" destination="PpF-jB-hKu" id="Vd1-wP-1XC"/>
+                <outlet property="lblDegree" destination="IhN-vr-Clg" id="Fzd-0m-BeC"/>
+                <outlet property="lblHour" destination="xav-3n-D7z" id="Idh-hf-i1B"/>
             </connections>
             <point key="canvasLocation" x="-70" y="129"/>
         </tableViewCell>

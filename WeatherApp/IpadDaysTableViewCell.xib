@@ -70,6 +70,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="lblDate" destination="tnm-Vn-glf" id="ZBk-pI-ViS"/>
+                <outlet property="lblDay" destination="bAe-wK-8pd" id="Kju-Ar-cxQ"/>
+                <outlet property="lblDegree" destination="F1G-ip-Fpi" id="N3V-9O-ElS"/>
+            </connections>
             <point key="canvasLocation" x="-97.826086956521749" y="96.428571428571431"/>
         </tableViewCell>
     </objects>

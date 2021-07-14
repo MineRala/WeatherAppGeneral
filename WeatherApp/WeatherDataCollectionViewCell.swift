@@ -15,7 +15,11 @@ class WeatherDataCollectionViewCell: UICollectionViewCell {
    
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.viewContent.backgroundColor = .clear
+        self.viewContent.backgroundColor = C.Color.ipadCollectionViewBackgroundColor
+        self.lblTitle.textColor = C.Color.ipadCollectionViewInfoColor
+        self.lblValue.textColor = C.Color.ipadCollectionViewInfoValueColor
+    
+        
     }
     
     func configureCell(title: String, value: String) {
