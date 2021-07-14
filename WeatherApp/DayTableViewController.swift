@@ -31,6 +31,12 @@ extension DayTableViewController: IpadChildViewControllerProtocol {
             setUpUI()
             
         }
+        
+        override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+            super.traitCollectionDidChange(previousTraitCollection)
+            self.dayTableView.reloadData()
+            
+        }
 }
 
 //MARK: - Set Up UI
@@ -39,8 +45,11 @@ extension DayTableViewController {
         dayTableView.register(UINib(nibName: "IpadDaysTableViewCell", bundle: nil), forCellReuseIdentifier: "IpadDaysTableViewCell")
         dayTableView.delegate = self
         dayTableView.dataSource = self
-        //dayTableView.allowsSelection = false
+       
         dayTableView.tableFooterView = UIView()
+        self.view.backgroundColor = .clear
+        dayTableView.backgroundColor = .clear
+        
  }
 }
 

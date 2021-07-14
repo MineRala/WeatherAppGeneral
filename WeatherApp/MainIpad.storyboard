@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -126,7 +125,7 @@
                         <constraints>
                             <constraint firstItem="hFn-5E-4Be" firstAttribute="trailing" secondItem="fMX-qP-i76" secondAttribute="trailing" constant="24" id="1lH-6B-ISx"/>
                             <constraint firstItem="rS9-My-6DZ" firstAttribute="top" secondItem="fMX-qP-i76" secondAttribute="top" id="7UQ-dR-hbC"/>
-                            <constraint firstItem="x71-VF-4qT" firstAttribute="top" secondItem="hFn-5E-4Be" secondAttribute="top" id="Dmt-1F-WEe"/>
+                            <constraint firstItem="x71-VF-4qT" firstAttribute="top" secondItem="vyO-WH-yWf" secondAttribute="top" id="Dmt-1F-WEe"/>
                             <constraint firstItem="f4k-YC-FPC" firstAttribute="top" secondItem="rS9-My-6DZ" secondAttribute="bottom" constant="32" id="Idp-KV-sLh"/>
                             <constraint firstItem="0G8-GE-6WL" firstAttribute="top" secondItem="f4k-YC-FPC" secondAttribute="bottom" constant="19" id="JnK-ui-UfR"/>
                             <constraint firstItem="ia5-8u-arc" firstAttribute="leading" secondItem="f4k-YC-FPC" secondAttribute="trailing" constant="4" id="NOg-Uq-EVS"/>
@@ -177,7 +176,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="GQn-Q0-e39" secondAttribute="trailing" id="4Lc-CN-sGi"/>
                                     <constraint firstAttribute="bottom" secondItem="GQn-Q0-e39" secondAttribute="bottom" id="8V2-GD-bWw"/>
@@ -234,14 +233,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="201" height="440"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dPx-lp-Dpv">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dPx-lp-Dpv">
                                 <rect key="frame" x="0.0" y="0.0" width="201" height="440"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TUx-Zq-Bgz"/>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="dPx-lp-Dpv" secondAttribute="trailing" id="852-l6-9LN"/>
                             <constraint firstItem="dPx-lp-Dpv" firstAttribute="leading" secondItem="PrB-fd-38M" secondAttribute="leading" id="e90-K8-rN4"/>
@@ -266,7 +265,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Mt-NU-Dh0">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Mt-NU-Dh0">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="NC1-dI-TD6">
@@ -282,13 +281,15 @@
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uKW-5Q-LWI">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mfK-2R-3co"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9Mt-NU-Dh0" firstAttribute="top" secondItem="mfK-2R-3co" secondAttribute="top" id="3oS-SY-j17"/>
                             <constraint firstItem="9Mt-NU-Dh0" firstAttribute="leading" secondItem="mfK-2R-3co" secondAttribute="leading" id="dBQ-x8-xah"/>
@@ -308,8 +309,5 @@
     </scenes>
     <resources>
         <image name="sun.min" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

@@ -59,27 +59,40 @@ extension MainIpadViewController {
                 weatherDataCollectionVC.setViewModel(self.viewModel)
             }
         }
+        updateWeatherInfoUI()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        self.mainIpadView.backgroundColor  = C.Color.viewControllerBackgroundColor
+        super.traitCollectionDidChange(previousTraitCollection)
+       
+      updateWeatherInfoUI()
         
-        self.lblCity.textColor = C.Color.cityInfoTitleColor
-        self.lblDegree.textColor = C.Color.labelDegreeColor
-        self.lblWeatherState.textColor = C.Color.labelStateColor
-        self.imViewIcon.tintColor = C.Color.imageIconInfo
-        self.lblCelcius.textColor = C.Color.labelDegreeColor
     }
 }
 
 // MARK: - Update Info
 extension MainIpadViewController {
     private func updateWeatherInfoUI() {
+        
+        self.mainIpadView.backgroundColor  = C.Color.viewControllerBackgroundColor
+        self.lblCity.textColor = C.Color.cityInfoTitleColor
+        self.lblDegree.textColor = C.Color.labelDegreeColor
+        self.lblWeatherState.textColor = C.Color.labelStateColor
+        self.imViewIcon.tintColor = C.Color.imageIconInfo
+        self.lblCelcius.textColor = C.Color.labelDegreeColor
+        
+        self.viewContainerDayTableView.backgroundColor = C.Color.ipadViewContainerBackgroundColor
+        self.viewContainerHourTableView.backgroundColor = C.Color.ipadViewContainerBackgroundColor
+        self.viewContainerWeatherDataCollectionView.backgroundColor = C.Color.ipadViewContainerBackgroundColor
+        
         guard self.viewModel.currentWeatherViewData != nil else { return }
         self.lblCity.text = self.viewModel.currentWeatherViewData.locationText
         self.lblDegree.text = self.viewModel.currentWeatherViewData.weatherDegree
         self.imViewIcon.image = UIImage(systemName: viewModel.currentWeatherViewData.weatherIcon)
         self.lblWeatherState.text = self.viewModel.currentWeatherViewData.weatherState
+        
+        
+        
     }
 }
 

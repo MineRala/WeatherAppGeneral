@@ -33,6 +33,12 @@ extension HourTableViewController {
        super.viewDidLoad()
       setUpUI()
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.hourTableView.reloadData()
+        
+    }
 }
 
 //MARK: - Set Up Uı
@@ -42,6 +48,10 @@ extension HourTableViewController {
         hourTableView.delegate = self
         hourTableView.dataSource = self
         hourTableView.tableFooterView = UIView()
+        
+        self.view.backgroundColor = .clear
+        hourTableView.backgroundColor = .clear
+        hourView.backgroundColor = .clear
     }
 }
 
@@ -61,8 +71,6 @@ extension HourTableViewController : UITableViewDelegate, UITableViewDataSource {
         var current = viewModel.currentWeatherHourlyDataViews[indexPath.row]
         current.isSelected = viewModel.isCurrentForecastHourModel(hourText: current.timeText)
         cell.configureCell(currentForecast: current)
-       // let currentForecast = todayWeatherList[indexPath.row]
-        //cell.configureCell(currentForecast: currentForecast)
         return cell
     }
     

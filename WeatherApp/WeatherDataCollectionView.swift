@@ -39,6 +39,12 @@ extension WeatherDataCollectionView {
         setUpUI()
         
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.collectionViewWeatherData.reloadData()
+        
+    }
 }
 
 // MARK: - Set Up UI
@@ -49,8 +55,10 @@ extension WeatherDataCollectionView {
         collectionViewWeatherData.register(UINib(nibName: "WeatherDataCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WeatherDataCollectionViewCell")
         collectionViewWeatherData.delegate = self
         collectionViewWeatherData.dataSource = self
-
+        self.view.backgroundColor = .clear
+        collectionViewWeatherData.backgroundColor = .clear
     }
+    
 }
 
 // MARK: - Listeners

@@ -40,9 +40,16 @@ class IpadDaysTableViewCell: UITableViewCell {
         self.viewModel = viewModel
       
         if item.isSelected {
-            self.backgroundColor = .red
+            self.backgroundColor = C.Color.ipadChosenDayCellBackgroundColor
+            self.lblDay.textColor = C.Color.ipadChosenDayCellTextColor
+            self.lblDegree.textColor = C.Color.ipadChosenDayCellTextColor
+            self.lblDate.textColor = C.Color.ipadChosenDayCellTextColor
         } else {
             self.backgroundColor = .clear
+            self.lblDay.textColor = C.Color.ipadDayCellDayTextColor
+            self.lblDate.textColor = C.Color.ipadDayCellDateTextColor
+            self.lblDegree.textColor = C.Color.ipadDayCellDegreeTextColor
+            
         }
         
         self.lblDate.text = viewDataItem.dayAndMonth

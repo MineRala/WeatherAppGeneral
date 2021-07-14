@@ -81,11 +81,32 @@ struct C {
         static var cellContentViewColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1) : #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1) }
 
         static var cellViewColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1) : #colorLiteral(red: 0.1843137255, green: 0.1843137255, blue: 0.1843137255, alpha: 1) }
-        static var ipadCollectionViewInfoColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.5764705882, green: 0.5764705882, blue: 0.5764705882, alpha: 1) : #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1) }
-        static var ipadCollectionViewInfoValueColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.4745098039, green: 0.4745098039, blue: 0.4745098039, alpha: 1) : #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1) }
         
         static var ipadCollectionViewBackgroundColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1) : #colorLiteral(red: 0.1843137255, green: 0.1843137255, blue: 0.1843137255, alpha: 1) }
+        static var ipadCollectionViewTitleColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.5764705882, green: 0.5764705882, blue: 0.5764705882, alpha: 1) : #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1) }
+        static var ipadCollectionViewValueColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.4745098039, green: 0.4745098039, blue: 0.4745098039, alpha: 1) : #colorLiteral(red: 0.6745098039, green: 0.6745098039, blue: 0.6745098039, alpha: 1) }
+        
+        
+        static var ipadChosenDayCellBackgroundColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.3254901961, green: 0.3254901961, blue: 0.3254901961, alpha: 1) : #colorLiteral(red: 0.3019607843, green: 0.3019607843, blue: 0.3019607843, alpha: 1) }
+        static var ipadChosenDayCellTextColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.7647058824, green: 0.7647058824, blue: 0.7647058824, alpha: 1) : #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1) }
+        
+        static var ipadDayCellDateTextColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.3921568627, green: 0.3921568627, blue: 0.3921568627, alpha: 1) : #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1) }
+        static var ipadDayCellDayTextColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.6549019608, green: 0.6549019608, blue: 0.6549019608, alpha: 1) : #colorLiteral(red: 0.8, green: 0.8, blue: 0.7529411765, alpha: 1) }
+        static var ipadDayCellDegreeTextColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.3921568627, green: 0.3921568627, blue: 0.3921568627, alpha: 1) : #colorLiteral(red: 0.5333333333, green: 0.5333333333, blue: 0.5333333333, alpha: 1) }
+       
+        static var ipadViewContainerBackgroundColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1) : #colorLiteral(red: 0.1843137255, green: 0.1843137255, blue: 0.1843137255, alpha: 1) }
+        
+        
+        static var ipadHourTableViewCellBackgroundColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.1843137255, green: 0.1843137255, blue: 0.1843137255, alpha: 1) }
+        
+        static var ipadHourTableViewCellTextColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.4039215686, green: 0.4039215686, blue: 0.4039215686, alpha: 1) : #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1) }
+        
+        static var ipadHourTableViewCellImageColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.4862745098, green: 0.4823529412, blue: 0.4823529412, alpha: 1) : #colorLiteral(red: 0.4862745098, green: 0.4823529412, blue: 0.4823529412, alpha: 1) }
+
+
+        
+        
         
     }
-    }
+}
 

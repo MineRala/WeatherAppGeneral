@@ -35,10 +35,22 @@ class IpadHoursTableViewCell: UITableViewCell {
     func configureCell(currentForecast: WeatherHourlyDataView) {
         
         self.currentTimeForecast = currentForecast
+        
         if currentForecast.isSelected {
-            self.hourView.backgroundColor = .red
+            
+            self.hourView.backgroundColor = C.Color.ipadChosenDayCellBackgroundColor
+            self.imgIcon.tintColor = C.Color.ipadChosenDayCellTextColor
+            self.lblDegree.textColor = C.Color.ipadChosenDayCellTextColor
+            self.lblHour.textColor = C.Color.ipadChosenDayCellTextColor
+            
+            
         } else {
-            self.hourView.backgroundColor = .clear
+            self.hourView.backgroundColor = C.Color.ipadHourTableViewCellBackgroundColor
+           // self.backgroundColor = .clear
+            self.lblHour.textColor = C.Color.ipadHourTableViewCellTextColor
+            self.lblDegree.textColor = C.Color.ipadHourTableViewCellTextColor
+            self.imgIcon.tintColor = C.Color.ipadHourTableViewCellImageColor
+            
         }
         self.lblHour.text = currentForecast.timeText
         self.imgIcon.image = UIImage(systemName: currentForecast.icon)
