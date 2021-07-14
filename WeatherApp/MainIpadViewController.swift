@@ -14,7 +14,8 @@ class MainIpadViewController: UIViewController {
     @IBOutlet weak var viewContainerWeatherDataCollectionView: UIView!
     @IBOutlet weak var viewContainerDayTableView: UIView!
     @IBOutlet weak var viewContainerHourTableView: UIView!
-   
+    @IBOutlet weak var hourTableViewContainerHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var imViewIcon: UIImageView!
     @IBOutlet weak var lblWeatherState: UILabel!
     @IBOutlet weak var lblDegree: UILabel!
@@ -45,9 +46,7 @@ extension MainIpadViewController {
 extension MainIpadViewController {
     private func setUpUI() {
       //  self.mainIpadView.backgroundColor  = C.Color.viewControllerBackgroundColor
-        
-        
-        
+    
         self.children.forEach { childVC in
             if let viewController = childVC as? DayTableViewController {
                 self.dayTableVC = viewController
@@ -97,6 +96,8 @@ extension MainIpadViewController {
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 self.updateWeatherInfoUI()
+                self.hourTableViewContainerHeightConstraint.constant = CGFloat(88 * self.viewModel.currentWeatherHourlyDataViews.count)
+                self.view.layoutIfNeeded()
         }.store(in: &cancellables)
     }
 }

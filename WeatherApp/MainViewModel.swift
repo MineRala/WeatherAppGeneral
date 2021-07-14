@@ -21,9 +21,8 @@ class MainViewModel {
     private(set) var currentWeather: List!
     private(set) var arrListViewData: [ListViewData] = []
     private(set) var currentWeatherViewData: WeatherViewData!
-    private(set) var currentListViewData: ListViewData!
-  
-  
+    private(set) var currentWeatherHourlyDataViews: [WeatherHourlyDataView] = []
+
     private(set) var shouldUpdateTableView = PassthroughSubject<Void, Never>()
     private(set) var shouldShowAlertViewForError = PassthroughSubject<WeatherAppError, Never>()
     private(set) var shouldNavigateToDaysViewController = PassthroughSubject<Void, Never>()
@@ -83,6 +82,7 @@ extension MainViewModel {
         }
         publisher.sink { listArr in
             self.arrListViewData = listArr
+            self.createWeatherHourlyDataViews()
             self.shouldShowLoadingAnimation.send(false)
             self.shouldUpdateTableView.send()
         }.store(in: &cancellables)
@@ -97,14 +97,63 @@ extension MainViewModel {
         return self.currentHourlyWeatherData
     }
     
+    func isCurrentForecastDayModel(dateText: String) -> Bool {
+        return currentWeather.date().numberOfTheDayAndMonth == dateText
+    }
+    
+    func isCurrentForecastHourModel(hourText: String) -> Bool {
+        return currentWeather.dateWithFormat() == hourText
+    }
+    
+    func selectCurrentHour(at index: Int) {
+        let selectedItem = currentHourlyWeatherData[index]
+        updateCurrentWeather(selectedItem)
+        self.createWeatherHourlyDataViews()
+        self.shouldUpdateTableView.send()
+    }
+    
     func isCurrentForecastTimeModel(timeForecast: List) -> Bool {
         let currentForecastTime = currentWeather.date()
         let listForecastTime = timeForecast.date()
         return listForecastTime == currentForecastTime
     }
     
+    func selectCurrentWeatherList(at index: Int) {
+        let selectedItem = arrListViewData[index]
+        var selectedArr: [List] = []
+        dailyWeather.forEach { (key, value) in
+            if key.numberOfTheDayAndMonth == selectedItem.dayAndMonth {
+                selectedArr = value
+            }
+        }
+        if let firstElement = selectedArr.first {
+            updateCurrentWeather(firstElement)
+        }
+        
+        currentHourlyWeatherData = selectedArr
+//        print("*********** Selected *************")
+//        currentHourlyWeatherData.forEach { item in
+//            print("item: \(item.dateWithFormat()), degree: \(item.degreeValue())")
+//        }
+        
+        self.createWeatherHourlyDataViews()
+        var newArrList: [ListViewData] = []
+        for i in 0 ..< arrListViewData.count {
+            var model = arrListViewData[i]
+            if i == index {
+                model.isSelected = true
+            } else {
+                model.isSelected = false
+            }
+            newArrList.append(model)
+        }
+        self.arrListViewData = newArrList
+        self.shouldUpdateTableView.send()
+    }
+    
     func updateCurrentWeather(_ list: List) {
         self.currentWeather = list
+        self.createWeatherViewData()
         self.shouldUpdateTableView.send()
     }
 }
@@ -164,10 +213,7 @@ extension MainViewModel {
             }
         }
         
-        self.dailyWeather.forEach { (key , value) in
-            print("\(key)->\(value)")
-        }
-        
+       
         self.currentWeather = sortedWeatherData.first!
         self.city = city
         
@@ -192,6 +238,17 @@ extension MainViewModel {
         let humidity = "\(main.humidity) g/m^3"
         let windDegree = "\(currentWeather.wind.deg) °"
         self.currentWeatherViewData = WeatherViewData(locationText: locationText, weatherState: weatherState, weatherDegree: weatherDegree, weatherIcon: icon, sunriseValue: sunriseVal, sunsetValue: sunsetVal, windSpeedValue: windSpeed, groundLevelValue: groundLevel, pressureValue: pressureLevel, seeLevelValue: seaLevel, humidityValue: humidity, windDegreeValue: windDegree)
+    }
+    
+    private func createWeatherHourlyDataViews() {
+        self.currentWeatherHourlyDataViews = self.currentHourlyWeatherData.compactMap{ item -> WeatherHourlyDataView? in
+            let timeVal = item.dateWithFormat()
+            let degreeVal = item.degreeValue()
+            let icon = item.weatherIcon()
+            let isSelected = self.isCurrentForecastHourModel(hourText: timeVal)
+            let dataView = WeatherHourlyDataView(timeText: timeVal, degreeText: degreeVal, icon: icon, isSelected: isSelected)
+            return dataView
+        }
     }
 
     private func dateFrom(day: Int, month: Int, year: Int) -> Date {
@@ -252,7 +309,7 @@ extension MainViewModel {
                     let humidity = "\(main.humidity) g/m3"
                     let pressure = "\(main.pressure) hPa"
                     let windDegree = "\(model.wind.deg) °"
-                    let viewData = ListViewData(dayName: dayName, dayAndMonth: dayAndMonth, icon: icon, degree: degree, windSpeed: windSpeed, humidity: humidity, pressure: pressure, windDegree: windDegree)
+                    let viewData = ListViewData(dayName: dayName, dayAndMonth: dayAndMonth, icon: icon, degree: degree, windSpeed: windSpeed, humidity: humidity, pressure: pressure, windDegree: windDegree, isSelected: false)
                     print(viewData)
                     return viewData
                 }

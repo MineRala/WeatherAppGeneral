@@ -14,7 +14,7 @@ class IpadHoursTableViewCell: UITableViewCell {
     @IBOutlet weak var lblHour: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
     
-    private var currentTimeForecast: List!
+    private var currentTimeForecast: WeatherHourlyDataView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,12 +32,17 @@ class IpadHoursTableViewCell: UITableViewCell {
     }
     
     
-    func configureCell(currentForecast: List) {
+    func configureCell(currentForecast: WeatherHourlyDataView) {
         
         self.currentTimeForecast = currentForecast
-        self.lblHour.text = self.currentTimeForecast.dateWithFormat()
-        self.imgIcon.image = UIImage(systemName:self.currentTimeForecast.weatherIcon())
-        self.lblDegree.text = currentForecast.degreeValue()
+        if currentForecast.isSelected {
+            self.hourView.backgroundColor = .red
+        } else {
+            self.hourView.backgroundColor = .clear
+        }
+        self.lblHour.text = currentForecast.timeText
+        self.imgIcon.image = UIImage(systemName: currentForecast.icon)
+        self.lblDegree.text = currentForecast.degreeText
     }
     
     

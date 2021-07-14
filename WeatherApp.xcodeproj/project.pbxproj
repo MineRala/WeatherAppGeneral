@@ -61,6 +61,7 @@
 		FDB79B73268F78D90043353B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB79B72268F78D90043353B /* MainViewModel.swift */; };
 		FDC7BB87269E03DF005BE787 /* WeatherDataCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC7BB86269E03DF005BE787 /* WeatherDataCollectionView.swift */; };
 		FDC7BB8C269E0C34005BE787 /* WeatherDataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC7BB8B269E0C34005BE787 /* WeatherDataStructs.swift */; };
+		FDDD2AD2269F327E0092D35B /* MainIpadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDD2AD1269F327E0092D35B /* MainIpadViewModel.swift */; };
 		FDE98DEC2695B84500FD9E66 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE98DEB2695B84500FD9E66 /* UIViewExtensions.swift */; };
 		FDF050D12693194D00EF936A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF050D02693194D00EF936A /* StringExtension.swift */; };
 		FDF050DA2693286200EF936A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF050D92693286200EF936A /* Configuration.swift */; };
@@ -198,6 +199,7 @@
 		FDB79B72268F78D90043353B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FDC7BB86269E03DF005BE787 /* WeatherDataCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataCollectionView.swift; sourceTree = "<group>"; };
 		FDC7BB8B269E0C34005BE787 /* WeatherDataStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataStructs.swift; sourceTree = "<group>"; };
+		FDDD2AD1269F327E0092D35B /* MainIpadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainIpadViewModel.swift; sourceTree = "<group>"; };
 		FDE98DEB2695B84500FD9E66 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		FDF050D02693194D00EF936A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		FDF050D92693286200EF936A /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 			children = (
 				FDB79B72268F78D90043353B /* MainViewModel.swift */,
 				FDC7BB8B269E0C34005BE787 /* WeatherDataStructs.swift */,
+				FDDD2AD1269F327E0092D35B /* MainIpadViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -967,6 +970,7 @@
 				FD6E477A2698A13F004D879F /* UIViewControllerExtensions.swift in Sources */,
 				E80B29CE268DDB60007692E9 /* MainViewController.swift in Sources */,
 				FDC7BB87269E03DF005BE787 /* WeatherDataCollectionView.swift in Sources */,
+				FDDD2AD2269F327E0092D35B /* MainIpadViewModel.swift in Sources */,
 				E80B29EA268DDC62007692E9 /* CityNameCell.swift in Sources */,
 				E80B2A00268DDE99007692E9 /* WeatherModel.swift in Sources */,
 				FD6E5D89269E16A4009F3D48 /* WeatherDataCollectionViewCell.swift in Sources */,
