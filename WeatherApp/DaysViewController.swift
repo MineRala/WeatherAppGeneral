@@ -39,6 +39,7 @@ extension DaysViewController {
 extension DaysViewController {
     func setViewModel(_ viewModel: MainViewModel) {
         self.viewModel = viewModel
+        addListeners()
     }
 }
 
@@ -59,12 +60,12 @@ extension DaysViewController {
  //MARK: - Table View
 extension DaysViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.viewModel.arrListViewData.count - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DaysTableViewCell",for: indexPath)as! DaysTableViewCell
-        let viewDataItem = self.viewModel.arrListViewData[indexPath.row]
+        let viewDataItem = self.viewModel.arrListViewData[indexPath.row + 1]
         cell.configureCell(with: viewDataItem)
         return cell
         
@@ -75,13 +76,10 @@ extension DaysViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = self.viewModel.arrListViewData[indexPath.row + 1]
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainViewController") as! MainViewController
-        
-        viewController.isFromListVC = true
-    
+        viewController.listItem = model
         self.navigationController?.pushViewController(viewController, animated: true)
-    
-       
     }
 }
 

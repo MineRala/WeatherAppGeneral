@@ -45,16 +45,29 @@ class MainViewModel {
 
 // MARK: - Public
 extension MainViewModel {
-   @objc func initialize() {
+    @objc func initialize(with selectedDayAndMonth: String? = nil) {
         self.shouldShowLoadingAnimation.send(true)
-        let publisher = self.findUserCoordinates().flatMap { coordinates -> AnyPublisher<WeatherModel?, Never> in
-            guard let coord = coordinates else { return Just(nil).eraseToAnyPublisher() }
-            return self.requestWeatherInfo(coordinates: coord)
-        }.flatMap { model -> AnyPublisher<Bool, Never> in
-            guard let md = model else { return Just(true).eraseToAnyPublisher() }
-            return self.processResponse(md)
+        var publisher: AnyPublisher<Bool, Never> = Just(true).eraseToAnyPublisher()
+        if let dayMonthValue = selectedDayAndMonth {
+            publisher = self.findUserCoordinates().flatMap { coordinates -> AnyPublisher<WeatherModel?, Never> in
+                guard let coord = coordinates else { return Just(nil).eraseToAnyPublisher() }
+                return self.requestWeatherInfo(coordinates: coord)
+            }.flatMap { model -> AnyPublisher<Bool, Never> in
+                guard let md = model else { return Just(true).eraseToAnyPublisher() }
+                return self.processResponse(md)
+            }.flatMap { _ -> AnyPublisher<Bool, Never> in
+                return self.setCurrentWeather(with: dayMonthValue)
+            }.eraseToAnyPublisher()
+        } else {
+            publisher = self.findUserCoordinates().flatMap { coordinates -> AnyPublisher<WeatherModel?, Never> in
+                guard let coord = coordinates else { return Just(nil).eraseToAnyPublisher() }
+                return self.requestWeatherInfo(coordinates: coord)
+            }.flatMap { model -> AnyPublisher<Bool, Never> in
+                guard let md = model else { return Just(true).eraseToAnyPublisher() }
+                return self.processResponse(md)
+            }.eraseToAnyPublisher()
         }
-        
+    
         self.shouldUpdateTableView.send()
         publisher.sink { _ in
             self.shouldUpdateTableView.send()
@@ -69,6 +82,23 @@ extension MainViewModel {
             self.arrListViewData = listArr
             self.shouldUpdateTableView.send()
         }.store(in: &cancellables)
+    }
+    
+    private func setCurrentWeather(with selectedDayAndMonth: String) -> AnyPublisher<Bool, Never> {
+        currentHourlyWeatherData = self.dailyWeather.compactMap { (key, value) -> [List]? in
+            guard key.numberOfTheDayAndMonth == selectedDayAndMonth else { return nil }
+            return value
+        }.first!
+       
+        self.currentWeather = currentHourlyWeatherData.first!
+        
+        currentHourlyWeatherData.forEach { item in
+            print("Item : \(item.date()) , degree: \(item.degreeValue())")
+        }
+        createWeatherViewData()
+        
+        
+        return Just(true).eraseToAnyPublisher()
     }
     
     func initializeForIpad(){
@@ -312,7 +342,7 @@ extension MainViewModel {
                     let pressure = "\(main.pressure) hPa"
                     let windDegree = "\(model.wind.deg) °"
                     let viewData = ListViewData(dayName: dayName, dayAndMonth: dayAndMonth, icon: icon, degree: degree, windSpeed: windSpeed, humidity: humidity, pressure: pressure, windDegree: windDegree, isSelected: false)
-                    print(viewData)
+                    print("View Data: \(viewData)")
                     return viewData
                 }
                 return Just(viewDatas).eraseToAnyPublisher()

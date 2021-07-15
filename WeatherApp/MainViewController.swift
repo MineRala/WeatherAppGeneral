@@ -19,21 +19,23 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var mainViewControllerView: UIView!
     @IBOutlet weak var tableViewMain: UITableView!
-    
     @IBOutlet weak var viewHeader: UIView!
-    
     @IBOutlet weak var lblDayName: UILabel!
     @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     
-    var dayName : String = ""
     private let viewModel = MainViewModel()
     private let refreshControl = UIRefreshControl()
     
-    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     private var cancellables = Set<AnyCancellable>()
     
+    private var isFromListVC : Bool {
+        return listItem != nil
+    }
     
-    var isFromListVC : Bool = false
+    // Dependency
+    var listItem: ListViewData?
+
     deinit {
         cancellables.forEach { $0.cancel() }
     }
@@ -53,7 +55,12 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setUpUI()
         addListeners()
-        viewModel.initialize()
+        if let item = listItem {
+            viewModel.initialize(with: item.dayAndMonth)
+        } else {
+            viewModel.initialize()
+        }
+        
     }
 }
 
@@ -74,6 +81,10 @@ extension MainViewController{
         
         tableViewMain.refreshControl = refreshControl
         refreshControl.addTarget(viewModel, action: #selector(MainViewModel.initialize), for: .valueChanged)
+        if let item = listItem {
+            self.lblDayName.text = item.dayName
+        }
+        
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil 
     }
     
