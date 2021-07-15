@@ -75,8 +75,13 @@ extension DaysViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.popViewController(animated: true)
-        print("\(indexPath.row) clicked")
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainViewController") as! MainViewController
+        
+        viewController.isFromListVC = true
+    
+        self.navigationController?.pushViewController(viewController, animated: true)
+    
+       
     }
 }
 

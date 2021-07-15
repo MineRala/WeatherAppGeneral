@@ -32,6 +32,8 @@ class MainViewModel {
     
     private(set) var arrItems: [WeatherTableItem] = []
     
+    
+    
     init() {
         addListeners()
     }

@@ -20,17 +20,33 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainViewControllerView: UIView!
     @IBOutlet weak var tableViewMain: UITableView!
     
+    @IBOutlet weak var viewHeader: UIView!
+    
+    @IBOutlet weak var lblDayName: UILabel!
+    @IBOutlet weak var btnBack: UIButton!
+    
+    var dayName : String = ""
     private let viewModel = MainViewModel()
     private let refreshControl = UIRefreshControl()
     
+    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     private var cancellables = Set<AnyCancellable>()
     
+    
+    var isFromListVC : Bool = false
     deinit {
         cancellables.forEach { $0.cancel() }
     }
     
+    
+    @IBAction func btnBackClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+       
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
     }
     
     override func viewDidLoad() {
@@ -44,6 +60,9 @@ class MainViewController: UIViewController {
 //MARK: -Set up uı
 extension MainViewController{
     private func setUpUI() {
+        
+        self.tableViewTopConstraint.constant = self.isFromListVC ? 88.0 : 0.0
+        self.viewHeader.alpha = self.isFromListVC ? 1.0 : 0.0
         self.mainViewControllerView.backgroundColor  = C.Color.viewControllerBackgroundColor
         tableViewMain.register(UINib(nibName: "CityNameCell", bundle: nil), forCellReuseIdentifier: "CityNameCell")
         tableViewMain.register(UINib(nibName: "WeatherInfoCell", bundle: nil), forCellReuseIdentifier: "WeatherInfoCell")
@@ -76,6 +95,11 @@ extension MainViewController : UITableViewDataSource, UITableViewDelegate {
         var insetBottom: CGFloat = 0
         if indexPath.row == viewModel.arrItems.count - 1 {
             insetBottom = 36
+        }
+        
+        let selectedItem = viewModel.arrItems[indexPath.row]
+        if selectedItem == .nextDay && isFromListVC{
+            return 0
         }
         return viewModel.arrItems[indexPath.row].height + insetBottom
     }
