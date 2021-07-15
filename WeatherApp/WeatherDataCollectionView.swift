@@ -51,12 +51,13 @@ extension WeatherDataCollectionView {
 extension WeatherDataCollectionView {
     private func setUpUI() {
       
-        
+        collectionViewWeatherData.layer.cornerRadius = 10
         collectionViewWeatherData.register(UINib(nibName: "WeatherDataCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WeatherDataCollectionViewCell")
         collectionViewWeatherData.delegate = self
         collectionViewWeatherData.dataSource = self
         self.view.backgroundColor = .clear
         collectionViewWeatherData.backgroundColor = .clear
+      
     }
     
 }

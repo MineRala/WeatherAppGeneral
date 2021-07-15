@@ -20,20 +20,6 @@ class IpadDaysTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-//
-//    func configureCell(date: String, day: String, degree: String) {
-//
-//        self.lblDate.text = date
-//        self.lblDay.text = day
-//        self.lblDegree.text = degree
-//    }
-//
     
     func configure(with item: ListViewData, viewModel: MainViewModel) {
         viewDataItem = item

@@ -21,6 +21,7 @@ class MainIpadViewController: UIViewController {
     @IBOutlet weak var lblDegree: UILabel!
     @IBOutlet weak var lblCity: UILabel!
     
+    @IBOutlet weak var btnRefresh: UIButton!
     @IBOutlet weak var lblCelcius: UILabel!
     private var dayTableVC: DayTableViewController!
     private var hourTableVC: HourTableViewController!
@@ -29,6 +30,11 @@ class MainIpadViewController: UIViewController {
     private let viewModel = MainViewModel()
     
     private var cancellables = Set<AnyCancellable>()
+    
+    @IBAction func btnRefreshClicked(_ sender: Any) {
+        self.viewModel.initializeForIpad()
+    }
+    
     
 }
 
@@ -46,7 +52,23 @@ extension MainIpadViewController {
 extension MainIpadViewController {
     private func setUpUI() {
       //  self.mainIpadView.backgroundColor  = C.Color.viewControllerBackgroundColor
-    
+//        let largeConfig = UIImage.SymbolConfiguration(pointSize: size, weight: .bold, scale: .large)
+//
+//        let largeBoldDoc = UIImage(systemName: "doc.circle.fill", withConfiguration: largeConfig)
+//
+//        button.setImage(largeBoldDoc, for: .normal)
+//
+        
+        
+        var sizeWidth = self.view.frame.size.width * 20 / 1024
+        print(sizeWidth)
+        
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: sizeWidth)
+        let largeDoc = UIImage(systemName: "arrow.2.circlepath", withConfiguration: largeConfig)
+        btnRefresh.setImage(largeDoc, for: .normal)
+        
+        print(self.view.frame.width)
+        
         self.children.forEach { childVC in
             if let viewController = childVC as? DayTableViewController {
                 self.dayTableVC = viewController
@@ -84,6 +106,13 @@ extension MainIpadViewController {
         self.viewContainerDayTableView.backgroundColor = C.Color.ipadViewContainerBackgroundColor
         self.viewContainerHourTableView.backgroundColor = C.Color.ipadViewContainerBackgroundColor
         self.viewContainerWeatherDataCollectionView.backgroundColor = C.Color.ipadViewContainerBackgroundColor
+       
+        self.viewContainerHourTableView.layer.cornerRadius = 20
+        self.viewContainerWeatherDataCollectionView.layer.cornerRadius = 20
+      
+        self.viewContainerHourTableView.containerShadow()
+        self.viewContainerDayTableView.containerShadow()
+        self.viewContainerWeatherDataCollectionView.containerShadow()
         
         guard self.viewModel.currentWeatherViewData != nil else { return }
         self.lblCity.text = self.viewModel.currentWeatherViewData.locationText
