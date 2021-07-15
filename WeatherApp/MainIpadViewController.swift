@@ -128,6 +128,19 @@ extension MainIpadViewController {
 // MARK: - Listeners
 extension MainIpadViewController {
     private func addListeners() {
+        Network.shared.networkStatus.receive(on: DispatchQueue.main).sink { status in
+            print("Current Status: \(status)")
+            if status == .offline{
+                ToastView.show(with: "No internet connection !")
+            }
+        }.store(in: &cancellables)
+        
+        viewModel.shouldShowAlertViewForError.receive(on: DispatchQueue.main).sink { error in
+            if error == .noInternetConnection {
+                ToastView.show(with: "No internet connection !")
+            }
+        }.store(in: &cancellables)
+        
         viewModel.shouldShowLoadingAnimation
             .receive(on: DispatchQueue.main)
             .sink { show in
