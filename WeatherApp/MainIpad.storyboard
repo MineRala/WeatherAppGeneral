@@ -119,11 +119,23 @@
                                     <segue destination="Wb6-5C-cP4" kind="embed" id="doV-8U-ULd"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQq-rZ-5BH">
+                                <rect key="frame" x="739.5" y="12" width="27.5" height="61"/>
+                                <color key="tintColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="arrow.triangle.2.circlepath" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnRefreshClicked:" destination="wSL-e8-rYe" eventType="touchUpInside" id="sW8-lq-nqY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hFn-5E-4Be"/>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hFn-5E-4Be" firstAttribute="trailing" secondItem="fMX-qP-i76" secondAttribute="trailing" constant="24" id="1lH-6B-ISx"/>
+                            <constraint firstItem="WQq-rZ-5BH" firstAttribute="centerY" secondItem="rS9-My-6DZ" secondAttribute="centerY" id="6sc-jH-GFs"/>
                             <constraint firstItem="rS9-My-6DZ" firstAttribute="top" secondItem="fMX-qP-i76" secondAttribute="top" id="7UQ-dR-hbC"/>
                             <constraint firstItem="x71-VF-4qT" firstAttribute="top" secondItem="vyO-WH-yWf" secondAttribute="top" id="Dmt-1F-WEe"/>
                             <constraint firstItem="f4k-YC-FPC" firstAttribute="top" secondItem="rS9-My-6DZ" secondAttribute="bottom" constant="32" id="Idp-KV-sLh"/>
@@ -131,10 +143,12 @@
                             <constraint firstItem="ia5-8u-arc" firstAttribute="leading" secondItem="f4k-YC-FPC" secondAttribute="trailing" constant="4" id="NOg-Uq-EVS"/>
                             <constraint firstItem="ia5-8u-arc" firstAttribute="centerY" secondItem="f4k-YC-FPC" secondAttribute="centerY" constant="-54" id="OrA-Px-945"/>
                             <constraint firstItem="rS9-My-6DZ" firstAttribute="centerX" secondItem="vyO-WH-yWf" secondAttribute="centerX" id="PU6-8f-JSf"/>
-                            <constraint firstItem="x71-VF-4qT" firstAttribute="bottom" secondItem="hFn-5E-4Be" secondAttribute="bottom" id="cog-14-dZy"/>
+                            <constraint firstItem="x71-VF-4qT" firstAttribute="bottom" secondItem="vyO-WH-yWf" secondAttribute="bottom" id="cog-14-dZy"/>
                             <constraint firstItem="fMX-qP-i76" firstAttribute="leading" secondItem="eNb-OB-GaW" secondAttribute="trailing" constant="32" id="ebw-3P-rYa"/>
                             <constraint firstItem="eNb-OB-GaW" firstAttribute="leading" secondItem="x71-VF-4qT" secondAttribute="trailing" constant="32" id="ifE-V0-U7C"/>
+                            <constraint firstItem="fMX-qP-i76" firstAttribute="leading" secondItem="WQq-rZ-5BH" secondAttribute="trailing" constant="32" id="mwZ-vg-vHM"/>
                             <constraint firstItem="fMX-qP-i76" firstAttribute="top" secondItem="hFn-5E-4Be" secondAttribute="top" constant="24" id="o5i-2S-MIO"/>
+                            <constraint firstItem="WQq-rZ-5BH" firstAttribute="top" secondItem="hFn-5E-4Be" secondAttribute="top" constant="12" id="oYE-dn-lda"/>
                             <constraint firstItem="f4k-YC-FPC" firstAttribute="centerX" secondItem="rS9-My-6DZ" secondAttribute="centerX" id="pGf-NC-NEe"/>
                             <constraint firstItem="0G8-GE-6WL" firstAttribute="centerX" secondItem="rS9-My-6DZ" secondAttribute="centerX" id="pJE-ff-Tst"/>
                             <constraint firstItem="eNb-OB-GaW" firstAttribute="top" secondItem="0G8-GE-6WL" secondAttribute="bottom" constant="48" id="uSk-nl-pxg"/>
@@ -144,6 +158,7 @@
                     <navigationItem key="navigationItem" id="KEl-05-z8u"/>
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
+                        <outlet property="btnRefresh" destination="WQq-rZ-5BH" id="MQm-8y-9ur"/>
                         <outlet property="hourTableViewContainerHeightConstraint" destination="ruV-mJ-aL4" id="R7d-fy-yQ4"/>
                         <outlet property="imViewIcon" destination="JLa-bC-RSY" id="clg-8K-0Si"/>
                         <outlet property="lblCelcius" destination="ia5-8u-arc" id="KDe-5B-PfA"/>
@@ -308,6 +323,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="101"/>
         <image name="sun.min" catalog="system" width="128" height="121"/>
     </resources>
 </document>

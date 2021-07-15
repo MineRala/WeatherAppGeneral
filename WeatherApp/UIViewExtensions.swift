@@ -36,4 +36,14 @@ extension UIView {
         self.layer.masksToBounds = false
     }
     
+    
+    func containerShadow() {
+        self.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).withAlphaComponent(0.1).cgColor
+        self.layer.shadowOpacity = 1
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowRadius = 5
+        self.layer.shouldRasterize = true
+        self.layer.masksToBounds = false
+    }
+    
 }

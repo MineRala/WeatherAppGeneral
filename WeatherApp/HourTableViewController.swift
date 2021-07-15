@@ -44,6 +44,8 @@ extension HourTableViewController {
 //MARK: - Set Up Uı
 extension HourTableViewController {
     private func setUpUI() {
+        hourView.layer.cornerRadius = 10
+        
         hourTableView.register(UINib(nibName: "IpadHoursTableViewCell", bundle: nil), forCellReuseIdentifier: "IpadHoursTableViewCell")
         hourTableView.delegate = self
         hourTableView.dataSource = self

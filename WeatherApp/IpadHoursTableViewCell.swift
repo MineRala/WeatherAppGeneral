@@ -22,6 +22,7 @@ class IpadHoursTableViewCell: UITableViewCell {
         hourView.layer.borderColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
         hourView.layer.borderWidth = 1
         hourView.layer.cornerRadius = 31
+      
     
     }
 
