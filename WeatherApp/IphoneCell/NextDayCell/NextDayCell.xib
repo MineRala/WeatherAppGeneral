@@ -21,13 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="172" height="51"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yH-dY-cZP">
-                                <rect key="frame" x="58" y="8" width="98" height="34"/>
+                                <rect key="frame" x="74" y="8" width="82" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="asR-K5-Qk1"/>
                                 </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="Next 5 Days">
+                                        <fragment content="Next Days">
                                             <attributes>
                                                 <font key="NSFont" size="17" name="Futura-Medium"/>
                                                 <integer key="NSUnderline" value="1"/>

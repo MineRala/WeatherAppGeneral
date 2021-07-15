@@ -71,7 +71,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
-         identifier = "../WeatherApp/Cesme.gpx"
+         identifier = "../WeatherApp/Ankara.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>
