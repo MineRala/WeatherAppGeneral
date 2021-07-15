@@ -10,6 +10,14 @@ import SwiftLocation
 import CoreLocation
 import Combine
 
+/**
+ Find Location
+ Call API with coordinates
+ Hold WeatherData model in DataLayer class
+ Make processes on MainViewModel
+ 
+ */
+
 // MARK: - Main View Model {Class}
 class MainViewModel {
     
@@ -299,20 +307,7 @@ extension MainViewModel {
 // MARK: - User Location
 extension MainViewModel {
     private func findUserCoordinates() -> AnyPublisher<CLLocationCoordinate2D? , Never> {
-        return Future { promise in
-            SwiftLocation.gpsLocationWith {
-                $0.subscription = .single
-                $0.accuracy = .neighborhood
-            }.then { result in // you can attach one or more subscriptions via `then`.
-                switch result {
-                case .success(let newData):
-                    promise(.success(newData.coordinate))
-                case .failure(let error):
-                    self.shouldShowAlertViewForError.send(.locationNotFound)
-                    promise(.success(nil))
-                }
-            }
-        }.eraseToAnyPublisher()
+        
     }
 }
 
