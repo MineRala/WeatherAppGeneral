@@ -1,4 +1,12 @@
 # WeatherAppGeneral
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-iOS%2013.0+-lightgrey.svg" alt="Platform: iOS">
+<a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift"/></a>
+<img src="https://img.shields.io/github/license/erikmartens/NearbyWeather.svg?style=flat" alt="License: MIT">
+</p>
+
+
 ## Iphone Screen
 
 ### Light Mode
@@ -27,11 +35,11 @@
 - Dark mode supported.
 
 # 3rd Party Libraries
-> <a href="https://github.com/SwiftLocation/SwiftLocation">SwiftLocation</a>\
-> <a href="https://github.com/Combine/Combine">Combine</a>\
-> <a href="https://github.com/Lottie/Lottie">Lottie</a>
+> <a href="https://github.com/malcommac/SwiftLocation">SwiftLocation</a>\
+> <a href="https://github.com/airbnb/lottie-ios">Lottie</a>
 
 ## Installation
+After pulling or downloading this repo. Go to project folder where "Podfile" is located with terminal; then install pods with calling "pod install" command. Finally you can run application . 
 Install the 3rd party libraries to use this project
 
 ```bash
