@@ -25,3 +25,17 @@
 - Requires iOS 13.0 or later. 
 - Compatible with iPhone and iPad.
 - Dark mode supported.
+
+# 3rd Party Libraries
+> <a href="https://github.com/SnapKit/SnapKit">SnapKit</a>\
+> <a href="https://github.com/Combine/Combine">Combine</a>
+
+## Installation
+Install the 3rd party libraries to use this project
+
+```bash
+pod install
+```
+
+# Architecture
+- MVVM architecture was used in this project.
