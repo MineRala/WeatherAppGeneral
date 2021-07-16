@@ -13,10 +13,8 @@ class WeatherHourCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var ImageIcon: UIImageView!
     @IBOutlet weak var labelTime: UILabel!
     @IBOutlet weak var viewImageContentArea: UIView!
-    
     @IBOutlet weak var collectionContentView: UIView!
     
-    private var currentTimeForecast: List!
 }
 
 //MARK: -Set up uı
@@ -35,23 +33,16 @@ class WeatherHourCollectionViewCell: UICollectionViewCell {
 
 //MARK: -Configure Cell
     extension WeatherHourCollectionViewCell{
-        func configureCell(currentForecast: List, isChosen: Bool) {
-           
-            self.labelDegree.textColor = C.Color.labelDegreeColor
-            self.ImageIcon.tintColor = C.Color.imageIconColor
-           
-            self.labelTime.textColor = C.Color.labelTimeColor
-            self.viewImageContentArea.backgroundColor = C.Color.imageContentArea
-            self.collectionContentView.backgroundColor = C.Color.collectionContentViewColor
+        func configureCell(currentForecast: WeatherHourlyViewDataModel) {
             
-            self.currentTimeForecast = currentForecast
-            self.labelTime.text = self.currentTimeForecast.dateWithFormat()
-            self.ImageIcon.image = UIImage(systemName:self.currentTimeForecast.weatherIcon())
-            self.labelDegree.text = currentForecast.degreeValue()
-            self.collectionContentView.backgroundColor = isChosen ? C.Color.hourlCollectionViewCellSelectedBgColor : .clear
-            self.labelDegree.textColor = isChosen ? C.Color.hourlCollectionViewCellSelectedDegreeColor : C.Color.labelDegreeColor
-            self.labelTime.textColor = isChosen ? C.Color.hourlCollectionViewCellSelectedTimeColor : C.Color.labelTimeColor
-            self.ImageIcon.tintColor = isChosen ? C.Color.hourlCollectionViewCellSelectedIconColor : C.Color.imageIconColor
-            self.viewImageContentArea.backgroundColor = isChosen ? C.Color.hourlCollectionViewCellSelectedEllipsColor : C.Color.imageContentArea
+            self.labelTime.text = currentForecast.timeText
+            self.ImageIcon.image = UIImage(systemName: currentForecast.icon)
+            self.labelDegree.text = currentForecast.degreeText
+            
+            self.collectionContentView.backgroundColor = currentForecast.isSelected ? C.Color.hourlCollectionViewCellSelectedBgColor : .clear
+            self.labelDegree.textColor = currentForecast.isSelected ? C.Color.hourlCollectionViewCellSelectedDegreeColor : C.Color.labelDegreeColor
+            self.labelTime.textColor = currentForecast.isSelected ? C.Color.hourlCollectionViewCellSelectedTimeColor : C.Color.labelTimeColor
+            self.ImageIcon.tintColor = currentForecast.isSelected ? C.Color.hourlCollectionViewCellSelectedIconColor : C.Color.imageIconColor
+            self.viewImageContentArea.backgroundColor = currentForecast.isSelected ? C.Color.hourlCollectionViewCellSelectedEllipsColor : C.Color.imageContentArea
         }
 }

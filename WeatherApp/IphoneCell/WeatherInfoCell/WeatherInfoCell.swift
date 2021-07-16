@@ -14,7 +14,6 @@ class WeatherInfoCell: UITableViewCell {
     @IBOutlet weak var ImageIcon: UIImageView!
     @IBOutlet weak var labelDc: UILabel!
     
-    private var viewModel: MainViewModel!
 }
 
 //MARK: -Set up uı
@@ -27,21 +26,25 @@ class WeatherInfoCell: UITableViewCell {
             self.labelDc.font = C.Font.bold.font(with: 26)
             self.labelState.font = C.Font.light.font(with: 26)
         }
-
 }
     
 //MARK: -Configure Cell
     extension WeatherInfoCell{
         func configureCell(_ viewModel: MainViewModel) {
-            self.viewModel = viewModel
-            
-            self.labelState.text = viewModel.currentWeatherViewData.weatherState
-            self.labelDegree.text = viewModel.currentWeatherViewData.weatherDegree
-            self.ImageIcon.image = UIImage(systemName: viewModel.currentWeatherViewData.weatherIcon)
-
             self.labelDegree.textColor = C.Color.labelDegreeInfoColor
             self.labelDc.textColor = C.Color.labelDcColor
             self.labelState.textColor = C.Color.labelStateColor
+            
+            guard let weatherViewData = viewModel.currentWeatherViewData else {
+                self.labelState.text = "-"
+                self.labelDegree.text = "-"
+                self.ImageIcon.image = nil
+                return
+            }
+            
+            self.labelState.text = weatherViewData.weatherState
+            self.labelDegree.text = weatherViewData.weatherDegree
+            self.ImageIcon.image = UIImage(systemName: weatherViewData.weatherIcon)
         }
 }
     

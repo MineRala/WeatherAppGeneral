@@ -29,7 +29,7 @@ enum WeatherService {
     var requestURL: String {
         switch self {
         case .cityLocation(let coordinates):
-            return "\(baseURL)?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(appID)&units=\(appID)"
+            return "\(baseURL)?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(appID)&units=\(units)"
         }
     }
 }

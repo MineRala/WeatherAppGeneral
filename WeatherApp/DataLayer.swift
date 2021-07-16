@@ -23,6 +23,54 @@ class DataLayer {
 
 // MARK: - Public
 extension DataLayer {
+    func reset() {
+        self.weatherModel = nil 
+    }
+    
+    func listItems(from selectedDate: Date) -> [List] {
+        guard let model = weatherModel, let listArr = model.list  else { return [] }
+        let selectedDayIdentifier = selectedDate.dateUniqueIdentifier
+        return listArr.compactMap { item -> List? in
+            guard item.date().dateUniqueIdentifier == selectedDayIdentifier else { return nil }
+            return item
+        }
+    }
+    
+    func listItem(from selectedTime: Date) -> List? {
+        guard let model = weatherModel, let listArr = model.list  else { return nil }
+        let selectedDateIdentifier = selectedTime.fullDateUniqueIdentifier
+        return listArr.first { item -> Bool in
+            let identifer = item.date().fullDateUniqueIdentifier
+            return identifer == selectedDateIdentifier
+        } ?? listArr.first
+    }
+    
+    func dailyWeatherListItems() -> [List] {
+        guard let model = weatherModel, let listArr = model.list  else { return [] }
+        var currentIdentifiers: [String] = []
+        var tempListArr: [List] = []
+        var listOfMidDayWeathers: [List] = []
+      
+        listArr.forEach { item in
+            let uniqueIdentifier = item.date().dateUniqueIdentifier
+            if !currentIdentifiers.contains(uniqueIdentifier) {
+                if tempListArr.count > 0 {
+                    let midDayWeather = tempListArr[tempListArr.count / 2]
+                    listOfMidDayWeathers.append(midDayWeather)
+                }
+                currentIdentifiers.append(uniqueIdentifier)
+                tempListArr = []
+            }
+            tempListArr.append(item)
+        }
+        
+        if tempListArr.count > 0 {
+            let midDayWeather = tempListArr[tempListArr.count / 2]
+            listOfMidDayWeathers.append(midDayWeather)
+        }
+        return listOfMidDayWeathers
+    }
+    
     func initialize() -> AnyPublisher<WeatherAppError?, Never> {
         // Network Check
         if Network.shared.networkStatus.value == .offline {
@@ -53,7 +101,7 @@ extension DataLayer {
             apiResponseData = data
             return self.convertToDataModel(from: data)
         }.flatMap { modelResponse -> AnyPublisher<WeatherModelResponse, Never> in
-            guard modelResponse.error != nil, let model = modelResponse.model else {
+            guard modelResponse.error == nil, let model = modelResponse.model else {
                 let response = WeatherModelResponse(model: nil, error: .apiServiceError)
                 return Just(response).eraseToAnyPublisher()
             }
