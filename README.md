@@ -6,3 +6,13 @@
 
 ### Dark Mode
 <img width="140" alt="iphoneDark1" src="https://user-images.githubusercontent.com/47946453/125923173-8183c152-6814-410a-9d6a-e3dee54e6e06.png"><img width="140" alt="iphoneDark2" src="https://user-images.githubusercontent.com/47946453/125923180-ff04f27e-761d-445b-ac2e-3fbd2debab79.png"><img width="140" alt="iphoneDark3" src="https://user-images.githubusercontent.com/47946453/125923182-da48ee00-0704-4b04-bb51-0384a5337538.png"><img width="140" alt="iphoneDark4" src="https://user-images.githubusercontent.com/47946453/125923186-a94b6f91-ac7f-411a-b82e-fef73925b8e1.png"><img width="140" alt="iphoneDark5" src="https://user-images.githubusercontent.com/47946453/125923190-a8363800-a313-4bc9-940d-1edc4d81a41e.png"><img width="140" alt="iphoneDark6" src="https://user-images.githubusercontent.com/47946453/125923193-a3b59cf6-9746-4672-a598-fcda7605a6f3.png"><img width="140" alt="iphoneDark7" src="https://user-images.githubusercontent.com/47946453/125923195-70b5c107-4fdd-4eb9-a1f0-c2ae333cce11.png">
+
+
+## IPad Screen
+
+## Light Mode
+
+<img width="200" alt="ipadLight1" src="https://user-images.githubusercontent.com/47946453/125924063-3189fa1b-3c20-4632-acdf-3285ea589526.png">
+<img width="200" alt="ipadLight2" src="https://user-images.githubusercontent.com/47946453/125924069-44563e40-3433-46fb-a0c3-e61a81c9960a.png">
+<img width="200" alt="ipadLight3" src="https://user-images.githubusercontent.com/47946453/125924075-8ebb4e1b-af19-4a12-83d6-24e5c8b6e37f.png">
+<img width="200" alt="ipadLight4" src="https://user-images.githubusercontent.com/47946453/125924078-4f35eafe-9463-47ee-b5b4-5da9e526c776.png">
