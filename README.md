@@ -10,6 +10,8 @@
 
 ## IPad Screen
 
-## Light Mode
-
+### Light Mode
 <img width="230" alt="ipadLight1" src="https://user-images.githubusercontent.com/47946453/125924063-3189fa1b-3c20-4632-acdf-3285ea589526.png"><img width="230" alt="ipadLight2" src="https://user-images.githubusercontent.com/47946453/125924069-44563e40-3433-46fb-a0c3-e61a81c9960a.png"><img width="230" alt="ipadLight3" src="https://user-images.githubusercontent.com/47946453/125924075-8ebb4e1b-af19-4a12-83d6-24e5c8b6e37f.png"><img width="230" alt="ipadLight4" src="https://user-images.githubusercontent.com/47946453/125924078-4f35eafe-9463-47ee-b5b4-5da9e526c776.png">
+
+### Dark Mode
+<img width="230" alt="ipadDark1" src="https://user-images.githubusercontent.com/47946453/125924809-78b94415-e8ed-4b79-94dd-97eecfe01806.png"><img width="230" alt="ipadDark2" src="https://user-images.githubusercontent.com/47946453/125924818-a55ccb3f-d26d-49fc-8951-5aa1484e7335.png"><img width="230" alt="ipadDark3" src="https://user-images.githubusercontent.com/47946453/125924825-682e8658-d3d1-4fef-87e4-41648e601475.png"><img width="230" alt="ipadDark4" src="https://user-images.githubusercontent.com/47946453/125924830-f772465f-2e19-41c7-86d1-f919ad968694.png">
