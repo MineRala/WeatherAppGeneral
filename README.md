@@ -28,7 +28,7 @@
 
 # 3rd Party Libraries
 > <a href="https://github.com/SwiftLocation/SwiftLocation">SwiftLocation</a>\
-> <a href="https://github.com/Combine/Combine">Combine</a>
+> <a href="https://github.com/Combine/Combine">Combine</a>\
 > <a href="https://github.com/Lottie/Lottie">Lottie</a>
 
 ## Installation
