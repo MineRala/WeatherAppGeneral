@@ -13,10 +13,12 @@ import Combine
 // MARK: - WeatherServiceCity
 enum WeatherServiceCity {
     case paris
+    case moon
     
     var coordinates: CLLocationCoordinate2D {
         switch self {
             case .paris: return CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522)
+            case .moon: return CLLocationCoordinate2D(latitude: 1200.323, longitude: -3409.938)
         }
     }
 }
@@ -46,11 +48,17 @@ extension LocationService {
 extension LocationService {
     private func requestFakeLocation() -> AnyPublisher<LocationServiceResponse, Never> {
         return Future {promise in
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(LocationRequestType.fakeLocation.simulationWaitInterval)) {
-                let response = LocationServiceResponse(coordinates: C.App.fakeLocationCity.coordinates, error: nil)
+            self.requestFakeLocation { response in
                 promise(.success(response))
             }
         }.eraseToAnyPublisher()
+    }
+    
+    fileprivate func requestFakeLocation(callback: @escaping (LocationServiceResponse) -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(LocationRequestType.fakeLocation.simulationWaitInterval)) {
+            let response = LocationServiceResponse(coordinates: C.App.fakeLocationCity.coordinates, error: nil)
+            callback(response)
+        }
     }
     
     private func requestLocation() -> AnyPublisher<LocationServiceResponse, Never> {
@@ -69,5 +77,12 @@ extension LocationService {
                 }
             }
         }.eraseToAnyPublisher()
+    }
+}
+
+// MARK: - Mock
+class LocationServiceMock: LocationService {
+    func requestFakeLocationMock(callback: @escaping (LocationServiceResponse) -> ()) {
+        super.requestFakeLocation(callback: callback)
     }
 }

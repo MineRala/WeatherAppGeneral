@@ -24,7 +24,7 @@ enum LocationRequestType {
     var simulationWaitInterval: Int {
         switch self {
         case .fakeLocation:
-            return 3
+            return 1
         default:
             return 0
         }
@@ -36,7 +36,7 @@ struct C {
     struct App {
         static let numberOfItemsInHourlyCollectionView: Int = 8
         static let locationRequestType = LocationRequestType.fakeLocation
-        static let fakeLocationCity = WeatherServiceCity.paris
+        static var fakeLocationCity = WeatherServiceCity.paris
         
     }
     

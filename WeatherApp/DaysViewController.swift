@@ -87,7 +87,8 @@ extension DaysViewController: UITableViewDelegate, UITableViewDataSource{
 extension DaysViewController {
     private func addListeners() {
         viewModel.shouldUpdateTableView.receive(on: DispatchQueue.main).sink { _ in
-            self.tableViewDays.reloadData()
+            guard let table = self.tableViewDays else { return }
+            table.reloadData()
         }.store(in: &cancellables)
     }
 }

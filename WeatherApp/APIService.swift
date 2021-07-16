@@ -14,15 +14,15 @@ import CoreLocation
 enum WeatherService {
     case cityLocation(CLLocationCoordinate2D)
     
-    private var baseURL: String {
+    var baseURL: String {
         return "https://api.openweathermap.org/data/2.5/forecast"
     }
     
-    private var units: String {
+    var units: String {
         return "metric"
     }
     
-    private var appID: String {
+    var appID: String {
         return "bbcf57969e78d1300a815765b7d587f0"
     }
     
@@ -36,7 +36,11 @@ enum WeatherService {
 
 
 class APIService {
-     
+    private var network: Network!
+    
+    init(network: Network = Network.shared) {
+        self.network = network
+    }
 }
 
 // MARK: - Public
@@ -53,8 +57,8 @@ extension APIService {
 
 // MARK: - Request
 extension APIService {
-    private func request(service: WeatherService, callBack: @escaping (Data?, WeatherAppError?) -> ()) {
-        guard Network.shared.networkStatus.value == .online else {
+    fileprivate func request(service: WeatherService, callBack: @escaping (Data?, WeatherAppError?) -> ()) {
+        guard network.networkStatus.value == .online else {
             callBack(nil, WeatherAppError.noInternetConnection)
             return
         }
@@ -79,5 +83,17 @@ extension APIService {
             callBack(data,nil)
         }
         dataTask.resume()
+    }
+}
+
+// MARK: - Mock
+class APIServiceMock: APIService {
+    
+    override init(network: Network = Network.shared) {
+        super.init(network: network)
+    }
+    
+    func requestMock(service: WeatherService, callBack: @escaping (Data?, WeatherAppError?) -> ()) {
+        super.request(service: service, callBack: callBack)
     }
 }

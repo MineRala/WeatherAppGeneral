@@ -49,18 +49,46 @@ extension MainViewController {
         super.viewDidAppear(animated)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
         addListeners()
         viewModel.initialize(with: currentDependency.selectedDate)
     }
+    
+    
+    override func viewWillLayoutSubviews() {
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+    }
+    
+    
 }
 
 // MARK: - Actions
 extension MainViewController {
     @IBAction func btnBackClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func refreshViewDatas() {
+        self.viewModel.reset()
+        self.viewModel.initialize(with: nil)
     }
 }
 
@@ -79,8 +107,11 @@ extension MainViewController{
         tableViewMain.delegate = self
         tableViewMain.dataSource = self
         
-        tableViewMain.refreshControl = refreshControl
-        refreshControl.addTarget(viewModel, action: #selector(MainViewModel.initialize), for: .valueChanged)
+        if self.isFromListVC == false {
+            tableViewMain.refreshControl = refreshControl
+            refreshControl.addTarget(self, action: #selector(refreshViewDatas), for: .valueChanged)
+        }
+       
         if let dayName = currentDependency.nameOfTheDay {
             self.lblDayName.text = dayName
         }
@@ -181,6 +212,7 @@ extension MainViewController {
             let vc = story.instantiateViewController(identifier: "DaysViewController") as! DaysViewController
             vc.setViewModel(self.viewModel)
             self.navigationController?.pushViewController(vc, animated: true)
+            
         }.store(in: &cancellables)
         
         Network.shared.networkStatus.receive(on: DispatchQueue.main).sink { status in

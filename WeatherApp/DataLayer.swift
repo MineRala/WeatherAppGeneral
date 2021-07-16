@@ -9,8 +9,9 @@ import Foundation
 import Combine
 import CoreLocation
 
-
 class DataLayer {
+    private var network: Network = Network.shared
+    
     private let apiService = APIService()
     private let fileService = FileService()
     private let locationService = LocationService()
@@ -18,6 +19,10 @@ class DataLayer {
     private(set) var weatherModel: WeatherModel? = nil
     
     private var cancellables = Set<AnyCancellable>()
+    
+    init(network: Network = Network.shared) {
+        self.network = network
+    }
     
 }
 
@@ -129,33 +134,51 @@ extension DataLayer {
 extension DataLayer {
     private func convertToDataModel(from data: Data) -> AnyPublisher<WeatherModelResponse, Never> {
         return Future {promise in
+            self.convertToDataModel(from: data) { response in
+                promise(.success(response))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    fileprivate func convertToDataModel(from data: Data, callback: @escaping (WeatherModelResponse) -> ()) {
+        DispatchQueue.global().async {
+            do {
+               let json = try JSONDecoder().decode(WeatherModel.self, from: data)
+                let response = WeatherModelResponse(model: json, error: nil)
+                callback(response)
+            } catch let error {
+                let response = WeatherModelResponse(model: nil, error: WeatherAppError.apiServiceError)
+                callback(response)
+            }
+        }
+    }
+    
+    private func checkResponseModel(weatherModel: WeatherModel) -> AnyPublisher<WeatherModelResponse, Never> {
+        return Future {promise in
             DispatchQueue.global().async {
-                do {
-                   let json = try JSONDecoder().decode(WeatherModel.self, from: data)
-                    let response = WeatherModelResponse(model: json, error: nil)
-                    promise(.success(response))
-                } catch let error {
-                    let response = WeatherModelResponse(model: nil, error: WeatherAppError.apiServiceError)
+                self.checkResponseModel(weatherModel: weatherModel) { response in
                     promise(.success(response))
                 }
             }
         }.eraseToAnyPublisher()
     }
     
-    private func checkResponseModel(weatherModel: WeatherModel) -> AnyPublisher<WeatherModelResponse, Never> {
+    fileprivate func checkResponseModel(weatherModel: WeatherModel, callback: @escaping (WeatherModelResponse) -> ()) {
         guard let _ = weatherModel.city, let listArr = weatherModel.list, listArr.count > 0 else {
             let response =  WeatherModelResponse(model: nil, error: .fileProcessingError)
-            return Just(response).eraseToAnyPublisher()
+            callback(response)
+            return
         }
         
         guard listArr.first { listItem -> Bool in
-            guard let _ = listItem.dt, let main = listItem.main else { return true }
+            guard let _ = listItem.dt, let _ = listItem.main else { return true }
             return false
         } == nil else {
             let response = WeatherModelResponse(model: nil, error: .fileProcessingError)
-            return Just(response).eraseToAnyPublisher()
+            callback(response)
+            return
         }
-        return Just(WeatherModelResponse(model: weatherModel, error: nil)).eraseToAnyPublisher()
+        callback(WeatherModelResponse(model: weatherModel, error: nil))
     }
     
     private func requestWeatherData(from coordinates: CLLocationCoordinate2D) -> AnyPublisher<WeatherDataResponse, Never> {
@@ -173,4 +196,19 @@ extension DataLayer {
         }.eraseToAnyPublisher()
     }
 
+}
+
+// MARK: - Mock
+class DataLayerMock: DataLayer {
+    override init(network: Network = Network.shared) {
+        super.init(network: network)
+    }
+    
+    func convertToDataModelMock(from data: Data, callback: @escaping (WeatherModelResponse) -> ()) {
+        super.convertToDataModel(from: data, callback: callback)
+    }
+    
+    func checkResponseModelMock(weatherModel: WeatherModel, callback: @escaping (WeatherModelResponse) -> ()) {
+        super.checkResponseModel(weatherModel: weatherModel, callback: callback)
+    }
 }
