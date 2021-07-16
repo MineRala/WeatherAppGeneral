@@ -27,7 +27,7 @@
 - Dark mode supported.
 
 # 3rd Party Libraries
-> <a href="https://github.com/SnapKit/SnapKit">SnapKit</a>\
+> <a href="https://github.com/SwiftLocation/SwiftLocation">SwiftLocation</a>\
 > <a href="https://github.com/Combine/Combine">Combine</a>
 
 ## Installation
