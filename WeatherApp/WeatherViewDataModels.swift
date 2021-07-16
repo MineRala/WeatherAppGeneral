@@ -29,7 +29,8 @@ enum WeatherTableItem {
 }
 
 // MARK: - List View Data
-struct ListViewData {
+struct ListViewDataModel {
+    let date: Date
     let dayName: String
     let dayAndMonth: String
     let icon: String
@@ -38,12 +39,17 @@ struct ListViewData {
     let humidity: String
     let pressure: String
     let windDegree: String
-    var isSelected: Bool
+    private(set) var isSelected: Bool
+    
+    mutating func setIsSelected(_ isSelected: Bool) {
+        self.isSelected = isSelected
+    }
 }
 
 // MARK: - Weather View Data
-struct WeatherViewData {
-    let locationText: String // city, country
+struct WeatherViewDataModel {
+    let date: Date 
+    let locationText: String
     let weatherState : String
     let weatherDegree : String
     let weatherIcon : String
@@ -58,9 +64,15 @@ struct WeatherViewData {
 }
 
 // MARK: - Weather Hourly DataView
-struct WeatherHourlyDataView {
+struct WeatherHourlyViewDataModel {
+    let date: Date
     let timeText: String
     let degreeText: String
     let icon: String
-    var isSelected: Bool 
+    
+    private(set) var isSelected: Bool
+    
+    mutating func setIsSelected(_ isSelected: Bool) {
+        self.isSelected = isSelected
+    }
 }

@@ -32,9 +32,9 @@ class MainIpadViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     @IBAction func btnRefreshClicked(_ sender: Any) {
-        self.viewModel.initializeForIpad()
+        self.viewModel.reset()
+        self.viewModel.initialize()
     }
-    
     
 }
 
@@ -44,7 +44,7 @@ extension MainIpadViewController {
         super.viewDidLoad()
         setUpUI()
         addListeners()
-        viewModel.initializeForIpad()
+        viewModel.initialize()
     }
 }
 
@@ -114,14 +114,18 @@ extension MainIpadViewController {
         self.viewContainerDayTableView.containerShadow()
         self.viewContainerWeatherDataCollectionView.containerShadow()
         
-        guard self.viewModel.currentWeatherViewData != nil else { return }
-        self.lblCity.text = self.viewModel.currentWeatherViewData.locationText
-        self.lblDegree.text = self.viewModel.currentWeatherViewData.weatherDegree
-        self.imViewIcon.image = UIImage(systemName: viewModel.currentWeatherViewData.weatherIcon)
-        self.lblWeatherState.text = self.viewModel.currentWeatherViewData.weatherState
+        guard let currentWeatherData = self.viewModel.currentWeatherViewData else {
+            self.lblCity.text = "-"
+            self.lblDegree.text = "-"
+            self.imViewIcon.image = nil
+            self.lblWeatherState.text = "-"
+            return
+        }
         
-        
-        
+        self.lblCity.text = currentWeatherData.locationText
+        self.lblDegree.text = currentWeatherData.weatherDegree
+        self.imViewIcon.image = UIImage(systemName: currentWeatherData.weatherIcon)
+        self.lblWeatherState.text = currentWeatherData.weatherState
     }
 }
 

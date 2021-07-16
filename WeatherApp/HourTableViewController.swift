@@ -10,7 +10,7 @@ import Combine
 
 class HourTableViewController: UIViewController {
 
-    var viewModel: MainViewModel!
+    private var viewModel: MainViewModel?
     private var cancellables = Set<AnyCancellable>()
     
     @IBOutlet var hourView: UIView!
@@ -18,9 +18,8 @@ class HourTableViewController: UIViewController {
 
 }
 
-
 // MARK: - Public
-extension HourTableViewController: IpadChildViewControllerProtocol {
+extension HourTableViewController {
     func setViewModel(_ viewModel: MainViewModel) {
         self.viewModel = viewModel
         addListeners()
@@ -31,7 +30,7 @@ extension HourTableViewController: IpadChildViewControllerProtocol {
 extension HourTableViewController {
     override func viewDidLoad() {
        super.viewDidLoad()
-      setUpUI()
+       setUpUI()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -67,11 +66,9 @@ extension HourTableViewController : UITableViewDelegate, UITableViewDataSource {
         return vm.currentWeatherHourlyDataViews.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IpadHoursTableViewCell", for: indexPath) as! IpadHoursTableViewCell
-        var current = viewModel.currentWeatherHourlyDataViews[indexPath.row]
-        current.isSelected = viewModel.isCurrentForecastHourModel(hourText: current.timeText)
+        let current = viewModel!.currentWeatherHourlyDataViews[indexPath.row]
         cell.configureCell(currentForecast: current)
         return cell
     }
@@ -81,7 +78,9 @@ extension HourTableViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.viewModel.selectCurrentHour(at: indexPath.row)
+        let current = viewModel!.currentWeatherHourlyDataViews[indexPath.row]
+        guard current.isSelected == false else { return }
+        viewModel?.initialize(with: current.date)
     }
 
 }
@@ -89,6 +88,8 @@ extension HourTableViewController : UITableViewDelegate, UITableViewDataSource {
 // MARK: - Listeners
 extension HourTableViewController {
     private func addListeners() {
+        guard let viewModel = viewModel else { return }
+        self.cancellables.forEach { $0.cancel() }
         viewModel.shouldUpdateTableView
             .receive(on: DispatchQueue.main)
             .sink { _ in

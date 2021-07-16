@@ -24,7 +24,6 @@ extension DaysViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
-        viewModel.initializeListViewItems()
     }
 }
 
@@ -77,8 +76,9 @@ extension DaysViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = self.viewModel.arrListViewData[indexPath.row + 1]
+        let dependency = MainViewControllerDependency(viewModel: self.viewModel, selectedDate: model.date, isFromDaysViewController: true, nameOfTheDay: model.date.nameOfTheDay)
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainViewController") as! MainViewController
-        viewController.listItem = model
+        viewController.setDependency(dependency)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

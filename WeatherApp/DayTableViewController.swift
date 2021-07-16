@@ -12,12 +12,13 @@ class DayTableViewController: UIViewController {
 
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var dayTableView: UITableView!
-    var viewModel: MainViewModel!
+    
+    private var viewModel: MainViewModel?
     private var cancellables = Set<AnyCancellable>()
 }
 
 // MARK: - Public
-extension DayTableViewController: IpadChildViewControllerProtocol {
+extension DayTableViewController {
     func setViewModel(_ viewModel: MainViewModel) {
         self.viewModel = viewModel
         self.addListeners()
@@ -62,9 +63,8 @@ extension DayTableViewController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IpadDaysTableViewCell", for: indexPath) as! IpadDaysTableViewCell
-        var viewDataItem = self.viewModel.arrListViewData[indexPath.row]
-        viewDataItem.isSelected = self.viewModel.isCurrentForecastDayModel(dateText: viewDataItem.dayAndMonth)
-        cell.configure(with: viewDataItem, viewModel: viewModel)
+        let viewDataItem = self.viewModel!.arrListViewData[indexPath.row]
+        cell.configure(with: viewDataItem)
         return cell
     }
     
@@ -73,10 +73,9 @@ extension DayTableViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected : \(indexPath.row)")
-        let selectedItem = viewModel.arrListViewData[indexPath.row]
+        let selectedItem = viewModel!.arrListViewData[indexPath.row]
         guard selectedItem.isSelected == false else { return }
-        viewModel.selectCurrentWeatherList(at: indexPath.row)
+        viewModel?.initialize(with: selectedItem.date)
     }
 }
 
@@ -84,6 +83,8 @@ extension DayTableViewController : UITableViewDelegate,UITableViewDataSource {
 //MARK: - Listeners
 extension DayTableViewController {
     private func addListeners() {
+        guard let viewModel = viewModel else { return }
+        self.cancellables.forEach { $0.cancel() }
         viewModel.shouldUpdateTableView
             .receive(on: DispatchQueue.main)
             .sink { _ in

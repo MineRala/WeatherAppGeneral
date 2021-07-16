@@ -32,5 +32,26 @@ extension Date {
         return dayInWeek
     }
     
-   
+    var dateUniqueIdentifier: String {
+        let date = self
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "dd_MM_yyyy"
+        let identifier =  dateFormatter.string(from: date)
+        return identifier
+    }
+    
+    var hourUniqueIdentifier: String {
+        let date = self
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "h a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
+        let identifier =  dateFormatter.string(from: date)
+        return identifier
+    }
+    
+    var fullDateUniqueIdentifier: String {
+        return "\(self.dateUniqueIdentifier)_\(self.hourUniqueIdentifier)"
+    }
+    
 }

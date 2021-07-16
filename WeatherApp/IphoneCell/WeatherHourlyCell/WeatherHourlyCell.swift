@@ -12,9 +12,7 @@ class WeatherHourlyCell: UITableViewCell {
     @IBOutlet weak var weatherHourlyCellContentView: UIView!
     @IBOutlet private weak var collectionViewHourlyWeather: UICollectionView!
   
-    private var viewModel: MainViewModel!
-    private var todayWeatherList: [List] = []
-
+    private var viewModel: MainViewModel?
 }
 
 //MARK: -Set up uı
@@ -26,7 +24,6 @@ extension WeatherHourlyCell {
             self.collectionViewHourlyWeather.register(UINib(nibName: "WeatherHourCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WeatherHourCollectionViewCell")
             self.collectionViewHourlyWeather.delegate = self
             self.collectionViewHourlyWeather.dataSource = self
-            
             self.weatherHourlyCellContentView.layer.cornerRadius = 8
             self.weatherHourlyCellContentView.addItemShadow()
             self.collectionViewHourlyWeather.backgroundColor = .clear
@@ -36,15 +33,14 @@ extension WeatherHourlyCell {
 //MARK: -Collection View
 extension WeatherHourlyCell:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return todayWeatherList.count
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.currentWeatherHourlyDataViews.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherHourCollectionViewCell", for: indexPath) as! WeatherHourCollectionViewCell
-        let currentForecast = todayWeatherList[indexPath.row]
-        let isChosen = viewModel.isCurrentForecastTimeModel(timeForecast: currentForecast)
-        cell.configureCell(currentForecast: todayWeatherList[indexPath.row], isChosen: isChosen)
+        let currentForecast = viewModel!.currentWeatherHourlyDataViews[indexPath.row]
+        cell.configureCell(currentForecast: currentForecast)
         return cell
     }
     
@@ -53,9 +49,8 @@ extension WeatherHourlyCell:UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let currentForecast = todayWeatherList[indexPath.row]
-        print("Chosen : \(currentForecast) at index: \(indexPath.row)")
-        self.viewModel.updateCurrentWeather(currentForecast)
+        let currentForecast = viewModel!.currentWeatherHourlyDataViews[indexPath.row]
+        self.viewModel!.initialize(with: currentForecast.date)
     }
 }
 
@@ -63,7 +58,6 @@ extension WeatherHourlyCell:UICollectionViewDelegate, UICollectionViewDataSource
 extension WeatherHourlyCell {
     func configureCell(_ viewModel: MainViewModel) {
         self.weatherHourlyCellContentView.backgroundColor = C.Color.collectionViewHourlyWeatherColor
-        self.todayWeatherList = viewModel.getTodayForecastList()
         self.viewModel = viewModel
         self.collectionViewHourlyWeather.reloadData()
     }

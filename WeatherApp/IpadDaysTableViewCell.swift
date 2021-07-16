@@ -13,18 +13,17 @@ class IpadDaysTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDegree: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     
-    private var viewDataItem: ListViewData!
-    private var viewModel: MainViewModel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func configure(with item: ListViewData, viewModel: MainViewModel) {
-        viewDataItem = item
-        self.viewModel = viewModel
-      
+    func configure(with item: ListViewDataModel) {
+       
+        self.lblDate.text = item.dayAndMonth
+        self.lblDay.text = item.dayName
+        self.lblDegree.text = item.degree
+        
         if item.isSelected {
             self.backgroundColor = C.Color.ipadChosenDayCellBackgroundColor
             self.lblDay.textColor = C.Color.ipadChosenDayCellTextColor
@@ -35,12 +34,6 @@ class IpadDaysTableViewCell: UITableViewCell {
             self.lblDay.textColor = C.Color.ipadDayCellDayTextColor
             self.lblDate.textColor = C.Color.ipadDayCellDateTextColor
             self.lblDegree.textColor = C.Color.ipadDayCellDegreeTextColor
-            
         }
-        
-        self.lblDate.text = viewDataItem.dayAndMonth
-        self.lblDay.text = viewDataItem.dayName
-        self.lblDegree.text = viewDataItem.degree
     }
-
 }

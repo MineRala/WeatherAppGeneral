@@ -16,11 +16,31 @@ let KeyWindow = UIApplication.shared.connectedScenes
         .filter({$0.isKeyWindow}).first
 
 
+// MARK: - Location Request Type
+enum LocationRequestType {
+    case realLocation
+    case fakeLocation
+    
+    var simulationWaitInterval: Int {
+        switch self {
+        case .fakeLocation:
+            return 3
+        default:
+            return 0
+        }
+    }
+}
+
+// MARK: - Config
 struct C {
     struct App {
         static let numberOfItemsInHourlyCollectionView: Int = 8
+        static let locationRequestType = LocationRequestType.fakeLocation
+        static let fakeLocationCity = WeatherServiceCity.paris
+        
     }
     
+    // MARK: - Font
     enum Font: String {
         case bold = "FuturaPT-Bold"
         case regular = "FuturaPT-Medium"
@@ -33,7 +53,7 @@ struct C {
         }
     }
 
-    
+    // MARK: - Color
     struct Color {
         static var viewControllerBackgroundColor: UIColor { UITraitCollection.current.userInterfaceStyle == .light ?  #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1) : #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1) }
         static var cityInfoTitleColor : UIColor { UITraitCollection.current.userInterfaceStyle == .light ?  #colorLiteral(red: 0.3254901961, green: 0.3254901961, blue: 0.3254901961, alpha: 1) :#colorLiteral(red: 0.8156862745, green: 0.8156862745, blue: 0.8156862745, alpha: 1)}
@@ -102,11 +122,6 @@ struct C {
         static var ipadHourTableViewCellTextColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.4039215686, green: 0.4039215686, blue: 0.4039215686, alpha: 1) : #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1) }
         
         static var ipadHourTableViewCellImageColor: UIColor{ UITraitCollection.current.userInterfaceStyle == .light ? #colorLiteral(red: 0.4862745098, green: 0.4823529412, blue: 0.4823529412, alpha: 1) : #colorLiteral(red: 0.4862745098, green: 0.4823529412, blue: 0.4823529412, alpha: 1) }
-
-
-        
-        
-        
     }
 }
 

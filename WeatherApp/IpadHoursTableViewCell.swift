@@ -14,7 +14,7 @@ class IpadHoursTableViewCell: UITableViewCell {
     @IBOutlet weak var lblHour: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
     
-    private var currentTimeForecast: WeatherHourlyDataView!
+    private var currentTimeForecast: WeatherHourlyViewDataModel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,18 +22,9 @@ class IpadHoursTableViewCell: UITableViewCell {
         hourView.layer.borderColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
         hourView.layer.borderWidth = 1
         hourView.layer.cornerRadius = 31
-      
-    
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    
-    func configureCell(currentForecast: WeatherHourlyDataView) {
+    func configureCell(currentForecast: WeatherHourlyViewDataModel) {
         
         self.currentTimeForecast = currentForecast
         
@@ -43,7 +34,6 @@ class IpadHoursTableViewCell: UITableViewCell {
             self.imgIcon.tintColor = C.Color.ipadChosenDayCellTextColor
             self.lblDegree.textColor = C.Color.ipadChosenDayCellTextColor
             self.lblHour.textColor = C.Color.ipadChosenDayCellTextColor
-            
             
         } else {
             self.hourView.backgroundColor = C.Color.ipadHourTableViewCellBackgroundColor

@@ -17,7 +17,7 @@ class DaysTableViewCell: UITableViewCell ,UICollectionViewDelegate , UICollectio
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var labelDegree: UILabel!
    
-    private var viewDataItem: ListViewData!
+    private var viewDataItem: ListViewDataModel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -80,7 +80,7 @@ func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection s
    }
     
     
-    func configureCell(with item: ListViewData) {        
+    func configureCell(with item: ListViewDataModel) {        
        viewDataItem = item
         self.labelDegree.text = viewDataItem.degree
         self.labelDayName.text = item.dayName
