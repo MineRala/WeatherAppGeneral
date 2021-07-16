@@ -57,20 +57,4 @@ class WeatherVDMConverters {
             return ListViewDataModel(date: model.date(), dayName: dayName, dayAndMonth: dayAndMonth, icon: icon, degree: degree, windSpeed: windSpeed, humidity: humidity, pressure: pressure, windDegree: windDegree, isSelected: isSelected)
         }
     }
-    
-    /**
-     let viewDatas = listModels.compactMap { model -> ListViewDataModel? in
-         guard let main = model.main else { return nil }
-         let dayName = model.date().nameOfTheDay
-         let dayAndMonth = model.date().numberOfTheDayAndMonth
-         let icon = model.weatherIcon()
-         let degree = "\(main.temp) °C"
-         let windSpeed = "\(model.wind.speed) km/h"
-         let humidity = "\(main.humidity) g/m3"
-         let pressure = "\(main.pressure) hPa"
-         let windDegree = "\(model.wind.deg) °"
-         let viewData = ListViewDataModel(dayName: dayName, dayAndMonth: dayAndMonth, icon: icon, degree: degree, windSpeed: windSpeed, humidity: humidity, pressure: pressure, windDegree: windDegree, isSelected: false)
-         print("View Data: \(viewData)")
-     
-     */
 }

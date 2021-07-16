@@ -29,6 +29,10 @@ class Network {
     deinit {
         
     }
+
+    fileprivate func setNetworkStatus(_ status: NetworkConnectionStatus) {
+        self.networkStatus.send(status)
+    }
     
     private func startNetworkNotifier() {
         do {
@@ -45,5 +49,12 @@ class Network {
         reachability.whenUnreachable = { _ in
             self.networkStatus.send(.offline)
         }
+    }
+}
+
+// MARK: - Mock
+class NetworkMock: Network {
+     func setNetworkStatusMock(_ status: NetworkConnectionStatus) {
+        super.setNetworkStatus(status)
     }
 }

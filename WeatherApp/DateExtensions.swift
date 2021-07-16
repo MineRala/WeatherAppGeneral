@@ -34,9 +34,7 @@ extension Date {
     
     var dateUniqueIdentifier: String {
         let date = self
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat =  "dd_MM_yyyy"
-        let identifier =  dateFormatter.string(from: date)
+        let identifier =  DateFormatter.dateWeatherFormatter.string(from: date)
         return identifier
     }
     
@@ -54,4 +52,13 @@ extension Date {
         return "\(self.dateUniqueIdentifier)_\(self.hourUniqueIdentifier)"
     }
     
+}
+
+
+extension DateFormatter {
+    static let dateWeatherFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "dd_MM_yyyy"
+        return dateFormatter
+    }()
 }
