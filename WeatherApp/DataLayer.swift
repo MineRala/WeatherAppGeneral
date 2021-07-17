@@ -20,8 +20,9 @@ class DataLayer {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(network: Network = Network.shared) {
+    init(network: Network = Network.shared, weatherModel: WeatherModel? = nil) {
         self.network = network
+        self.weatherModel = weatherModel
     }
     
 }
@@ -200,9 +201,11 @@ extension DataLayer {
 
 // MARK: - Mock
 class DataLayerMock: DataLayer {
-    override init(network: Network = Network.shared) {
-        super.init(network: network)
+    
+    override init(network: Network = Network.shared, weatherModel : WeatherModel? = nil) {
+        super.init(network: network,weatherModel:  weatherModel)
     }
+    
     
     func convertToDataModelMock(from data: Data, callback: @escaping (WeatherModelResponse) -> ()) {
         super.convertToDataModel(from: data, callback: callback)
@@ -211,4 +214,18 @@ class DataLayerMock: DataLayer {
     func checkResponseModelMock(weatherModel: WeatherModel, callback: @escaping (WeatherModelResponse) -> ()) {
         super.checkResponseModel(weatherModel: weatherModel, callback: callback)
     }
+    
+    func listItemsMock(from selectedDate: Date) -> [List]{
+        super.listItems(from: selectedDate)
+    }
+    
+    func listItemMock(from selectedTime: Date) -> List? {
+        super.listItem(from: selectedTime)
+    }
+    
+    func dailyWeatherListItemsMock() -> [List] {
+        super.dailyWeatherListItems()
+    }
+    
+    
 }

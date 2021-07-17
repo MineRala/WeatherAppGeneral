@@ -40,11 +40,7 @@ extension Date {
     
     var hourUniqueIdentifier: String {
         let date = self
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat =  "h a"
-        dateFormatter.amSymbol = "AM"
-        dateFormatter.pmSymbol = "PM"
-        let identifier =  dateFormatter.string(from: date)
+        let identifier =  DateFormatter.hourWeatherFormatter.string(from: date)
         return identifier
     }
     
@@ -61,4 +57,14 @@ extension DateFormatter {
         dateFormatter.dateFormat =  "dd_MM_yyyy"
         return dateFormatter
     }()
+    
+    static let hourWeatherFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "h a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
+        return dateFormatter
+    }()
 }
+
+

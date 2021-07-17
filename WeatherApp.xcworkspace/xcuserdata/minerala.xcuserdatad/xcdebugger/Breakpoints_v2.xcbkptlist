@@ -180,5 +180,101 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "639C4163-F513-44FB-9FBC-0B9DCEC1A599"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherApp/APIService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "requestURL"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "639C4163-F513-44FB-9FBC-0B9DCEC1A599 - ba91ef70ede54195"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherApp.WeatherService.requestURL.getter : Swift.String"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/minerala/Desktop/RapsodoIos/WeatherAppGeneral/WeatherApp/WeatherApp/APIService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "203">
+               </Location>
+               <Location
+                  uuid = "639C4163-F513-44FB-9FBC-0B9DCEC1A599 - ba91ef70ede54195"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherApp.WeatherService.requestURL.getter : Swift.String"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/minerala/Desktop/RapsodoIos/WeatherAppGeneral/WeatherApp/WeatherApp/APIService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "1173">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "181BA866-9F5A-4D1E-A7B7-C79BDC05EA3E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppTests/DataLayerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "test_6_ListItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E7CA029-1A0D-43BC-BC7F-A7DA8B1D807F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppTests/DataLayerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "test_6_ListItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C3DA8448-DCA8-4809-92E5-D7B4300D90C6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppTests/DataLayerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "test_6_ListItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -105,6 +105,23 @@ class DataLayerTests: XCTestCase {
         
         wait(for: [expectationA], timeout: 10, enforceOrder: true)
     }
+    
+    func test_6_ListItems() {
+        let url = Bundle(for: type(of: self)).url(forResource: "weatherFakeAnkara", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+       let weatherModel = try! JSONDecoder().decode(WeatherModel.self, from: data)
+       let network = NetworkMock()
+        network.setNetworkStatusMock(.online)
+        let layer = DataLayerMock(network: network, weatherModel: weatherModel)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "yyyy-MM-dd HH:mm:ss"
+        let date =  dateFormatter.date(from: "2021-07-17 21:00:00")
+        let item = layer.listItemMock(from: date!)
+        print(item)
+        print("sdsf")
+    }
+     
+       
 
 
     func testPerformanceExample() throws {
