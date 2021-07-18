@@ -51,6 +51,7 @@ extension MainViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.initialize(with: currentDependency.selectedDate)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -65,7 +66,7 @@ extension MainViewController {
         super.viewDidLoad()
         setUpUI()
         addListeners()
-        viewModel.initialize(with: currentDependency.selectedDate)
+      //  viewModel.initialize(with: currentDependency.selectedDate)
     }
     
     
