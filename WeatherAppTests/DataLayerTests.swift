@@ -106,19 +106,43 @@ class DataLayerTests: XCTestCase {
         wait(for: [expectationA], timeout: 10, enforceOrder: true)
     }
     
-    func test_6_ListItems() {
+    func test_6_ListItem() {
         let url = Bundle(for: type(of: self)).url(forResource: "weatherFakeAnkara", withExtension: "json")!
         let data = try! Data(contentsOf: url)
-       let weatherModel = try! JSONDecoder().decode(WeatherModel.self, from: data)
-       let network = NetworkMock()
+        let weatherModel = try! JSONDecoder().decode(WeatherModel.self, from: data)
+        let network = NetworkMock()
         network.setNetworkStatusMock(.online)
         let layer = DataLayerMock(network: network, weatherModel: weatherModel)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat =  "yyyy-MM-dd HH:mm:ss"
-        let date =  dateFormatter.date(from: "2021-07-17 21:00:00")
-        let item = layer.listItemMock(from: date!)
-        print(item)
-        print("sdsf")
+        var dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        var date: Date
+        var item: List?
+        date = dateFormatter.date(from: "2021-07-17 18:00:00")!
+        item = layer.listItemMock(from: date)
+        XCTAssert(item!.main!.temp == 34.09, "Current Val : \(item!.main!.temp)")
+        date = dateFormatter.date(from: "2021-07-17 21:00:00")!
+        item = layer.listItemMock(from: date)
+        XCTAssert(item!.main!.temp == 28.24, "Current Val : \(item!.main!.temp)")
+        date = dateFormatter.date(from: "2021-07-17 18:15:00")!
+        item = layer.listItemMock(from: date)
+        XCTAssert(item!.main?.temp == 34.09, "Current Val : \(item!.main!.temp)")
+    }
+    
+    func test7_ListItems() {
+        let url = Bundle(for: type(of: self)).url(forResource: "weatherFakeAnkara", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        let weatherModel = try! JSONDecoder().decode(WeatherModel.self, from: data)
+        let network = NetworkMock()
+        network.setNetworkStatusMock(.online)
+        let layer = DataLayerMock(network: network, weatherModel: weatherModel)
+        var dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        var date : Date
+        var item: [List]?
+        date = dateFormatter.date(from: "2021-07-18 00:00:00")!
+        item = layer.listItemsMock(from: date)
+        XCTAssert(item!.last?.main?.temp == 30.64, "Current Val : \(String(describing: item!.last?.main?.temp))")
+        XCTAssert(item!.first?.main?.temp == 25.97, "Current Val : \(String(describing: item!.first?.main?.temp))")
     }
      
        

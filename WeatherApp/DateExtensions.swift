@@ -9,27 +9,21 @@ import Foundation
 
 extension Date {
     var nameOfTheDay: String {
-         let date = self
-         let dateFormatter = DateFormatter()
-         dateFormatter.dateFormat = "EEEE"
-         let dayInWeek = dateFormatter.string(from: date)
-        return dayInWeek
+        let date = self
+        let identifier = DateFormatter.nameOfTheDayFormatter.string(from: date)
+        return identifier
     }
     
     var sunriseAndSunsetValue: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "h:mm a"
-        dateFormatter.amSymbol = "AM"
-        dateFormatter.pmSymbol = "PM"
-        return dateFormatter.string(from: self)
+        let data = self
+        let identifier = DateFormatter.sunriseAndSunsetValueFormatter.string(from: data)
+        return identifier
     }
     
     var numberOfTheDayAndMonth: String {
-        let date = self
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat =  "dd/MM"
-        let dayInWeek =  dateFormatter.string(from: date)
-        return dayInWeek
+        let data = self
+        let identifier = DateFormatter.numberOfTheDayAndMonthFormatter.string(from: data)
+        return identifier
     }
     
     var dateUniqueIdentifier: String {
@@ -63,6 +57,26 @@ extension DateFormatter {
         dateFormatter.dateFormat =  "h a"
         dateFormatter.amSymbol = "AM"
         dateFormatter.pmSymbol = "PM"
+        return dateFormatter
+    }()
+    
+    static let nameOfTheDayFormatter : DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter
+    }()
+    
+    static let sunriseAndSunsetValueFormatter : DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
+        return dateFormatter
+    }()
+    
+    static let numberOfTheDayAndMonthFormatter : DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "dd/MM"
         return dateFormatter
     }()
 }
